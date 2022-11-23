@@ -2,16 +2,18 @@ package Core;
 
 public abstract class Character 
 {
-	protected final String name;
+	private final String name;
+	protected Location currentLocation;
 	
-	protected int healthPoints;
-	protected int attack;
+	private int healthPoints;
+	private int attack;
 	
-	public Character (String name, int healthPoints, int attack)
+	public Character (String name, int healthPoints, int attack, Location startingLocation)
 	{
 		this.name = name;
 		this.healthPoints = healthPoints;
 		this.attack = attack;
+		this.currentLocation = startingLocation;
 	}
 	
 	public String getName()

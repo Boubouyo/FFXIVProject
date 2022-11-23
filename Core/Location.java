@@ -20,6 +20,7 @@ public class Location implements Look{
     private final Map<String, Exit> exits = new HashMap<>();
     private final List<Character> characters = new ArrayList<>();
     private final List<Item> items = new ArrayList<>();
+    private Hero myHero = null;
     
     
     public Location(String name){
@@ -30,6 +31,10 @@ public class Location implements Look{
         return this.name;
     }
     
+    public Hero getHero(){
+        return this.myHero;
+    }
+    
     
    //Exit management methods
     
@@ -37,11 +42,13 @@ public class Location implements Look{
         exits.put(newExit.getOtherLocation(this.name).getName(), newExit);
     }
     
-    public Location takeExit(String locationName){
+    public Location takeExit(String locationName, Hero hero){
         Location returnedLoc = this;
-	if(this.exits.containsKey(locationName)){
+        if(this.exits.containsKey(locationName)){
             if(this.exits.get(locationName).ableToMoveThrough()){
                 returnedLoc = this.exits.get(locationName).getLocation(locationName);
+                this.myHero = null;
+                returnedLoc.myHero = hero;
             }
         }
         return returnedLoc;
