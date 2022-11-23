@@ -24,14 +24,20 @@ public abstract class Character
 		return this.healthPoints;
 	}
 	
-	public void reduceHealthPoints(int damage)
+	public void damageCharacter(int damage)
 	{
 		this.healthPoints -= damage;
+	}
+
+	// I'm doing another function to avoid the confusion of having only one function and having to think about the minus sign
+	public void healCharacter(int heal) 
+	{
+		damageCharacter(-heal);
 	}
 	
 	public void attackCharacter(Character c)
 	{
-		c.reduceHealthPoints(this.attack);
+		c.damageCharacter(this.attack);
 		
 		if (c.getHealthPoints() <= 0)
 		{
