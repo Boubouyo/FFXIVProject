@@ -5,7 +5,7 @@ public class Hero extends Character
 {
 	private List<Item> inventory; 
 	private Location currentLocation;
-	private final static String[] commands = {"HELP", "GO", "LOOK", "TAKE", "USE", "QUIT"};
+	private final static String[] commands = {"HELP", "GO", "LOOK", "TAKE", "USE", "ATTACK", "QUIT"};
 	
 	private boolean isGameFinished = false;
 	
@@ -36,6 +36,11 @@ public class Hero extends Character
 	    return null;
 	}
 	
+	public boolean getIsGameFinished()
+	{
+		return this.isGameFinished;
+	}
+	
 	public void die()
 	{
 		System.out.println("You died lmao. Try again when you have become a man.");
@@ -46,6 +51,8 @@ public class Hero extends Character
 	public void doTheCommand(String[] commandAndArgs)
 	{
 		String command = commandAndArgs[0];
+		String arg1 = commandAndArgs[1];
+		String arg2 = commandAndArgs[2];
 		int nbArgs = commandAndArgs.length - 1;
 		
 		if (command == commands[0]) // HELP
@@ -54,22 +61,44 @@ public class Hero extends Character
 		}
 		else if (command == commands[1]) // GO
 		{
-			if (nbArgs < 1)
+			if (nbArgs == 0)
 				System.out.println("GO where ?");
 			else
-				changeLocation(commandAndArgs[1]);
+				changeLocation(arg1);
 		}
-		else if (command == commands[1]) // LOOK
+		else if (command == commands[2]) // LOOK
 		{
-			
+			if (nbArgs == 0)
+				currentLocation.display();
+			else 
+				lookSomething(arg1);
 		}
-		else if (command == commands[1]) // TAKE
+		else if (command == commands[3]) // TAKE
 		{
-			
+			if (nbArgs == 0)
+				System.out.println("TAKE what ?");
+			else 
+				takeItem(arg1);
 		}
-		else if (command == commands[1]) // USE
+		else if (command == commands[4]) // USE
 		{
-			
+			if (nbArgs == 0)
+				System.out.println("USE what ?");
+			else if (nbArgs == 1)
+				useItem(arg1);
+			else
+				useItemOnItem(arg1, arg2);
+		}
+		else if (command == commands[5]) // ATTACK
+		{
+			if (nbArgs == 0)
+				System.out.println("ATTACK who ?");
+			else if (nbArgs == 1)
+				attackEnemy(arg1);
+		}
+		else if (command == commands[6]) // QUIT
+		{
+			this.isGameFinished = true;
 		}
 		else
 		{
@@ -91,5 +120,32 @@ public class Hero extends Character
 			System.out.print(commands[i] + ", ");
 		}
 		System.out.println(commands[i] + ". If you want to know more read the README.");
+	}
+	
+	public void lookSomething(String somethingName)
+	{
+		
+	}
+	
+	public void takeItem(String itemName)
+	{
+		
+	}
+	
+	public void useItem(String itemName)
+	{
+		
+	}
+	
+	public void useItemOnItem(String item1Name, String item2Name)
+	{
+		
+	}
+	
+	public void attackEnemy(String enemyName)
+	{
+		Character enemy = null /* currentRoom.getEnemyByName(enemyName) */;
+		
+		attackCharacter(enemy);
 	}
 }
