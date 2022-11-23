@@ -1,5 +1,7 @@
 package Core;
-import java.util.*; 
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Hero extends Character 
 {
@@ -41,6 +43,7 @@ public class Hero extends Character
 		return this.isGameFinished;
 	}
 	
+	@Override
 	public void die()
 	{
 		System.out.println("You died lmao. Try again when you have become a man.");
