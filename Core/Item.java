@@ -2,16 +2,15 @@ package Core;
 
 
 public class Item {
+	private final String name;
+	private final String description;
 	
-	// bip boup boup bip
-	protected final String name;
-	
+
 	public Item(String name) {
 		this.name = name;
 	}
 	
-	public String getName()
-	{
+	public String getName() {
 		return this.name;
 	}
 }
