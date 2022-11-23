@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Hero extends Character 
 {
-	private Map<String, String> inventory; // TODO change String to Item
+	private Map<String, Item> inventory; 
 	
 	public Hero (String name, int healthPoints)
 	{
@@ -11,9 +11,9 @@ public class Hero extends Character
 		this.inventory = new HashMap<>();
 	}
 	
-	public void addToInventory(String item) // TODO change String to Item
+	public void addToInventory(Item item) 
 	{
-		this.inventory.put(item, item); // TODO change item to item.getName()
+		this.inventory.put(item.getName(), item); 
 	}
 	
 	public void removeFromInventory(String itemName) 
