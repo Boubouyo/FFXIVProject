@@ -40,11 +40,13 @@ public class Location implements Look{
     public Location takeExit(String locationName){
         Location returnedLoc = this;
 	if(this.exits.containsKey(locationName)){
-            if(this.exits.get(locationName).ableToMoveThrough())
+            if(this.exits.get(locationName).ableToMoveThrough()){
                 returnedLoc = this.exits.get(locationName).getLocation(locationName);
+            }
         }
         return returnedLoc;
     }
+    
     
     //For the LOOK command
     @Override
@@ -55,6 +57,10 @@ public class Location implements Look{
     //Je sais pas trop faut voir plus tard
     public void addCharacters(Character newChar){
         this.characters.add(newChar);
+    }
+    
+    public void deleteCharacters(Character deletedChar){
+        characters.remove(deletedChar);
     }
     
     public void addItems(Item newItem){

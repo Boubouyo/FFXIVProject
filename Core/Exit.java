@@ -22,6 +22,7 @@ public class Exit {
         this.locationB.addExits(this);
     }
     
+    
     //Tells if the exit is blocked or not
     public boolean ableToMoveThrough(){
         return this.isOpen;
