@@ -6,16 +6,14 @@ import java.util.List;
 public class Hero extends Character 
 {
 	private List<Item> inventory; 
-	private Location currentLocation;
 	private final static String[] commands = {"HELP", "GO", "LOOK", "TAKE", "USE", "ATTACK", "QUIT"};
 	
 	private boolean isGameFinished = false;
 	
 	public Hero (String name, int healthPoints, int attack, Location startingLocation)
 	{
-		super(name, healthPoints, attack);
+		super(name, healthPoints, attack, startingLocation);
 		this.inventory = new ArrayList<Item>();
-		this.currentLocation = startingLocation;
 	}
 	
 	public void addToInventory(Item item) 
@@ -72,7 +70,7 @@ public class Hero extends Character
 		else if (command == commands[2]) // LOOK
 		{
 			if (nbArgs == 0)
-				currentLocation.display();
+				currentLocation.look();
 			else 
 				lookSomething(arg1);
 		}
@@ -111,7 +109,7 @@ public class Hero extends Character
 	
 	public void changeLocation(String locationName)
 	{
-		currentLocation = currentLocation.takeExit(locationName);
+		this.currentLocation = this.currentLocation.takeExit(locationName, this);
 	}
 	
 	public void printHelpCommands()
@@ -147,7 +145,7 @@ public class Hero extends Character
 	
 	public void attackEnemy(String enemyName)
 	{
-		Character enemy = null /* currentRoom.getEnemyByName(enemyName) */;
+		Character enemy = null /* currentLocation.getEnemyByName(enemyName) */;
 		
 		attackCharacter(enemy);
 	}
