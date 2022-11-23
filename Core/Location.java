@@ -4,14 +4,34 @@
  */
 package Core;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @author fetiveau
  */
 public class Location {
-	
-	public Location takeExit(String locationName)
-	{
-		return this;
-	}
+    private final String name;
+    private final String description = "This is just an empty room";
+    private Map<String, Exit> exits = new HashMap<>();
+    
+    
+    public Location(String name){
+        this.name = name;
+    }
+    
+    public String getName(){
+        return this.name;
+    }
+    
+    public Location takeExit(String locationName){
+	if(this.exits.containsKey(locationName)){
+            if(this.exits.get(locationName).ableToMoveThrough())
+                return this.exits.get(locationName).getIngoingRoom(locationName);
+        }
+        else{
+            return this;
+        }
+    }
 }
