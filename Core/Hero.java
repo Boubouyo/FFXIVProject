@@ -4,11 +4,13 @@ import java.util.*;
 public class Hero extends Character 
 {
 	private Map<String, Item> inventory; 
+	private Location currentLocation;
 	
-	public Hero (String name, int healthPoints)
+	public Hero (String name, int healthPoints, int attack, Location startingLocation)
 	{
-		super(name, healthPoints);
+		super(name, healthPoints, attack);
 		this.inventory = new HashMap<>();
+		this.currentLocation = startingLocation;
 	}
 	
 	public void addToInventory(Item item) 
@@ -24,5 +26,15 @@ public class Hero extends Character
 	public void getItemFromInventory(String itemName)
 	{
 		this.inventory.get(itemName); 
+	}
+	
+	public void die()
+	{
+		System.out.println("You died lmao. Try again when you have become a man.");
+	}
+	
+	public void changeLocation(String exitName)
+	{
+		currentLocation = currentLocation.takeExit(exitName);
 	}
 }
