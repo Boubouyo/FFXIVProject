@@ -9,9 +9,14 @@ package Core;
  * @author fetiveau
  */
 public class Location {
-	
-	public Location takeExit(String exitName)
-	{
-		return this;
-	}
+    private final String name;
+    
+    
+    public Location(String name){
+        this.name = name;
+    }
+    
+    public Location takeExit(String exitName){
+	return this;
+    }
 }
