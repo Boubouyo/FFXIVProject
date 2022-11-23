@@ -14,7 +14,7 @@ import java.util.Map;
  *
  * @author fetiveau
  */
-public class Location {
+public class Location implements Look{
     private final String name;
     private final String description = "This is just an empty room";
     private final Map<String, Exit> exits = new HashMap<>();
@@ -47,7 +47,8 @@ public class Location {
     }
     
     //For the LOOK command
-    public void display(){
+    @Override
+    public void look(){
         System.out.println(this.description);
     }
     
