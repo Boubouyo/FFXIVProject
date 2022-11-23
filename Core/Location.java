@@ -54,13 +54,34 @@ public class Location implements Look{
         System.out.println(this.description);
     }
     
-    //Je sais pas trop faut voir plus tard
+    //everything about the characters in a room
     public void addCharacters(Character newChar){
         this.characters.add(newChar);
     }
     
     public void deleteCharacters(Character deletedChar){
         characters.remove(deletedChar);
+    }
+    
+    public Character getEnemyByName(String name){
+        for(Character c : characters){
+            if(c.getName().equals(name)){
+                return c;
+            }
+        }
+        return null;
+    }
+    
+    
+    //Everything about the items in a room
+    
+    public Item getItemFromString(String name){
+        for(Item i : items){
+            if(i.getName().equals(name)){
+                return i;
+            }
+        }
+        return null;
     }
     
     public void addItems(Item newItem){
