@@ -33,8 +33,8 @@ public class Hero extends Character
 		System.out.println("You died lmao. Try again when you have become a man.");
 	}
 	
-	public void changeLocation(String exitName)
+	public void changeLocation(String locationName)
 	{
-		currentLocation = currentLocation.takeExit(exitName);
+		currentLocation = currentLocation.takeExit(locationName);
 	}
 }

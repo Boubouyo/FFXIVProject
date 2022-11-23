@@ -10,7 +10,7 @@ package Core;
  */
 public class Location {
 	
-	public Location takeExit(String exitName)
+	public Location takeExit(String locationName)
 	{
 		return this;
 	}
