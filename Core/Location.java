@@ -17,13 +17,15 @@ import java.util.Map;
 public class Location implements Look{
     private final String name;
     private final String description;
+    private final String entryDescription;
     private final Map<String, Exit> exits = new HashMap<>();
     private final List<Enemy> enemies = new ArrayList<>();
     private final List<Item> items = new ArrayList<>();
     private Hero myHero = null;
     
     
-    public Location(String name,String description){
+    public Location(String name,String description, String entryDescription){
+        this.entryDescription = entryDescription;
         this.name = name;
         this.description = description;
     }
@@ -55,6 +57,9 @@ public class Location implements Look{
         return returnedLoc;
     }
     
+    public void entryPrint(){
+        System.out.println(this.entryDescription);
+    }
     
     //For the LOOK command
     @Override
