@@ -36,6 +36,23 @@ public class Hero extends Character
 	    return null;
 	}
 	
+	public void printInventory()
+	{
+		if (inventory.isEmpty())
+		{
+			System.out.println("Your inventory is empty.");
+		}
+		else
+		{
+			System.out.print("In your inventory you have :");
+			for (Item item : inventory) 
+			{
+				System.out.print(" " + item.getName());
+			}
+			System.out.println(".");
+		}
+	}
+	
 	public boolean getIsGameFinished()
 	{
 		return this.isGameFinished;
@@ -136,21 +153,29 @@ public class Hero extends Character
 	
 	public void lookSomething(String somethingName)
 	{
-		Item itemToLook = getItemByName(somethingName);
-		if (itemToLook != null)
+		// SPECIAL EXCEPTION FOR INVENTORY
+		if (somethingName.equals("INVENTORY"))
 		{
-			itemToLook.look();
+			printInventory();
 		}
-		else 
+		else
 		{
-			Enemy enemyToLook = this.currentLocation.getEnemyByName(somethingName);
-			if (enemyToLook != null)
+			Item itemToLook = getItemByName(somethingName);
+			if (itemToLook != null)
 			{
-				enemyToLook.look();
+				itemToLook.look();
 			}
 			else 
 			{
-				System.out.println("You're trying really hard to look at " + somethingName + " but you can't manage to find it.");
+				Enemy enemyToLook = this.currentLocation.getEnemyByName(somethingName);
+				if (enemyToLook != null)
+				{
+					enemyToLook.look();
+				}
+				else 
+				{
+					System.out.println("You're trying really hard to look at " + somethingName + " but you can't manage to find it.");
+				}
 			}
 		}
 	}
