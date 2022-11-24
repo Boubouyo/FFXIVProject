@@ -5,8 +5,19 @@ import java.util.List;
 
 public class Hero extends Character 
 {
-	private final List<Item> inventory; 
 	private final static String[] commands = {"HELP", "GO", "LOOK", "TAKE", "USE", "ATTACK", "QUIT"};
+	private final static String[] commands_help = 
+		{
+			"HELP [command] : use it to have the list of commands. If you add an arg it will describe a command.",
+			"GO location : use it to go to the location.", 
+			"LOOK [args] : use it to inspect. Without args it will describe the room. You can add as many args as you like to look items, enemies, the HERO or the INVENTORY.", 
+			"TAKE item : use it to take the item, if possible.", 
+			"USE item1 [item2] : use it to use the item1. Add item2 to use the item1 on the item2.", 
+			"ATTACK enemy : use it to attack the enemy. Be careful, they might fight back !", 
+			"QUIT : use it to quit the game."
+		};
+	
+	private final List<Item> inventory; 	
 	
 	private boolean isGameFinished = false;
 	
@@ -85,52 +96,58 @@ public class Hero extends Character
 	}
 	
 	// Methods for the commands
-	public void doTheCommand(String[] commandAndArgs) throws Exception
+	public void doTheCommand(List<String> commandAndArgs) throws Exception
 	{
-		String command = commandAndArgs[0];
-		String arg1 = commandAndArgs[1];
-		String arg2 = commandAndArgs[2];
+		String command = commandAndArgs.get(0);
+		int len = commandAndArgs.size();
 		
 		if (command.equalsIgnoreCase(commands[0])) // HELP
 		{
-			printHelpCommands();
+			if (len == 1)
+				printHelpCommands();
+			else
+				printHelpCommandsWithArg(commandAndArgs.get(1));
 		}
 		else if (command.equalsIgnoreCase(commands[1])) // GO
 		{
-			if (arg1 == "")
+			if (len == 1)
 				System.out.println("GO where ?");
 			else
-				changeLocation(arg1);
+				changeLocation(commandAndArgs.get(1));
 		}
 		else if (command.equalsIgnoreCase(commands[2])) // LOOK
 		{
-			if (arg1 == "")
+			if (len == 1)
 				currentLocation.look();
 			else 
-				lookSomething(arg1);
+				{
+					commandAndArgs.remove(0);
+					for (String arg : commandAndArgs)
+						lookSomething(arg);				
+				}
 		}
 		else if (command.equalsIgnoreCase(commands[3])) // TAKE
 		{
-			if (arg1 == "")
+			if (len == 1)
 				System.out.println("TAKE what ?");
 			else 
-				takeItem(arg1);
+				takeItem(commandAndArgs.get(1));
 		}
 		else if (command.equalsIgnoreCase(commands[4])) // USE
 		{
-                    if (arg1 == "")
+                    if (len == 1)
                     	System.out.println("USE what ?");
-                    else if (arg2 == "")
-                    	useItem(arg1);
+                    else if (len == 2)
+                    	useItem(commandAndArgs.get(1));
                     else 
-                    	useItemOnItem(arg1, arg2);
+                    	useItemOnItem(commandAndArgs.get(1), commandAndArgs.get(2));
 		}
 		else if (command.equalsIgnoreCase(commands[5])) // ATTACK
 		{
-			if (arg1 == "")
+			if (len == 1)
 				System.out.println("ATTACK whom ?");
 			else
-				attackEnemy(arg1);
+				attackEnemy(commandAndArgs.get(1));
 		}
 		else if (command.equalsIgnoreCase(commands[6])) // QUIT
 		{
@@ -158,7 +175,24 @@ public class Hero extends Character
 		{
 			System.out.print(commands[i] + ", ");
 		}
-		System.out.println(commands[i] + ". If you want to know more read the README.");
+		System.out.println(commands[i] + ".");
+	}
+	
+	public void printHelpCommandsWithArg(String command)
+	{
+		int i = 0;
+		for (String c : commands) 
+		{
+			if (command.equalsIgnoreCase(c))
+			{
+				System.out.println(commands_help[i]);
+				break;
+			}
+			i++;
+		}
+		
+		if (i == commands.length)
+			System.out.println("The command " + command + " doesn't exist.");
 	}
 	
 	public void lookSomething(String somethingName)

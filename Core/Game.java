@@ -1,6 +1,7 @@
 package Core;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -52,11 +53,10 @@ public class Game {
         return new Hero(HeroName, heroHP, heroAttack, locations.get(0));
 	}
 	
-	public String[] parsedInput(Scanner scanner)
+	public List<String> parsedInput(Scanner scanner)
 	{
-		String[] commandAndArgs = {"", "", ""};
-		
-		int i = 0;
+		List<String> commandAndArgs = new ArrayList<>();
+
 		boolean isLineFinished = false;
 		while (!isLineFinished)
 		{
@@ -68,16 +68,15 @@ public class Game {
 			
 			// If there is enough room in commandAndArgs AND splitedString is not 0 (which happen if currentWord = END_OF_THE_LINE_CHAR)
 			// We add the word to the commandAndArgs array
-			if (i < commandAndArgs.length && splitedString.length != 0)
-				commandAndArgs[i] = splitedString[0];			
+			if (splitedString.length != 0)
+				commandAndArgs.add(splitedString[0]);			
 			
 			// We verify if there was the END_OF_THE_LINE_CHAR 
 			// If splitedString.length == 0 then the END_OF_THE_LINE_CHAR was there alone
 			// If !currentWord.equals(splitedString[0]) then the END_OF_THE_LINE_CHAR was somewhere in the word
-			isLineFinished = (splitedString.length == 0 || !currentWord.equals(splitedString[0]));		
-			i++;
+			isLineFinished = (splitedString.length == 0 || !currentWord.equals(splitedString[0]));
 		}
-
+			
 		return commandAndArgs;
 	}
 	
@@ -91,9 +90,9 @@ public class Game {
 		hero.currentLocation.setHero(hero);
 		
         while (!isFinished)
-        {
+        {        		
         	System.out.print(">> ");
-        	String[] commandAndArgs = parsedInput(scannerInput); 
+        	List<String> commandAndArgs = parsedInput(scannerInput); 
         	
         	try
         	{
