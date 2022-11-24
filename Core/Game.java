@@ -88,9 +88,11 @@ public class Game {
         
 		System.out.println("A new adventure begins.");
 		
+		hero.currentLocation.setHero(hero);
+		
         while (!isFinished)
         {
-        	System.out.println("Please input a command : ");
+        	System.out.print(">> ");
         	String[] commandAndArgs = parsedInput(scannerInput); 
         	
         	try

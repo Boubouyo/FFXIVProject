@@ -22,6 +22,7 @@ public class Location implements Look{
     private final List<Enemy> enemies = new ArrayList<>();
     private final List<Item> items = new ArrayList<>();
     private Hero myHero = null;
+    private boolean firstTimeInLocation = true;
     
     
     public Location(String name,String description, String entryDescription){
@@ -45,6 +46,11 @@ public class Location implements Look{
     }
     
     public void setHero(Hero hero){
+    	if (firstTimeInLocation)
+    	{
+        	entryPrint();
+    		firstTimeInLocation = false;
+    	}
         this.myHero = hero;
     }
     
