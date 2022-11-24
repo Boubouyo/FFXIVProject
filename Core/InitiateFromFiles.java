@@ -8,11 +8,15 @@ import java.util.Scanner;
 
 public class InitiateFromFiles {
 	
+	private static final String CHAR_DELIMITER = ";";
+	
 	private static final String PATH_LOCATIONS = "src/Core/Locations/";
 	private static final String[] STRING_LOCATIONS = {"entrance", "firstRoom"};
 	
 	private static final File FILE_EXITS = new File ("src/Core/Exits/EXITS");
-	private static final String CHAR_DELIMITER_EXIT = ";";
+	
+	private static final String PATH_ENEMIES = "src/Core/Enemies/";
+	private static final File FILE_ENEMIES = new File ("src/Core/Enemies/ENEMIES");
 
 	public static List<Location> initiateLocations() throws FileNotFoundException
 	{
@@ -24,8 +28,9 @@ public class InitiateFromFiles {
 			
 			String locationName = scanner.nextLine();
 			String locationDescription = scanner.nextLine();
+			String locationStartingDescription = scanner.nextLine();
 			
-			locations.add(new Location(locationName, locationDescription));
+			locations.add(new Location(locationName, locationDescription, locationStartingDescription));
 			
 			scanner.close();
 		}
@@ -33,31 +38,34 @@ public class InitiateFromFiles {
 		return locations;
 	}
 	
-	public static void initiateExits(List<Location> locations) throws FileNotFoundException, InitiateExitWrongException
+	public static void initiateExits(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
 	{
 		Scanner scanner = new Scanner(FILE_EXITS);
 		
 		while (scanner.hasNext())
 		{
 			String currentExit = scanner.nextLine();
-			String[] parsedExit = currentExit.split(CHAR_DELIMITER_EXIT);
+			String[] parsedExit = currentExit.split(CHAR_DELIMITER);
 			
 			// If the number of arguments is not 3 then it's incorrect !
 			if (parsedExit.length != 3)
 			{
 				scanner.close();
-				throw new InitiateExitWrongException("The number of argument is wrong. It must be 3 not " + parsedExit.length);
+				throw new InitiateFromFilesWrongException("The number of argument is wrong. It must be 3 not " + parsedExit.length);
 			}
 			else
 			{
+				String firstLocation = parsedExit[1];
+				String secondLocation = parsedExit[1];
+				
 				// We must associate each name with a location
 				Location locA = null, locB = null;
 				
 				for(Location loc : locations){
-		            if(loc.getName().equals(parsedExit[1])){
+		            if(loc.getName().equals(firstLocation)){
 		            	locA = loc;
 		            }
-		            if(loc.getName().equals(parsedExit[2])){
+		            if(loc.getName().equals(secondLocation)){
 		            	locB = loc;
 		            }
 		        }
@@ -70,8 +78,51 @@ public class InitiateFromFiles {
 				else
 				{
 					scanner.close();
-					throw new InitiateExitWrongException("The names" + parsedExit[1] + " and/or " + parsedExit[2] + "doesn't correspond to any location.");
+					throw new InitiateFromFilesWrongException("The names" + firstLocation + " and/or " + secondLocation + "doesn't correspond to any location.");
 				}
+			}
+		}
+		
+		scanner.close();
+	}
+	
+	public static void initiateEnemies(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
+	{
+		Scanner scanner = new Scanner(FILE_ENEMIES);
+		
+		while (scanner.hasNext())
+		{
+			String currentEnemy = scanner.nextLine();
+			String[] parsedEnemy = currentEnemy.split(CHAR_DELIMITER);
+			
+			// If the number of arguments is not 3 then it's incorrect !
+			if (parsedEnemy.length != 3)
+			{
+				scanner.close();
+				throw new InitiateFromFilesWrongException("The number of argument is wrong. It must be 3 not " + parsedEnemy.length);
+			}
+			else
+			{
+				String enemyName = parsedEnemy[0];
+				File enemyFile = new File(PATH_ENEMIES + parsedEnemy[1]);
+				String locationString = parsedEnemy[2];
+				
+				// We must associate the name with the location
+				Location location = null;
+				
+				for(Location loc : locations){
+		            if(loc.getName().equals(locationString))
+		            		location = loc;
+		        }
+				
+				// If the name hasn't been associated with the location then it's still null and there is an error
+				if (location == null)
+				{
+					scanner.close();
+					throw new InitiateFromFilesWrongException("The name" + locationString + "doesn't correspond to any location.");
+				}
+				
+				// TODO add enemy to location
 			}
 		}
 		

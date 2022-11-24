@@ -22,8 +22,8 @@ public class EnemyIT {
     private final String enemyDescription = "Green shitty looking mob";
     @Before
     public void setUp() {
-        Location locB = new Location("Salle 2", "salut c'est moi");
-        locA = new Location("Salle", "On s'en branle");
+        Location locB = new Location("Salle 2", "salut c'est moi", "zut");
+        locA = new Location("Salle", "On s'en branle", "alors");
         attackEnemy = 5;
         heroMaxHp = 50;
         enemy1 = new Enemy("GobelinA", 15, attackEnemy, locA, enemyDescription);
@@ -38,7 +38,6 @@ public class EnemyIT {
     @Test
     public void testAttackHero1() {
         enemy1.attackHero();
-        System.out.println(heroMaxHp);
         assertEquals(heroMaxHp - attackEnemy, theHero.getHealthPoints());
     }
     
