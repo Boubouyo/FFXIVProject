@@ -27,6 +27,7 @@ public class Enemy extends Character implements Look
 	@Override 
 	public void die()
 	{
+		System.out.println(this.getName() + " is defeated.");
 		this.currentLocation.deleteEnemy(this);
 	}
 	
@@ -35,5 +36,7 @@ public class Enemy extends Character implements Look
 	{
 		System.out.println("It's a " + getName() + ".");
 		System.out.println(this.description);
+		System.out.print("It has ");
+		printHP();
 	}
 }

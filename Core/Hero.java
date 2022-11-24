@@ -53,6 +53,13 @@ public class Hero extends Character
 		}
 	}
 	
+	public void printHero()
+	{
+		System.out.print("You have ");
+		printHP();
+		printInventory();
+	}
+	
 	public boolean getIsGameFinished()
 	{
 		return this.isGameFinished;
@@ -84,32 +91,32 @@ public class Hero extends Character
 		String arg1 = commandAndArgs[1];
 		String arg2 = commandAndArgs[2];
 		
-		if (command.equals(commands[0])) // HELP
+		if (command.equalsIgnoreCase(commands[0])) // HELP
 		{
 			printHelpCommands();
 		}
-		else if (command.equals(commands[1])) // GO
+		else if (command.equalsIgnoreCase(commands[1])) // GO
 		{
 			if (arg1 == "")
 				System.out.println("GO where ?");
 			else
 				changeLocation(arg1);
 		}
-		else if (command.equals(commands[2])) // LOOK
+		else if (command.equalsIgnoreCase(commands[2])) // LOOK
 		{
 			if (arg1 == "")
 				currentLocation.look();
 			else 
 				lookSomething(arg1);
 		}
-		else if (command.equals(commands[3])) // TAKE
+		else if (command.equalsIgnoreCase(commands[3])) // TAKE
 		{
 			if (arg1 == "")
 				System.out.println("TAKE what ?");
 			else 
 				takeItem(arg1);
 		}
-		else if (command.equals(commands[4])) // USE
+		else if (command.equalsIgnoreCase(commands[4])) // USE
 		{
                     if (arg1 == "")
                     	System.out.println("USE what ?");
@@ -118,14 +125,14 @@ public class Hero extends Character
                     else 
                     	useItemOnItem(arg1, arg2);
 		}
-		else if (command.equals(commands[5])) // ATTACK
+		else if (command.equalsIgnoreCase(commands[5])) // ATTACK
 		{
 			if (arg1 == "")
 				System.out.println("ATTACK whom ?");
 			else
 				attackEnemy(arg1);
 		}
-		else if (command.equals(commands[6])) // QUIT
+		else if (command.equalsIgnoreCase(commands[6])) // QUIT
 		{
 			this.isGameFinished = true;
 		}
@@ -154,9 +161,14 @@ public class Hero extends Character
 	public void lookSomething(String somethingName)
 	{
 		// SPECIAL EXCEPTION FOR INVENTORY
-		if (somethingName.equals("INVENTORY"))
+		if (somethingName.equalsIgnoreCase("INVENTORY"))
 		{
 			printInventory();
+		}
+		// SPECIAL EXCEPTION FOR HERO
+		else if (somethingName.equalsIgnoreCase("HERO") || somethingName.equalsIgnoreCase("ME"))
+		{
+			printHero();
 		}
 		else
 		{
@@ -238,7 +250,12 @@ public class Hero extends Character
 		Enemy enemy = currentLocation.getEnemyByName(enemyName);
 		
 		if (enemy != null)
+		{
 			attackCharacter((Character)enemy);
+		
+			// COUNTER ATTACK
+			currentLocation.allEnemiesAttack();
+		}
 		else
 			System.out.println("This enemy doesn't exist.");
 	}
