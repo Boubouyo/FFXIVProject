@@ -61,12 +61,11 @@ public class Hero extends Character
 	}
 	
 	// Methods for the commands
-	public void doTheCommand(String[] commandAndArgs)
+	public void doTheCommand(String[] commandAndArgs) throws Exception
 	{
 		String command = commandAndArgs[0];
 		String arg1 = commandAndArgs[1];
 		String arg2 = commandAndArgs[2];
-		int nbArgs = commandAndArgs.length - 1;
 		
 		if (command.equals(commands[0])) // HELP
 		{
@@ -74,38 +73,39 @@ public class Hero extends Character
 		}
 		else if (command.equals(commands[1])) // GO
 		{
-			if (nbArgs == 0)
+			if (arg1 == "")
 				System.out.println("GO where ?");
 			else
 				changeLocation(arg1);
 		}
 		else if (command.equals(commands[2])) // LOOK
 		{
-			if (nbArgs == 0)
+			if (arg1 == "")
 				currentLocation.look();
 			else 
 				lookSomething(arg1);
 		}
 		else if (command.equals(commands[3])) // TAKE
 		{
-			if (nbArgs == 0)
+			if (arg1 == "")
 				System.out.println("TAKE what ?");
 			else 
 				takeItem(arg1);
 		}
 		else if (command.equals(commands[4])) // USE
 		{
-                    switch (nbArgs) {
-                        case 0 -> System.out.println("USE what ?");
-                        case 1 -> useItem(arg1);
-                        default -> useItemOnItem(arg1, arg2);
-                    }
+                    if (arg1 == "")
+                    	System.out.println("USE what ?");
+                    else if (arg2 == "")
+                    	useItem(arg1);
+                    else 
+                    	useItemOnItem(arg1, arg2);
 		}
 		else if (command.equals(commands[5])) // ATTACK
 		{
-			if (nbArgs == 0)
+			if (arg1 == "")
 				System.out.println("ATTACK whom ?");
-			else if (nbArgs == 1)
+			else
 				attackEnemy(arg1);
 		}
 		else if (command.equals(commands[6])) // QUIT
@@ -114,7 +114,7 @@ public class Hero extends Character
 		}
 		else
 		{
-			// TODO créer une exception
+			throw new IncorrectCommandException();
 		}
 	}
 	
@@ -204,7 +204,7 @@ public class Hero extends Character
 		}
 		else 
 		{
-			System.out.println("The " + item1Name + " cannot be used.");
+			System.out.println("The " + item1Name + " cannot be used. Does it even exist ?");
 		}
 	}
 	
@@ -212,6 +212,9 @@ public class Hero extends Character
 	{
 		Enemy enemy = currentLocation.getEnemyByName(enemyName);
 		
-		attackCharacter((Character)enemy);
+		if (enemy != null)
+			attackCharacter((Character)enemy);
+		else
+			System.out.println("This enemy doesn't exist.");
 	}
 }
