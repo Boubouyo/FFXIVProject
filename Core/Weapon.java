@@ -13,8 +13,13 @@ public abstract class Weapon extends Item implements Use{
 
 	@Override
 	public boolean Use() {
-		this.numberOfUse-=1;
-		return true;
+		if (numberOfUse==0) {
+			this.numberOfUse-=1;
+			return false;
+		}
+		else {
+			return false;
+		}
 	}
 
 
@@ -26,5 +31,6 @@ public abstract class Weapon extends Item implements Use{
 	public void setBonusAttackPoint(int bonusAttackPoint) {
 		this.bonusAttackPoint = bonusAttackPoint;
 	}
+	
 	
 }
