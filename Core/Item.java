@@ -2,6 +2,7 @@ package Core;
 
 
 public abstract class Item implements Look{
+
 	private final String name;
 	private String description = "It's an item. It could be usefull";
 	

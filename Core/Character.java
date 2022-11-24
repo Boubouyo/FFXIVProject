@@ -5,13 +5,15 @@ public abstract class Character
 	private final String name;
 	protected Location currentLocation;
 	
-	private int healthPoints;
+	private int maxHealthPoints;
+	private int currentHealthPoints;
 	private int attack;
 	
 	public Character (String name, int healthPoints, int attack, Location startingLocation)
 	{
 		this.name = name;
-		this.healthPoints = healthPoints;
+		this.maxHealthPoints = healthPoints;
+		this.currentHealthPoints = healthPoints;
 		this.attack = attack;
 		this.currentLocation = startingLocation;
 	}
@@ -23,18 +25,19 @@ public abstract class Character
 	
 	public int getHealthPoints()
 	{
-		return this.healthPoints;
+		return this.currentHealthPoints;
 	}
 	
 	public void damageCharacter(int damage)
 	{
-		this.healthPoints -= damage;
+		this.currentHealthPoints -= damage;
 	}
 
-	// I'm doing another method for a similar purpose to avoid the confusion of having only one method and having to think about the minus sign
 	public void healCharacter(int heal) 
 	{
 		damageCharacter(-heal);
+		if (this.currentHealthPoints > this.maxHealthPoints)
+			this.currentHealthPoints = this.maxHealthPoints;
 	}
 	
 	public void attackCharacter(Character c)
