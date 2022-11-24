@@ -31,8 +31,7 @@ public abstract class Character
 		this.healthPoints -= damage;
 	}
 
-	// I'm doing another method for a similar purpose to avoid the confusion of having only one method 
-	// and having to think about the minus sign
+	// I'm doing another method for a similar purpose to avoid the confusion of having only one method and having to think about the minus sign
 	public void healCharacter(int heal) 
 	{
 		damageCharacter(-heal);

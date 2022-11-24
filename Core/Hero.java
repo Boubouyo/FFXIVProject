@@ -46,6 +46,18 @@ public class Hero extends Character
 	{
 		System.out.println("You died lmao. Try again when you have become a man.");
 		this.isGameFinished = true;
+	} 
+	
+	public Item getItemByName(String itemName) // Look for an item in both the current room and the inventory
+	{
+		Item itemWithName = this.currentLocation.getItemFromString(itemName);
+		
+		if (itemWithName == null)
+		{
+			itemWithName = getItemFromInventory(itemName);
+		}
+		
+		return itemWithName;
 	}
 	
 	// Methods for the commands
@@ -125,28 +137,82 @@ public class Hero extends Character
 	
 	public void lookSomething(String somethingName)
 	{
-		
+		Item itemToLook = getItemByName(somethingName);
+		if (itemToLook != null)
+		{
+			itemToLook.look();
+		}
+		else 
+		{
+			Enemy enemyToLook = getEnemyByName(somethingName);
+			if (enemyToLook != null)
+			{
+				enemyToLook.look();
+			}
+			else 
+			{
+				System.out.println("You're trying really hard to look at " + somethingName + " but you can't manage to find it.");
+			}
+		}
 	}
 	
 	public void takeItem(String itemName)
 	{
-		
+		Item itemToTake = getItemByName(itemName);
+		if (itemToTake instanceof Take)
+		{
+			if (((Take)itemToTake).take())
+			{
+				addToInventory(itemToTake);			
+			}
+			else
+			{
+				System.out.println("The " + itemName + " cannot be picked for now.");
+			}
+		}
+		else 
+		{
+			System.out.println("The " + itemName + " cannot be picked.");
+		}
 	}
 	
 	public void useItem(String itemName)
 	{
-		
+		Item itemToUse = getItemByName(itemName);
+		if (itemToUse instanceof Use)
+		{
+			if (!((Use)itemToUse).use())
+			{
+				System.out.println("The " + itemName + " cannot be used for now.");
+			}
+		}
+		else 
+		{
+			System.out.println("The " + itemName + " cannot be used.");
+		}
 	}
 	
 	public void useItemOnItem(String item1Name, String item2Name)
 	{
-		
+		Item itemToUse = getItemByName(item1Name);
+		Item itemToUseOn = getItemByName(item2Name);
+		if (itemToUse instanceof UseOn)
+		{
+			if (!((UseOn)itemToUse).useOn(itemToUseOn))
+			{
+				System.out.println("The " + item1Name + " cannot be used on " + item2Name + ".");
+			}
+		}
+		else 
+		{
+			System.out.println("The " + item1Name + " cannot be used.");
+		}
 	}
 	
 	public void attackEnemy(String enemyName)
 	{
-		Character enemy = null /* currentLocation.getEnemyByName(enemyName) */;
+		Enemy enemy = currentLocation.getEnemyByName(enemyName);
 		
-		attackCharacter(enemy);
+		attackCharacter((Character)enemy);
 	}
 }

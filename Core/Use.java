@@ -2,6 +2,6 @@ package Core;
 
 public interface Use {
 
-	public abstract void use();
+	public abstract boolean use(); // return true if it can be used
 	
 }

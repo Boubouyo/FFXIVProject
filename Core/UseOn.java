@@ -2,6 +2,6 @@ package Core;
 
 public interface UseOn {
 
-	public abstract void useOn(Item item);
+	public abstract boolean useOn(Item item); // item is the item it will be used on ; return true if it can be used
 
 }
