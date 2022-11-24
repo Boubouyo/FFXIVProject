@@ -14,6 +14,7 @@ public class Hero extends Character
 	{
 		super(name, healthPoints, attack, startingLocation);
 		this.inventory = new ArrayList<>();
+		startingLocation.setHero(this);
 	}
 	
 	public void addToInventory(Item item) 

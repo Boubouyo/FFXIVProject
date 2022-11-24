@@ -4,10 +4,7 @@
  */
 package Core;
 
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -41,6 +38,7 @@ public class EnemyIT {
     @Test
     public void testAttackHero1() {
         enemy1.attackHero();
+        System.out.println(heroMaxHp);
         assertEquals(heroMaxHp - attackEnemy, theHero.getHealthPoints());
     }
     
@@ -57,7 +55,6 @@ public class EnemyIT {
     public void testDie(){
         theHero.attackEnemy("GobelinA");
         assertNull(locA.getEnemyByName("GobelinA"));
-        assertNull(enemy1);
     }
 
    

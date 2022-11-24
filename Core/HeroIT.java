@@ -120,9 +120,10 @@ public class HeroIT {
 
     /**
      * Test of doTheCommand method, of class Hero.
+     * @throws Exception 
      */
     @Test
-    public void testDoTheCommand() {
+    public void testDoTheCommand() throws Exception {
         System.out.println("doTheCommand");
         String[] commandAndArgs = null;
         Hero instance = null;

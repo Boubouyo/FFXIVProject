@@ -20,7 +20,9 @@ public class Enemy extends Character implements Look
 	
 	public void attackHero()
 	{
-		attackCharacter(currentLocation.getHero());
+		Hero hero = currentLocation.getHero();
+		if (hero != null)
+			attackCharacter(hero);
 	}
 	
 	@Override 

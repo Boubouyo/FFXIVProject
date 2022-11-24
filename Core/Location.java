@@ -36,6 +36,10 @@ public class Location implements Look{
         return this.myHero;
     }
     
+    public void setHero(Hero hero){
+        this.myHero = hero;
+    }
+    
     
    //Exit management methods
     
@@ -49,7 +53,7 @@ public class Location implements Look{
             if(this.exits.get(locationName).ableToMoveThrough()){
                 returnedLoc = this.exits.get(locationName).getLocation(locationName);
                 this.myHero = null;
-                returnedLoc.myHero = hero;
+                returnedLoc.setHero(hero);
             }
         }
         return returnedLoc;
