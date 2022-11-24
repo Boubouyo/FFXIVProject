@@ -1,10 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package Core;
 
-import java.util.ArrayList;
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,18 +12,32 @@ public class Game {
 
 	private static final String END_OF_THE_LINE_CHAR = ";";
 	
-	private final List<Location> locations = new ArrayList<>();
+	private final List<Location> locations;
 	private Hero hero;
 	
-	public Game()
+	private Game() throws FileNotFoundException, InitiateExitWrongException
 	{
-		locations.add(new Location("Room A", "This is an empty room"));
-		locations.add(new Location("Room B", "This is an empty room"));
+		this.locations = InitiateFromFiles.initiateLocations();
+		
+		try
+    	{
+			InitiateFromFiles.initiateExits(locations);
+		}
+		catch(InitiateExitWrongException err)
+    	{
+			System.out.println(err.getMessage());
+		}
+		
     	
-        String HeroName = "Ardbert";
+		this.hero = initiateHero();
+	}
+	
+	private Hero initiateHero()
+	{
+		String HeroName = "Ardbert";
         int heroHP = 15;
         int heroAttack = 6;
-        this.hero = new Hero(HeroName, heroHP, heroAttack, locations.get(0));
+        return new Hero(HeroName, heroHP, heroAttack, locations.get(0));
 	}
 	
 	public String[] parsedInput(Scanner scanner)
@@ -59,17 +69,17 @@ public class Game {
 		return commandAndArgs;
 	}
 	
-	public void gameStart() throws Exception
+	public void gameLoop() throws Exception
 	{
 		boolean isFinished = false;
-		Scanner scanner = new Scanner(System.in);
+		Scanner scannerInput = new Scanner(System.in);
         
 		System.out.println("A new adventure begins.");
 		
         while (!isFinished)
         {
         	System.out.println("Please input a command : ");
-        	String[] commandAndArgs = parsedInput(scanner); 
+        	String[] commandAndArgs = parsedInput(scannerInput); 
         	
         	try
         	{
@@ -85,13 +95,19 @@ public class Game {
         
         System.out.println("The game ends there.");
         
-        scanner.close();
+        scannerInput.close();
+	}
+	
+	public static void gameStart() throws Exception
+	{
+		Game game = new Game();
+		
+		game.gameLoop();
 	}
 
     public static void main(String[] args) throws Exception
-    {
-    	Game game = new Game();
-    	game.gameStart();
+    {   	
+    	Game.gameStart();
     }
     
 }

@@ -196,7 +196,7 @@ public class Hero extends Character
 		}
 		else 
 		{
-			System.out.println("The " + itemName + " cannot be picked.");
+			System.out.println("The " + itemName + " cannot be picked. Does it even exist ?");
 		}
 	}
 	
@@ -212,7 +212,7 @@ public class Hero extends Character
 		}
 		else 
 		{
-			System.out.println("The " + itemName + " cannot be used.");
+			System.out.println("The " + itemName + " cannot be used. Does it even exist ?");
 		}
 	}
 	
