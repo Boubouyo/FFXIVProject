@@ -45,14 +45,5 @@ public abstract class Item implements Look{
 		System.out.println(this.description);
 	}
 
-	
-	@Override
-	public boolean use() {
-		return false;
-	}
-	
-	@Override
-	public boolean take() {
-		return false;
-	}
+
 }
