@@ -16,15 +16,16 @@ import java.util.Map;
  */
 public class Location implements Look{
     private final String name;
-    private final String description = "This is just an empty room";
+    private final String description;
     private final Map<String, Exit> exits = new HashMap<>();
     private final List<Enemy> enemies = new ArrayList<>();
     private final List<Item> items = new ArrayList<>();
     private Hero myHero = null;
     
     
-    public Location(String name){
+    public Location(String name,String description){
         this.name = name;
+        this.description = description;
     }
     
     public String getName(){
