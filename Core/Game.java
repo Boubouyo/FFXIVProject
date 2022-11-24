@@ -15,7 +15,7 @@ public class Game {
 	private final List<Location> locations;
 	private Hero hero;
 	
-	private Game() throws FileNotFoundException, InitiateExitWrongException
+	private Game() throws FileNotFoundException, InitiateFromFilesWrongException
 	{
 		// LOCATIONS
 		this.locations = InitiateFromFiles.initiateLocations();
@@ -25,7 +25,7 @@ public class Game {
     	{
 			InitiateFromFiles.initiateExits(locations);
 		}
-		catch(InitiateExitWrongException err)
+		catch(InitiateFromFilesWrongException err)
     	{
 			System.out.println(err.getMessage());
 		}
@@ -37,7 +37,7 @@ public class Game {
 	private Hero initiateHero()
 	{
 		String HeroName = "Ardbert";
-        int heroHP = 15;
+        int heroHP = 30;
         int heroAttack = 6;
         return new Hero(HeroName, heroHP, heroAttack, locations.get(0));
 	}
