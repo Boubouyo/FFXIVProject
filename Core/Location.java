@@ -30,6 +30,12 @@ public class Location implements Look{
         this.description = description;
     }
     
+    public Location(String name,String description){
+        this.entryDescription = description;
+        this.name = name;
+        this.description = description;
+    }
+    
     public String getName(){
         return this.name;
     }

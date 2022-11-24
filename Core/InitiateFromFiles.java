@@ -16,7 +16,7 @@ public class InitiateFromFiles {
 
 	public static List<Location> initiateLocations() throws FileNotFoundException
 	{
-		List<Location> locations = new ArrayList<Location>();
+		List<Location> locations = new ArrayList<>();
 		
 		for (String loc : STRING_LOCATIONS) 
 		{
