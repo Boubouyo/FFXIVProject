@@ -6,7 +6,6 @@ public abstract class Item implements Look{
 	private String description;
 	private Location currentLocation;
 	private Hero hero;
-	private boolean pickable;
 
 	
 	// -------------------------------------------------------------------//

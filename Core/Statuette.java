@@ -7,8 +7,8 @@ public class Statuette extends Item implements UseOn, Take{
 	
 	
 	// -------------------------------------------------------------------//
-	public Statuette(String name, String sk, String description) {
-		super(name, description);
+	public Statuette(String name, String sk, String description, Location location) {
+		super(name, description, location);
 		this.skill = sk;
 		this.pickable = DEFAULT_PICKABLE;
 	}
@@ -32,10 +32,10 @@ public class Statuette extends Item implements UseOn, Take{
 		}
 		return this.pickable;
 	}
-	
+
 	@Override
-	public boolean useOn() {
-		
+	public boolean useOn(Item item) {
+		return false;
 	}
 	
 }

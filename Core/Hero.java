@@ -144,7 +144,10 @@ public class Hero extends Character
 	
 	public void changeLocation(String locationName)
 	{
-		this.currentLocation = this.currentLocation.takeExit(locationName, this);
+		Location previousLocation = this.currentLocation;
+		this.currentLocation = previousLocation.takeExit(locationName, this);
+		if (previousLocation == this.currentLocation)
+			System.out.println("You can't go there yet.");
 	}
 	
 	public void printHelpCommands()
