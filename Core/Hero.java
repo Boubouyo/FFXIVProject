@@ -104,7 +104,7 @@ public class Hero extends Character
 		else if (command.equals(commands[5])) // ATTACK
 		{
 			if (nbArgs == 0)
-				System.out.println("ATTACK who ?");
+				System.out.println("ATTACK whom ?");
 			else if (nbArgs == 1)
 				attackEnemy(arg1);
 		}

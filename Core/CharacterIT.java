@@ -25,7 +25,7 @@ public class CharacterIT {
     
     @Before
     public void setUp() {
-        locA = new Location("Salle A", "This is an empty room");
+        locA = new Location("Salle A"/*, "This is an empty room"*/);
         charAName = "Jack";
         hpA = 15;
         attackB = 6;
@@ -73,8 +73,10 @@ public class CharacterIT {
      */
     @Test
     public void testHealCharacter() {
+    	charA.damageCharacter(5);
+        assertEquals(hpA - 5, charA.getHealthPoints());
         charA.healCharacter(5);
-        assertEquals(hpA + 5, charA.getHealthPoints());
+        assertEquals(hpA, charA.getHealthPoints());
     }
 
     /**
@@ -88,7 +90,7 @@ public class CharacterIT {
     
     @Test
     public void testAttackCharacterB() {
-        charA.attackCharacter(charA);
+        charA.attackCharacter(charB);
         assertEquals(hpA,charA.getHealthPoints());
     }
 
