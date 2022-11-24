@@ -25,7 +25,7 @@ public class CharacterIT {
     
     @Before
     public void setUp() {
-        locA = new Location("Salle A"/*, "This is an empty room"*/);
+        locA = new Location("Salle A", "This is an empty room");
         charAName = "Jack";
         hpA = 15;
         attackB = 6;
