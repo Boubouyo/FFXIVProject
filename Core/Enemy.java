@@ -10,7 +10,6 @@ public class Enemy extends Character implements Look
 	{
 		super(name, healthPoints, attack, startingLocation);
 		this.description = description;
-		startingLocation.addEnemy(this);
 	}	
 	
 	public Enemy (String name, int healthPoints, int attack, Location startingLocation)

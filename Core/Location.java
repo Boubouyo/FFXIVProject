@@ -81,8 +81,11 @@ public class Location implements Look{
     }
     
     //everything about the characters in a room
-    public void addEnemy(Enemy newEnemy){
-        this.enemies.add(newEnemy);
+    public void addEnemy(String name, int healthPoints, int attack, String description){
+        if(description == null){
+            this.enemies.add(new Enemy(name, healthPoints, attack , this));
+        }
+        else this.enemies.add(new Enemy(name, healthPoints, attack, this, description));
     }
     
     public void deleteEnemy(Enemy deletedEnemy){

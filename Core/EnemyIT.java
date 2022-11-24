@@ -13,21 +13,20 @@ import static org.junit.Assert.*;
  * @author fetiveau
  */
 public class EnemyIT {
-    private Enemy enemy1;
-    private Enemy enemy2;
     private Hero theHero;
     private int attackEnemy;
     private int heroMaxHp;
     private Location locA;
+    private Location locB;
     private final String enemyDescription = "Green shitty looking mob";
     @Before
     public void setUp() {
-        Location locB = new Location("Salle 2", "salut c'est moi");
+        locB = new Location("Salle 2", "salut c'est moi");
         locA = new Location("Salle", "On s'en branle");
         attackEnemy = 5;
         heroMaxHp = 50;
-        enemy1 = new Enemy("GobelinA", 15, attackEnemy, locA, enemyDescription);
-        enemy2 = new Enemy("GobelinB", 15, attackEnemy, locB, enemyDescription);
+        locB.addEnemy("GobelinB", 15, attackEnemy, enemyDescription);
+        locA.addEnemy("GobelinA", 15, attackEnemy, enemyDescription);
         theHero = new Hero("Ardbert", heroMaxHp, 15, locA);
     }
     
@@ -37,14 +36,13 @@ public class EnemyIT {
      */
     @Test
     public void testAttackHero1() {
-        enemy1.attackHero();
-        System.out.println(heroMaxHp);
+        locA.getEnemyByName("GobelinA").attackHero();
         assertEquals(heroMaxHp - attackEnemy, theHero.getHealthPoints());
     }
     
     @Test
     public void testAttackHero2() {
-        enemy2.attackHero();
+        locB.getEnemyByName("GobelinB").attackHero();
         assertEquals(heroMaxHp, theHero.getHealthPoints());
     }
 
