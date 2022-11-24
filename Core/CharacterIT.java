@@ -78,6 +78,12 @@ public class CharacterIT {
         charA.healCharacter(5);
         assertEquals(hpA, charA.getHealthPoints());
     }
+    
+    @Test
+    public void testHealCharacterWhenFull() {
+        charA.healCharacter(5);
+        assertEquals(hpA, charA.getHealthPoints());
+    }
 
     /**
      * Test of attackCharacter method, of class Character.
