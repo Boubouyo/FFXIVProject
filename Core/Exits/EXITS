@@ -1,2 +1,5 @@
 Exit 1 : ;entrance;firstRoom;
 Exit 2 : ;entrance;golemRoom;
+Exit 3 : ;entrance;logicRoom;
+Exit 4 : ;entrance;bossRoom;
+Exit 5 : ;bossRoom;finalRoom;
