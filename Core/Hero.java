@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Hero extends Character 
 {
-	private List<Item> inventory; 
+	private final List<Item> inventory; 
 	private final static String[] commands = {"HELP", "GO", "LOOK", "TAKE", "USE", "ATTACK", "QUIT"};
 	
 	private boolean isGameFinished = false;
@@ -13,7 +13,7 @@ public class Hero extends Character
 	public Hero (String name, int healthPoints, int attack, Location startingLocation)
 	{
 		super(name, healthPoints, attack, startingLocation);
-		this.inventory = new ArrayList<Item>();
+		this.inventory = new ArrayList<>();
 	}
 	
 	public void addToInventory(Item item) 
@@ -68,48 +68,47 @@ public class Hero extends Character
 		String arg2 = commandAndArgs[2];
 		int nbArgs = commandAndArgs.length - 1;
 		
-		if (command == commands[0]) // HELP
+		if (command.equals(commands[0])) // HELP
 		{
 			printHelpCommands();
 		}
-		else if (command == commands[1]) // GO
+		else if (command.equals(commands[1])) // GO
 		{
 			if (nbArgs == 0)
 				System.out.println("GO where ?");
 			else
 				changeLocation(arg1);
 		}
-		else if (command == commands[2]) // LOOK
+		else if (command.equals(commands[2])) // LOOK
 		{
 			if (nbArgs == 0)
 				currentLocation.look();
 			else 
 				lookSomething(arg1);
 		}
-		else if (command == commands[3]) // TAKE
+		else if (command.equals(commands[3])) // TAKE
 		{
 			if (nbArgs == 0)
 				System.out.println("TAKE what ?");
 			else 
 				takeItem(arg1);
 		}
-		else if (command == commands[4]) // USE
+		else if (command.equals(commands[4])) // USE
 		{
-			if (nbArgs == 0)
-				System.out.println("USE what ?");
-			else if (nbArgs == 1)
-				useItem(arg1);
-			else
-				useItemOnItem(arg1, arg2);
+                    switch (nbArgs) {
+                        case 0 -> System.out.println("USE what ?");
+                        case 1 -> useItem(arg1);
+                        default -> useItemOnItem(arg1, arg2);
+                    }
 		}
-		else if (command == commands[5]) // ATTACK
+		else if (command.equals(commands[5])) // ATTACK
 		{
 			if (nbArgs == 0)
 				System.out.println("ATTACK who ?");
 			else if (nbArgs == 1)
 				attackEnemy(arg1);
 		}
-		else if (command == commands[6]) // QUIT
+		else if (command.equals(commands[6])) // QUIT
 		{
 			this.isGameFinished = true;
 		}
@@ -144,7 +143,7 @@ public class Hero extends Character
 		}
 		else 
 		{
-			Enemy enemyToLook = getEnemyByName(somethingName);
+			Enemy enemyToLook = this.currentLocation.getEnemyByName(somethingName);
 			if (enemyToLook != null)
 			{
 				enemyToLook.look();
@@ -159,9 +158,9 @@ public class Hero extends Character
 	public void takeItem(String itemName)
 	{
 		Item itemToTake = getItemByName(itemName);
-		if (itemToTake instanceof Take)
+		if (itemToTake instanceof Take take)
 		{
-			if (((Take)itemToTake).take())
+			if (take.take())
 			{
 				addToInventory(itemToTake);			
 			}
@@ -179,9 +178,9 @@ public class Hero extends Character
 	public void useItem(String itemName)
 	{
 		Item itemToUse = getItemByName(itemName);
-		if (itemToUse instanceof Use)
+		if (itemToUse instanceof Use use)
 		{
-			if (!((Use)itemToUse).use())
+			if (!use.use())
 			{
 				System.out.println("The " + itemName + " cannot be used for now.");
 			}
@@ -196,9 +195,9 @@ public class Hero extends Character
 	{
 		Item itemToUse = getItemByName(item1Name);
 		Item itemToUseOn = getItemByName(item2Name);
-		if (itemToUse instanceof UseOn)
+		if (itemToUse instanceof UseOn useOn)
 		{
-			if (!((UseOn)itemToUse).useOn(itemToUseOn))
+			if (!useOn.useOn(itemToUseOn))
 			{
 				System.out.println("The " + item1Name + " cannot be used on " + item2Name + ".");
 			}

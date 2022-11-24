@@ -18,7 +18,7 @@ public class Location implements Look{
     private final String name;
     private final String description = "This is just an empty room";
     private final Map<String, Exit> exits = new HashMap<>();
-    private final List<Character> characters = new ArrayList<>();
+    private final List<Enemy> enemies = new ArrayList<>();
     private final List<Item> items = new ArrayList<>();
     private Hero myHero = null;
     
@@ -62,18 +62,18 @@ public class Location implements Look{
     }
     
     //everything about the characters in a room
-    public void addCharacters(Character newChar){
-        this.characters.add(newChar);
+    public void addEnemy(Enemy newEnemy){
+        this.enemies.add(newEnemy);
     }
     
-    public void deleteCharacters(Character deletedChar){
-        characters.remove(deletedChar);
+    public void deleteEnemy(Enemy deletedEnemy){
+        enemies.remove(deletedEnemy);
     }
     
-    public Character getEnemyByName(String name){
-        for(Character c : characters){
-            if(c.getName().equals(name)){
-                return c;
+    public Enemy getEnemyByName(String name){
+        for(Enemy e : enemies){
+            if(e.getName().equals(name)){
+                return e;
             }
         }
         return null;

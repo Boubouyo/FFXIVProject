@@ -25,7 +25,7 @@ public class Enemy extends Character implements Look
 	@Override 
 	public void die()
 	{
-		this.currentLocation.deleteCharacters(this);
+		this.currentLocation.deleteEnemy(this);
 	}
 	
 	@Override 
