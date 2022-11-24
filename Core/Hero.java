@@ -6,7 +6,7 @@ import java.util.List;
 public class Hero extends Character 
 {
 	private final List<Item> inventory; 
-	private final static String[] commands = {"HELP", "GO", "LOOK", "TAKE", "USE", "ATTACK", "QUIT"};
+	private final static String[] commands = {"help", "go", "look", "take", "use", "attack", "quit"};
 	
 	private boolean isGameFinished = false;
 	
