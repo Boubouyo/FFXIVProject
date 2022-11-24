@@ -1,7 +1,8 @@
 package Core;
 
 
-public class Item implements Look {
+public abstract class Item implements Look{
+
 	private final String name;
 	private String description = "It's an item. It could be usefull";
 	
@@ -15,6 +16,7 @@ public class Item implements Look {
 		return this.name;
 	}
 	
+	@Override
 	public void look()
 	{
 		System.out.println("You are looking at "+this.name+".");

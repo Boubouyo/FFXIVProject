@@ -60,6 +60,9 @@ public class Location implements Look{
     @Override
     public void look(){
         System.out.println(this.description);
+        for(String s: exits.keySet()){
+            System.out.println(s);
+        }
     }
     
     //everything about the characters in a room
