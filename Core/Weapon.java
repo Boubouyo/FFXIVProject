@@ -14,11 +14,11 @@ public abstract class Weapon extends Item implements Use{
 	@Override
 	public boolean Use() {
 		if (numberOfUse==0) {
-			this.numberOfUse-=1;
 			return false;
 		}
 		else {
-			return false;
+			this.numberOfUse-=1;
+			return true;
 		}
 	}
 
