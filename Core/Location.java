@@ -90,7 +90,7 @@ public class Location implements Look{
     
     public void printEnemies()
     {
-    	if (enemies.size() != 0)
+    	if (!enemies.isEmpty())
         {
 	        System.out.print("Oh no !");
 	        for(Enemy e: enemies){
@@ -146,7 +146,13 @@ public class Location implements Look{
         return null;
     }
     
-    public void addItems(Item newItem){
-        this.items.add(newItem);
+    public void removeItem(Item removedItem){
+        items.remove(removedItem);
+    }
+    
+    //Add items section
+    
+    public void addStatuette(String name, String sk, String description){
+        this.items.add(new Statuette(name, sk, description, this));
     }
 }
