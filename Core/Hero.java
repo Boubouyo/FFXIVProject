@@ -53,6 +53,13 @@ public class Hero extends Character
 		}
 	}
 	
+	public void printHero()
+	{
+		System.out.print("You have ");
+		printHP();
+		printInventory();
+	}
+	
 	public boolean getIsGameFinished()
 	{
 		return this.isGameFinished;
@@ -158,6 +165,11 @@ public class Hero extends Character
 		{
 			printInventory();
 		}
+		// SPECIAL EXCEPTION FOR HERO
+		else if (somethingName.equals("HERO") || somethingName.equals("ME"))
+		{
+			printHero();
+		}
 		else
 		{
 			Item itemToLook = getItemByName(somethingName);
@@ -238,7 +250,12 @@ public class Hero extends Character
 		Enemy enemy = currentLocation.getEnemyByName(enemyName);
 		
 		if (enemy != null)
+		{
 			attackCharacter((Character)enemy);
+		
+			// COUNTER ATTACK
+			currentLocation.allEnemiesAttack();
+		}
 		else
 			System.out.println("This enemy doesn't exist.");
 	}

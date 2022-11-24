@@ -46,11 +46,7 @@ public class Location implements Look{
     }
     
     public void setHero(Hero hero){
-    	if (firstTimeInLocation)
-    	{
-        	entryPrint();
-    		firstTimeInLocation = false;
-    	}
+    	entryPrint();
         this.myHero = hero;
     }
     
@@ -74,16 +70,42 @@ public class Location implements Look{
     }
     
     public void entryPrint(){
-        System.out.println(this.entryDescription);
+    	System.out.println("You're entering the " + this.name + ".");
+    	if (firstTimeInLocation)
+    	{
+    		System.out.println(this.entryDescription);
+    		firstTimeInLocation = false;
+    	}
+    	printEnemies();
+    }
+    
+    public void printExits()
+    {
+    	System.out.print("You can go to :");
+        for(String s: exits.keySet()){
+            System.out.print(" " + s);
+        }
+        System.out.println(".");
+    }
+    
+    public void printEnemies()
+    {
+    	if (enemies.size() != 0)
+        {
+	        System.out.print("Oh no !");
+	        for(Enemy e: enemies){
+	            System.out.print(" There is a " + e.getName() + " !");
+	        }
+	        System.out.println("");
+        }
     }
     
     //For the LOOK command
     @Override
     public void look(){
-        System.out.println(this.description);
-        for(String s: exits.keySet()){
-            System.out.println(s);
-        }
+        System.out.println(this.description);       
+        printExits();        
+        printEnemies();
     }
     
     //everything about the characters in a room
@@ -107,6 +129,11 @@ public class Location implements Look{
         return null;
     }
     
+    public void allEnemiesAttack(){
+        for(Enemy e : enemies){
+            e.attackHero();
+        }
+    }
     
     //Everything about the items in a room
     

@@ -28,8 +28,14 @@ public abstract class Character
 		return this.currentHealthPoints;
 	}
 	
+	public void printHP()
+	{
+		System.out.println(this.getHealthPoints() + " HP.");
+	}
+	
 	public void damageCharacter(int damage)
 	{
+		System.out.println(this.name + " looses " + damage + " HP.");
 		this.currentHealthPoints -= damage;
 	}
 
@@ -42,6 +48,7 @@ public abstract class Character
 	
 	public void attackCharacter(Character c)
 	{
+		System.out.print(this.name + " attacks " + c.getName() + " : ");
 		c.damageCharacter(this.attack);
 		
 		if (c.getHealthPoints() <= 0)
