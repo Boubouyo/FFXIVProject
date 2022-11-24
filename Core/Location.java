@@ -122,7 +122,7 @@ public class Location implements Look{
     
     public Enemy getEnemyByName(String name){
         for(Enemy e : enemies){
-            if(e.getName().equals(name)){
+            if(e.getName().equalsIgnoreCase(name)){
                 return e;
             }
         }
@@ -139,7 +139,7 @@ public class Location implements Look{
     
     public Item getItemFromString(String name){
         for(Item i : items){
-            if(i.getName().equals(name)){
+            if(i.getName().equalsIgnoreCase(name)){
                 return i;
             }
         }

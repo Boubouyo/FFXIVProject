@@ -3,13 +3,17 @@ package Core;
 
 public abstract class Item implements Look{
 	private final String name;
-	private String description = "It's an item. It could be usefull";
+	private String description;
+	private Location currentLocation;
+	private Hero hero;
 
 	
 	// -------------------------------------------------------------------//
-	public Item(String name, String description) {
+	public Item(String name, String description, Location location) {
 		this.name = name;
 		this.description = description;
+		this.currentLocation = location;
+		this.hero = null;
 	}
 	
 	public String getName() {
@@ -23,12 +27,24 @@ public abstract class Item implements Look{
 		System.out.println("You are looking at "+this.name+".");
 		System.out.println(this.description);
 	}
-
-	public boolean Use() {
-		return false;
+	
+	public Hero getHero()
+	{
+		return this.hero;
 	}
-
-	public boolean Take() {
-		return false;
+	
+	public void setHero(Hero hero)
+	{
+		this.hero = hero;
+	}
+	
+	public Location getLocation()
+	{
+		return this.currentLocation;
+	}
+	
+	public void setLocation(Location loc)
+	{
+		this.currentLocation = loc;
 	}
 }

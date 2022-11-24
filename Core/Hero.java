@@ -29,7 +29,7 @@ public class Hero extends Character
 	public Item getItemFromInventory(String itemName)
 	{
 		for (Item item : this.inventory) {
-	        if (item.getName().equals(itemName)) {
+	        if (item.getName().equalsIgnoreCase(itemName)) {
 	            return item;
 	        }
 	    }
@@ -166,7 +166,7 @@ public class Hero extends Character
 			printInventory();
 		}
 		// SPECIAL EXCEPTION FOR HERO
-		else if (somethingName.equalsIgnoreCase("HERO") || somethingName.equalsIgnoreCase("ME"))
+		else if (somethingName.equalsIgnoreCase("HERO") || somethingName.equalsIgnoreCase("ME")|| somethingName.equalsIgnoreCase("SELF"))
 		{
 			printHero();
 		}

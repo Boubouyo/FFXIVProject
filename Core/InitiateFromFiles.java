@@ -72,10 +72,10 @@ public class InitiateFromFiles {
 				Location locA = null, locB = null;
 				
 				for(Location loc : locations){
-		            if(loc.getName().equals(firstLocation)){
+		            if(loc.getName().equalsIgnoreCase(firstLocation)){
 		            	locA = loc;
 		            }
-		            if(loc.getName().equals(secondLocation)){
+		            if(loc.getName().equalsIgnoreCase(secondLocation)){
 		            	locB = loc;
 		            }
 		        }
@@ -131,7 +131,7 @@ public class InitiateFromFiles {
 				Location enemyLocation = null;
 				
 				for(Location loc : locations){
-		            if(loc.getName().equals(locationString))
+		            if(loc.getName().equalsIgnoreCase(locationString))
 		            	enemyLocation = loc;
 		        }
 				
