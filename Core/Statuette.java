@@ -34,5 +34,8 @@ public class Statuette extends Item implements UseOn, Take{
 	}
 	
 	@Override
+	public boolean useOn() {
+		
+	}
 	
 }
