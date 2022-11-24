@@ -17,8 +17,10 @@ public class Game {
 	
 	private Game() throws FileNotFoundException, InitiateExitWrongException
 	{
+		// LOCATIONS
 		this.locations = InitiateFromFiles.initiateLocations();
 		
+		// EXITS
 		try
     	{
 			InitiateFromFiles.initiateExits(locations);
@@ -28,7 +30,7 @@ public class Game {
 			System.out.println(err.getMessage());
 		}
 		
-    	
+    	// HERO
 		this.hero = initiateHero();
 	}
 	

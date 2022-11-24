@@ -22,7 +22,7 @@ public abstract class Weapon extends Item implements Use{
 	
 	
 	@Override
-	public boolean Use() {
+	public boolean use() {
 		if (numberOfUse==0) {
 			return false;
 		}
