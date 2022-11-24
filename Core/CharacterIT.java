@@ -22,6 +22,7 @@ public class CharacterIT {
     private String charAName;
     private int hpA;
     private int attackB;
+    private int attackA;
     
     @Before
     public void setUp() {
@@ -29,7 +30,8 @@ public class CharacterIT {
         charAName = "Jack";
         hpA = 15;
         attackB = 6;
-        charA = new Character(charAName, hpA, 5, locA) {
+        attackA = 5;
+        charA = new Character(charAName, hpA, attackA, locA) {
             @Override
             public void die() {
                 charA = null;
@@ -89,19 +91,19 @@ public class CharacterIT {
      * Test of attackCharacter method, of class Character.
      */
     @Test
-    public void testAttackCharacterA() {
+    public void testAttackCharacter1() {
         charB.attackCharacter(charA);
         assertEquals(hpA - attackB,charA.getHealthPoints());
     }
     
     @Test
-    public void testAttackCharacterB() {
-        charA.attackCharacter(charB);
-        assertEquals(hpA,charA.getHealthPoints());
+    public void testAttackCharacter2() {
+        charA.attackCharacter(charA);
+        assertEquals(hpA - attackA,charA.getHealthPoints());
     }
 
     @Test
-    public void testAttackCharacterC() {
+    public void testAttackCharacter3() {
         charA.attackCharacter(charB);
         charA.attackCharacter(charB);
         charA.attackCharacter(charB);
