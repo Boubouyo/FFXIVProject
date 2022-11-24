@@ -6,13 +6,9 @@ public class Item implements Look {
 	private String description = "It's an item. It could be usefull";
 	
 
-	public Item(String name) {
+	public Item(String name, String description) {
 		this.name = name;
-		this.description = initDescription();
-	}
-	
-	public String initDescription() {
-		return "hey this is a description of an item but im too stupid to do something smart sorry";
+		this.description = description;
 	}
 	
 	public String getName() {
