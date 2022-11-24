@@ -27,8 +27,18 @@ public class Game {
 		}
 		catch(InitiateFromFilesWrongException err)
     	{
-			System.out.println(err.getMessage());
+			System.out.println("For EXITS : " + err.getMessage());
 		}
+		
+		// ENEMIES
+				try
+		    	{
+					InitiateFromFiles.initiateEnemies(locations);
+				}
+				catch(InitiateFromFilesWrongException err)
+		    	{
+					System.out.println("For ENEMIES : " + err.getMessage());
+				}
 		
     	// HERO
 		this.hero = initiateHero();

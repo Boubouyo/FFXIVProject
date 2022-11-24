@@ -11,7 +11,7 @@ public class InitiateFromFiles {
 	private static final String CHAR_DELIMITER = ";";
 	
 	private static final String PATH_LOCATIONS = "src/Core/Locations/";
-	private static final String[] STRING_LOCATIONS = {"entrance", "firstRoom"};
+	private static final File FILE_LOCATIONS = new File ("src/Core/Locations/LOCATIONS");
 	
 	private static final File FILE_EXITS = new File ("src/Core/Exits/EXITS");
 	
@@ -22,7 +22,17 @@ public class InitiateFromFiles {
 	{
 		List<Location> locations = new ArrayList<>();
 		
-		for (String loc : STRING_LOCATIONS) 
+		// Get the list of all the locations' name		
+		Scanner scannerNames = new Scanner(FILE_LOCATIONS);
+		List<String> locationNames = new ArrayList<>();
+		
+		while (scannerNames.hasNext())
+			locationNames.add(scannerNames.nextLine());
+		
+		scannerNames.close();
+		
+		// Create each locations
+		for (String loc : locationNames) 
 		{
 			Scanner scanner = new Scanner(new File(PATH_LOCATIONS + loc));
 			
@@ -56,7 +66,7 @@ public class InitiateFromFiles {
 			else
 			{
 				String firstLocation = parsedExit[1];
-				String secondLocation = parsedExit[1];
+				String secondLocation = parsedExit[2];
 				
 				// We must associate each name with a location
 				Location locA = null, locB = null;
@@ -107,22 +117,32 @@ public class InitiateFromFiles {
 				File enemyFile = new File(PATH_ENEMIES + parsedEnemy[1]);
 				String locationString = parsedEnemy[2];
 				
+				
+				// We get the datas from the enemy base file
+				Scanner scannerBase = new Scanner(enemyFile);
+
+				int enemyHealthPoints = Integer.parseInt(scannerBase.nextLine());
+				int enemyAttack = Integer.parseInt(scannerBase.nextLine());
+				String enemyDescription = scannerBase.nextLine();
+				
+				scannerBase.close();
+				
 				// We must associate the name with the location
-				Location location = null;
+				Location enemyLocation = null;
 				
 				for(Location loc : locations){
 		            if(loc.getName().equals(locationString))
-		            		location = loc;
+		            	enemyLocation = loc;
 		        }
 				
 				// If the name hasn't been associated with the location then it's still null and there is an error
-				if (location == null)
+				if (enemyLocation == null)
 				{
 					scanner.close();
-					throw new InitiateFromFilesWrongException("The name" + locationString + "doesn't correspond to any location.");
+					throw new InitiateFromFilesWrongException("The name " + locationString + " doesn't correspond to any location.");
 				}
 				
-				// TODO add enemy to location
+				enemyLocation.addEnemy(enemyName, enemyHealthPoints, enemyAttack, enemyDescription);
 			}
 		}
 		

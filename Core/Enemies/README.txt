@@ -2,12 +2,11 @@ The files with enemy names are the base enemies.
 
 Duplicate the file ENEMY_TEMPLATE and change the values.
 
-enemyName (String)
 enemyHealthPoints (int)
 enemyAttack (int)
 enemyDescription (String)
 
-enemyName and the name of the file MUST BE THE EXACT SAME
+The name of the file is also the name of the enemy.
 
 ***********************************************************************
 
