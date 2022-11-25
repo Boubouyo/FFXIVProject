@@ -152,7 +152,7 @@ public class Location implements Look{
     
     //Add items section
     
-    public void addStatuette(String name, String sk, String description){
-        this.items.add(new Statuette(name, sk, description, this));
+    public void addStatuette(String name, int id, String description){
+        this.items.add(new Statuette(name, id, description, this));
     }
 }
