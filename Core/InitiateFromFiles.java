@@ -10,7 +10,7 @@ import locations.Exit;
 import locations.Location;
 
 public class InitiateFromFiles {
-	
+	// ---------------------------ATTRIBUTS------------------------------------//
 	private static final String CHAR_DELIMITER = ";";
 	
 	private static final String PATH_LOCATIONS = "src/Core/Locations/";
@@ -21,8 +21,9 @@ public class InitiateFromFiles {
 	private static final String PATH_ENEMIES = "src/Core/Enemies/";
 	private static final File FILE_ENEMIES = new File ("src/Core/Enemies/ENEMIES");
 
-	public static List<Location> initiateLocations() throws FileNotFoundException
-	{
+	
+	// ---------------------------OPERATIONS-------------------------------------//
+	public static List<Location> initiateLocations() throws FileNotFoundException {
 		List<Location> locations = new ArrayList<>();
 		
 		// Get the list of all the locations' name		
@@ -35,8 +36,7 @@ public class InitiateFromFiles {
 		scannerNames.close();
 		
 		// Create each locations
-		for (String loc : locationNames) 
-		{
+		for (String loc : locationNames) {
 			Scanner scanner = new Scanner(new File(PATH_LOCATIONS + loc));
 			
 			String locationName = scanner.nextLine();

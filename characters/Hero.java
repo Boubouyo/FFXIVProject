@@ -8,8 +8,8 @@ import commands.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Hero extends Character 
-{
+public class Hero extends Character {
+	// ---------------------------ATTRIBUTS------------------------------------//
 	private final static String[] commands = {"HELP", "GO", "LOOK", "TAKE", "USE", "ATTACK", "QUIT"};
 	private final static String[] commands_help = 
 		{
@@ -26,14 +26,16 @@ public class Hero extends Character
 	
 	private boolean isGameFinished = false;
 	
-	public Hero (String name, int healthPoints, int attack, Location startingLocation)
-	{
+	
+    // --------------------------CONSTRUCTEUR----------------------------------//
+	public Hero (String name, int healthPoints, int attack, Location startingLocation) {
 		super(name, healthPoints, attack, startingLocation);
 		this.inventory = new ArrayList<>();
 	}
 	
-	public void addToInventory(Item item) 
-	{
+		
+    // --------------------OPERATIONS : INVENTORY------------------------------//
+	public void addToInventory(Item item) {
 		this.inventory.add(item); 
 	}
 	
@@ -52,6 +54,8 @@ public class Hero extends Character
 	    return null;
 	}
 	
+	
+    // ---------------------------OPERATIONS-------------------------------------//
 	public void printInventory()
 	{
 		if (inventory.isEmpty())
@@ -80,17 +84,11 @@ public class Hero extends Character
 	{
 		return this.isGameFinished;
 	}
-	
-	@Override
-	public void die()
-	{
-		System.out.println("You died lmao. Try again when you have become a man.");
-		this.isGameFinished = true;
-	} 
+ 
 	
 	public Item getItemByName(String itemName) // Look for an item in both the current room and the inventory
 	{
-		Item itemWithName = this.currentLocation.getItemFromString(itemName);
+		Item itemWithName = this.getCurrentLocation().getItemFromString(itemName);
 		
 		if (itemWithName == null)
 		{
@@ -123,7 +121,7 @@ public class Hero extends Character
 		else if (command.equalsIgnoreCase(commands[2])) // LOOK
 		{
 			if (len == 1)
-				currentLocation.look();
+				getCurrentLocation().look();
 			else 
 				{
 					commandAndArgs.remove(0);
@@ -166,9 +164,9 @@ public class Hero extends Character
 	
 	public void changeLocation(String locationName)
 	{
-		Location previousLocation = this.currentLocation;
-		this.currentLocation = previousLocation.takeExit(locationName, this);
-		if (previousLocation == this.currentLocation)
+		Location previousLocation = this.getCurrentLocation();
+		this.setCurrentLocation(previousLocation.takeExit(locationName, this));
+		if (previousLocation == this.getCurrentLocation())
 			System.out.println("You can't go there yet.");
 	}
 	
@@ -221,7 +219,7 @@ public class Hero extends Character
 			}
 			else 
 			{
-				Enemy enemyToLook = this.currentLocation.getEnemyByName(somethingName);
+				Enemy enemyToLook = this.getCurrentLocation().getEnemyByName(somethingName);
 				if (enemyToLook != null)
 				{
 					enemyToLook.look();
@@ -289,16 +287,25 @@ public class Hero extends Character
 	
 	public void attackEnemy(String enemyName)
 	{
-		Enemy enemy = currentLocation.getEnemyByName(enemyName);
+		Enemy enemy = getCurrentLocation().getEnemyByName(enemyName);
 		
 		if (enemy != null)
 		{
 			attackCharacter((Character)enemy);
 		
 			// COUNTER ATTACK
-			currentLocation.allEnemiesAttack();
+			getCurrentLocation().allEnemiesAttack();
 		}
 		else
 			System.out.println("This enemy doesn't exist.");
+	}
+	
+	
+	// --------------------------OVERRIDE------------------------------------//
+	@Override
+	public void die()
+	{
+		System.out.println("You died lmao. Try again when you have become a man.");
+		this.isGameFinished = true;
 	}
 }

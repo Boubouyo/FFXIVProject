@@ -9,10 +9,13 @@ package locations;
  * @author fetiveau
  */
 public class Exit {
+	// ---------------------------ATTRIBUTS------------------------------------//
     private boolean isOpen;
     private final Location locationA;
     private final Location locationB;
     
+    
+    // --------------------------CONSTRUCTEUR----------------------------------//
     public Exit(Location a, Location b){
         this.isOpen = true;
         this.locationA = a;
@@ -23,11 +26,14 @@ public class Exit {
     }
     
     
+    // ---------------------------OPERATIONS-------------------------------------//
     //Tells if the exit is blocked or not
     public boolean ableToMoveThrough(){
         return this.isOpen;
     }
     
+    
+    // ----------------------------GET & SET-------------------------------------//
     public Location getLocationA(){
         return this.locationA;
     }

@@ -3,12 +3,13 @@ package characters;
 import commands.Look;
 import locations.Location;
 
-public class Enemy extends Character implements Look
-{
+public class Enemy extends Character implements Look {
+	// ---------------------------ATTRIBUTS------------------------------------//
 	private static final String DEFAULT_DESCRIPTION = "It's a simple enemy.";
-	
 	public String description;
 	
+	
+	// --------------------------CONSTRUCTEURS---------------------------------//
 	public Enemy (String name, int healthPoints, int attack, Location startingLocation, String description)
 	{
 		super(name, healthPoints, attack, startingLocation);
@@ -20,18 +21,22 @@ public class Enemy extends Character implements Look
 		this(name, healthPoints, attack, startingLocation, DEFAULT_DESCRIPTION);
 	}
 	
+	
+    // ---------------------------OPERATIONS-------------------------------------//
 	public void attackHero()
 	{
-		Hero hero = currentLocation.getHero();
+		Hero hero = getCurrentLocation().getHero();
 		if (hero != null)
 			attackCharacter(hero);
 	}
 	
+	
+	// --------------------------OVERRIDE------------------------------------//
 	@Override 
 	public void die()
 	{
 		System.out.println(this.getName() + " is defeated.");
-		this.currentLocation.deleteEnemy(this);
+		this.getCurrentLocation().deleteEnemy(this);
 	}
 	
 	@Override 

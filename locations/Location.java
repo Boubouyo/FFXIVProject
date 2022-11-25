@@ -22,8 +22,9 @@ import items.Statuette;
  *
  * @author fetiveau
  */
-public class Location implements Look{
-    private final String name;
+public class Location implements Look {
+	// ---------------------------ATTRIBUTS------------------------------------//
+	private final String name;
     private final String description;
     private final String entryDescription;
     private final Map<String, Exit> exits = new HashMap<>();
@@ -33,6 +34,7 @@ public class Location implements Look{
     private boolean firstTimeInLocation = true;
     
     
+    // --------------------------CONSTRUCTEURS---------------------------------//
     public Location(String name,String description, String entryDescription){
         this.entryDescription = entryDescription;
         this.name = name;
@@ -45,6 +47,8 @@ public class Location implements Look{
         this.description = description;
     }
     
+    
+    // ----------------------------GET & SET-------------------------------------//
     public String getName(){
         return this.name;
     }
@@ -59,8 +63,8 @@ public class Location implements Look{
     }
     
     
+    // ---------------------------OPERATIONS : EXIT---------------------------------//
    //Exit management methods
-    
     public void addExits(Exit newExit){
         exits.put(newExit.getOtherLocation(this.name).getName(), newExit);
     }
@@ -77,6 +81,7 @@ public class Location implements Look{
         return returnedLoc;
     }
     
+    // ---------------------------OPERATIONS : PRINT---------------------------------//
     public void entryPrint(){
     	System.out.println("You're entering the " + this.name + ".");
     	if (firstTimeInLocation)
@@ -108,14 +113,8 @@ public class Location implements Look{
         }
     }
     
-    //For the LOOK command
-    @Override
-    public void look(){
-        System.out.println(this.description);       
-        printExits();        
-        printEnemies();
-    }
     
+    // ---------------------OPERATIONS : ENEMY------------------------------//
     //everything about the characters in a room
     public void addEnemy(String name, int healthPoints, int attack, String description){
         if(description == null){
@@ -143,8 +142,9 @@ public class Location implements Look{
         }
     }
     
-    //Everything about the items in a room
     
+    // ---------------------------OPERATIONS : ITEMS---------------------------------//
+    //Everything about the items in a room
     public Item getItemFromString(String name){
         for(Item i : items){
             if(i.getName().equalsIgnoreCase(name)){
@@ -162,5 +162,15 @@ public class Location implements Look{
     
     public void addStatuette(String name, int id, String description){
         this.items.add(new Statuette(name, id, description, this));
+    }
+    
+    
+	// --------------------------OVERRIDE------------------------------------//
+    //For the LOOK command
+    @Override
+    public void look(){
+        System.out.println(this.description);       
+        printExits();        
+        printEnemies();
     }
 }

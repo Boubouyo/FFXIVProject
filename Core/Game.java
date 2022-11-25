@@ -13,43 +13,41 @@ import locations.Location;
  * @author fetiveau
  */
 public class Game {
-
+	// ---------------------------ATTRIBUTS------------------------------------//
 	private static final String END_OF_THE_LINE_CHAR = ";";
 	
 	private final List<Location> locations;
 	private Hero hero;
 	
-	private Game() throws FileNotFoundException, InitiateFromFilesWrongException
-	{
-		// LOCATIONS
+	
+	// --------------------------CONSTRUCTEUR----------------------------------//
+	private Game() throws FileNotFoundException, InitiateFromFilesWrongException {
+		// --- LOCATIONS --- //
 		this.locations = InitiateFromFiles.initiateLocations();
 		
-		// EXITS
-		try
-    	{
+		// --- EXITS ------- //
+		try {
 			InitiateFromFiles.initiateExits(locations);
 		}
-		catch(InitiateFromFilesWrongException err)
-    	{
+		catch(InitiateFromFilesWrongException err) {
 			System.out.println("For EXITS : " + err.getMessage());
 		}
 		
-		// ENEMIES
-				try
-		    	{
+		// --- ENEMIES ----- //
+				try {
 					InitiateFromFiles.initiateEnemies(locations);
 				}
-				catch(InitiateFromFilesWrongException err)
-		    	{
+				catch(InitiateFromFilesWrongException err){
 					System.out.println("For ENEMIES : " + err.getMessage());
 				}
 		
-    	// HERO
+    	// --- HERO -------- //
 		this.hero = initiateHero();
 	}
 	
-	private Hero initiateHero()
-	{
+	
+    // ---------------------------OPERATIONS-------------------------------------//
+	private Hero initiateHero() {
 		String HeroName = "Ardbert";
         int heroHP = 30;
         int heroAttack = 6;
@@ -90,7 +88,7 @@ public class Game {
         
 		System.out.println("A new adventure begins.");
 		
-		hero.currentLocation.setHero(hero);
+		hero.getCurrentLocation().setHero(hero);
 		
         while (!isFinished)
         {        		
@@ -121,6 +119,8 @@ public class Game {
 		game.gameLoop();
 	}
 
+	
+	// ------------------------------MAIN---------------------------------------//
     public static void main(String[] args) throws Exception
     {   	
     	Game.gameStart();
