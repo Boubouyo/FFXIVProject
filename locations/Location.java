@@ -4,14 +4,18 @@
  */
 package locations;
 
-import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ArrayList;
 
-import items.*;
-import characters.*;
+
+import characters.Hero;
 import commands.Look;
+import characters.Enemy;
+import items.Item;
+import items.Statuette;
 
 
 /**

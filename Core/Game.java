@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import characters.*;
-import locations.*;
+import characters.Hero;
+import locations.Location;
 
 /**
  *
