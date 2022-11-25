@@ -5,11 +5,13 @@ import locations.Location;
 public class Stick extends Weapon{
 	// ---------------------------ATTRIBUTS------------------------------------//
 	public static final int DEFAULT_DAMAGE = 5;
+	public static final int DEFAULT_ATK = 0;
+	public static final int DEFAULT_LIFE = 0;
 	
 	
 	// --------------------------CONSTRUCTEUR----------------------------------//
-	public Stick(String name, int atkpt, int life, String description, Location location) {
-		super(name, atkpt, life, description, location);
+	public Stick(String name, String description, Location location) {
+		super(name, DEFAULT_ATK, DEFAULT_LIFE, description, location);
 	}
 	
 	
