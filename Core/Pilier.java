@@ -1,18 +1,22 @@
 package Core;
 
 public class Pilier extends Item {
-	private String skill;
+	private int pilierID;
 	
-	public void Pillier(String name, String sk, String description) {
-		super(name, description);
-		this.skill = sk;
+	
+	// -------------------------------------------------------------------//
+	public Pilier(String name, int ID, String description, Location location) {
+		super(name, description, location);
+		this.pilierID = ID;
 	}
 	
-	public void becomePickable() {
-		this.pickable = true;
+	
+	// -------------------------------------------------------------------//
+	public int getSkill() {
+		return pilierID;
 	}
-
-	public String getSkill() {
-		return skill;
-	}
+	
+	
+	// -------------------------------------------------------------------//
+	
 }
