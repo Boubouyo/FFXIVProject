@@ -1,4 +1,6 @@
-package Core;
+package characters;
+
+import locations.Location;
 
 public abstract class Character 
 {

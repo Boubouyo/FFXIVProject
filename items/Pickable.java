@@ -1,4 +1,7 @@
-package Core;
+package items;
+
+import commands.Take;
+import locations.Location;
 
 public abstract class Pickable extends Item implements Take{
 	private static final Boolean DEFAULT_PICKABLE = false;

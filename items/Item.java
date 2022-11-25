@@ -1,5 +1,8 @@
-package Core;
+package items;
 
+import characters.Hero;
+import commands.Look;
+import locations.Location;
 
 public abstract class Item implements Look{
 	private final String name;

@@ -1,4 +1,7 @@
-package Core;
+package items;
+
+import commands.Use;
+import locations.Location;
 
 public abstract class Weapon extends Pickable implements Use{
 	private int bonusAtkPoint;

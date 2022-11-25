@@ -1,4 +1,9 @@
-package Core;
+package characters;
+
+import locations.*;
+import items.*;
+import Core.*;
+import commands.*;
 
 import java.util.ArrayList;
 import java.util.List;

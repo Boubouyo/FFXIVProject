@@ -1,4 +1,8 @@
-package Core;
+
+package characters;
+
+import commands.Look;
+import locations.Location;
 
 public class Enemy extends Character implements Look
 {

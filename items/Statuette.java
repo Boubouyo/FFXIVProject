@@ -1,4 +1,7 @@
-package Core;
+package items;
+
+import commands.UseOn;
+import locations.Location;
 
 public class Statuette extends Pickable implements UseOn{
 	private int statuetteID;

@@ -1,4 +1,6 @@
-package Core;
+package items;
+
+import locations.Location;
 
 public class Stick extends Weapon{
 	public static final int DEFAULT_DAMAGE = 5;

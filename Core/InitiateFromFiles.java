@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import locations.Exit;
+import locations.Location;
+
 public class InitiateFromFiles {
 	
 	private static final String CHAR_DELIMITER = ";";

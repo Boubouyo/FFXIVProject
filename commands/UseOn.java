@@ -1,4 +1,6 @@
-package Core;
+package commands;
+
+import items.Item;
 
 public interface UseOn {
 

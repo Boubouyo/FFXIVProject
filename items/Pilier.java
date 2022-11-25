@@ -1,4 +1,6 @@
-package Core;
+package items;
+
+import locations.Location;
 
 public class Pilier extends Item {
 	private int pilierID;
