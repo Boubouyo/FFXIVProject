@@ -16,6 +16,9 @@ import commands.Look;
 import characters.Enemy;
 import items.Item;
 import items.Statuette;
+import items.Pilier;
+import items.Stick;
+import items.Weapon;
 
 
 /**
@@ -163,6 +166,15 @@ public class Location implements Look {
     public void addStatuette(String name, int id, String description){
         this.items.add(new Statuette(name, id, description, this));
     }
+    
+    public void addPilier(String name, int id, String description){
+        this.items.add(new Pilier(name, id, description, this));
+    }
+    
+    public void addStick(){
+        this.items.add(new Stick(this));
+    }
+    
     
     
 	// --------------------------OVERRIDE------------------------------------//
