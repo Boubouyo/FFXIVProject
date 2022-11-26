@@ -54,13 +54,11 @@ public class Weapon extends Pickable implements Use{
 	// --------------------------OVERRIDE------------------------------------//
 	@Override
 	public boolean use() {
-		if (durability==0) {
-			return false;
-		}
-		else {
+		if (durability>0 && super.getHero().getWeapon()==this) {
 			this.lessDurability(1);
 			return true;
 		}
+		return true;
 	}
 	
 	
