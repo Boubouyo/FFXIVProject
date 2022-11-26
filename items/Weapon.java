@@ -1,11 +1,15 @@
-package Core;
+package items;
 
-public abstract class Weapon extends Pickable implements Use{
+import commands.Use;
+import locations.Location;
+
+public class Weapon extends Pickable implements Use{
+	// ---------------------------ATTRIBUTS------------------------------------//
 	private int bonusAtkPoint;
 	private int numberOfUse;
 
 	
-	// -------------------------------------------------------------------//
+    // --------------------------CONSTRUCTEUR----------------------------------//
 	public Weapon(String name, int atkpt, int life, String description, Location location) {
 		super(name, description, location);
 		this.bonusAtkPoint = atkpt;
@@ -13,7 +17,7 @@ public abstract class Weapon extends Pickable implements Use{
 	}
 
 	
-	// -------------------------------------------------------------------//
+	// ----------------------------GET & SET-------------------------------------//
 	public int getBonusAttackPoint() {
 		return bonusAtkPoint;
 	}
@@ -25,8 +29,9 @@ public abstract class Weapon extends Pickable implements Use{
 	public void lessNumberOfUse(int down) {
 		this.numberOfUse -= down;
 	}
+
 	
-	// -------------------------------------------------------------------//
+	// --------------------------OVERRIDE------------------------------------//
 	@Override
 	public boolean use() {
 		if (numberOfUse==0) {

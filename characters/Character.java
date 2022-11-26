@@ -1,10 +1,13 @@
-package Core;
+package characters;
+
+import locations.Location;
 
 public abstract class Character 
 {
-	private final String name;
-	protected Location currentLocation;
 	
+	private final String name;
+	private Location currentLocation;
+
 	private int maxHealthPoints;
 	private int currentHealthPoints;
 	private int attack;
@@ -18,6 +21,7 @@ public abstract class Character
 		this.currentLocation = startingLocation;
 	}
 	
+    // Getters and setters 
 	public String getName()
 	{
 		return this.name;
@@ -28,9 +32,24 @@ public abstract class Character
 		return this.currentHealthPoints;
 	}
 	
+	public Location getCurrentLocation() {
+		return currentLocation;
+	}
+
+	public void setCurrentLocation(Location currentLocation) {
+		this.currentLocation = currentLocation;
+	}
+	
+    // Print
 	public void printHP()
 	{
 		System.out.println(this.getHealthPoints() + " HP.");
+	}
+	
+	// Combat
+	public int getFinalAttackPower()
+	{
+		return this.attack;
 	}
 	
 	public void damageCharacter(int damage)
@@ -49,7 +68,7 @@ public abstract class Character
 	public void attackCharacter(Character c)
 	{
 		System.out.print(this.name + " attacks " + c.getName() + " : ");
-		c.damageCharacter(this.attack);
+		c.damageCharacter(getFinalAttackPower());
 		
 		if (c.getHealthPoints() <= 0)
 		{
@@ -57,6 +76,7 @@ public abstract class Character
 		}
 	}
 	
+	// Abstract methods
 	public abstract void die();
 }
 

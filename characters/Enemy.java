@@ -1,11 +1,14 @@
-package Core;
+package characters;
 
-public class Enemy extends Character implements Look
+import commands.Look;
+import locations.Location;
+
+public class Enemy extends Character implements Look 
 {
+	
 	private static final String DEFAULT_DESCRIPTION = "It's a simple enemy.";
-	
 	public String description;
-	
+
 	public Enemy (String name, int healthPoints, int attack, Location startingLocation, String description)
 	{
 		super(name, healthPoints, attack, startingLocation);
@@ -19,18 +22,20 @@ public class Enemy extends Character implements Look
 	
 	public void attackHero()
 	{
-		Hero hero = currentLocation.getHero();
+		Hero hero = getCurrentLocation().getHero();
 		if (hero != null)
 			attackCharacter(hero);
 	}
 	
+	// From heritage
 	@Override 
 	public void die()
 	{
 		System.out.println(this.getName() + " is defeated.");
-		this.currentLocation.deleteEnemy(this);
+		this.getCurrentLocation().deleteEnemy(this);
 	}
 	
+	// From interface Look
 	@Override 
 	public void look()
 	{

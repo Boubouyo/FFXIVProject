@@ -2,19 +2,30 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Core;
+package locations;
 
-import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ArrayList;
+
+
+import characters.Hero;
+import commands.Look;
+import characters.Enemy;
+import items.Item;
+import items.Statuette;
+import items.Pilier;
+import items.Stick;
 
 
 /**
  *
  * @author fetiveau
  */
-public class Location implements Look{
+public class Location implements Look {
+    // ---------------------------ATTRIBUTS------------------------------------//
     private final String name;
     private final String description;
     private final String entryDescription;
@@ -25,6 +36,7 @@ public class Location implements Look{
     private boolean firstTimeInLocation = true;
     
     
+    // --------------------------CONSTRUCTEURS---------------------------------//
     public Location(String name,String description, String entryDescription){
         this.entryDescription = entryDescription;
         this.name = name;
@@ -37,6 +49,8 @@ public class Location implements Look{
         this.description = description;
     }
     
+    
+    // ----------------------------GET & SET-------------------------------------//
     public String getName(){
         return this.name;
     }
@@ -51,17 +65,28 @@ public class Location implements Look{
     }
     
     
-   //Exit management methods
+    // ---------------------------OPERATIONS : EXIT---------------------------------//
     
+    private Exit getExitFromLocationName(String locationName)
+    {
+    	for (String key : this.exits.keySet()) {
+			if (key.equalsIgnoreCase(locationName))
+				return this.exits.get(key);
+		}
+    	return null;
+    }
+    
+   //Exit management methods
     public void addExits(Exit newExit){
         exits.put(newExit.getOtherLocation(this.name).getName(), newExit);
     }
     
     public Location takeExit(String locationName, Hero hero){
         Location returnedLoc = this;
-        if(this.exits.containsKey(locationName)){
-            if(this.exits.get(locationName).ableToMoveThrough()){
-                returnedLoc = this.exits.get(locationName).getLocation(locationName);
+        Exit currentExit = getExitFromLocationName(locationName);
+        if(currentExit != null){
+            if(currentExit.ableToMoveThrough()){
+                returnedLoc = currentExit.getLocation(locationName);
                 this.myHero = null;
                 returnedLoc.setHero(hero);
             }
@@ -69,6 +94,7 @@ public class Location implements Look{
         return returnedLoc;
     }
     
+    // ---------------------------OPERATIONS : PRINT---------------------------------//
     public void entryPrint(){
     	System.out.println("You're entering the " + this.name + ".");
     	if (firstTimeInLocation)
@@ -100,14 +126,8 @@ public class Location implements Look{
         }
     }
     
-    //For the LOOK command
-    @Override
-    public void look(){
-        System.out.println(this.description);       
-        printExits();        
-        printEnemies();
-    }
     
+    // ---------------------OPERATIONS : ENEMY------------------------------//
     //everything about the characters in a room
     public void addEnemy(String name, int healthPoints, int attack, String description){
         if(description == null){
@@ -135,7 +155,12 @@ public class Location implements Look{
         }
     }
     
+    
+    // ---------------------------OPERATIONS : ITEMS---------------------------------//
     //Everything about the items in a room
+    public List<Item> getRoomInventory(){
+        return this.items;
+    }
     
     public Item getItemFromString(String name){
         for(Item i : items){
@@ -154,5 +179,24 @@ public class Location implements Look{
     
     public void addStatuette(String name, int id, String description){
         this.items.add(new Statuette(name, id, description, this));
+    }
+    
+    public void addPilier(String name, int id, String description){
+        this.items.add(new Pilier(name, id, description, this));
+    }
+    
+    public void addStick(){
+        this.items.add(new Stick("", "", this));
+    }
+    
+    
+    
+	// --------------------------OVERRIDE------------------------------------//
+    //For the LOOK command
+    @Override
+    public void look(){
+        System.out.println(this.description);       
+        printExits();        
+        printEnemies();
     }
 }

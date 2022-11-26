@@ -2,17 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Core;
+package locations;
 
 /**
  *
  * @author fetiveau
  */
 public class Exit {
+	// ---------------------------ATTRIBUTS------------------------------------//
     private boolean isOpen;
     private final Location locationA;
     private final Location locationB;
     
+    
+    // --------------------------CONSTRUCTEUR----------------------------------//
     public Exit(Location a, Location b){
         this.isOpen = true;
         this.locationA = a;
@@ -23,11 +26,14 @@ public class Exit {
     }
     
     
+    // ---------------------------OPERATIONS-------------------------------------//
     //Tells if the exit is blocked or not
     public boolean ableToMoveThrough(){
         return this.isOpen;
     }
     
+    
+    // ----------------------------GET & SET-------------------------------------//
     public Location getLocationA(){
         return this.locationA;
     }
@@ -36,13 +42,21 @@ public class Exit {
         return this.locationB;
     }
     
+    public void close(){
+        this.isOpen = false;
+    }
+    
+    public void open(){
+        this.isOpen = true;
+    }
+    
     //Getting the room with the name of that room
     public Location getLocation(String wantedLocation){
         if(wantedLocation != null){
-            if(wantedLocation.equals(this.getLocationA().getName())){
+            if(wantedLocation.equalsIgnoreCase(this.getLocationA().getName())){
                 return this.getLocationA();
             }
-            else if(wantedLocation.equals(this.getLocationB().getName())){
+            else if(wantedLocation.equalsIgnoreCase(this.getLocationB().getName())){
                 return this.getLocationB();
             }
         }
@@ -52,10 +66,10 @@ public class Exit {
     //Getting the other location 
     public Location getOtherLocation(String location){
         if(location != null){
-            if(location.equals(this.getLocationA().getName())){
+            if(location.equalsIgnoreCase(this.getLocationA().getName())){
                 return this.getLocationB();
             }
-            else if(location.equals(this.getLocationB().getName())){
+            else if(location.equalsIgnoreCase(this.getLocationB().getName())){
                 return this.getLocationA();
             }
         }
