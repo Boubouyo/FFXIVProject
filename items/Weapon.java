@@ -10,8 +10,8 @@ public class Weapon extends Pickable implements Use{
 
 	
     // --------------------------CONSTRUCTEUR----------------------------------//
-	public Weapon(String name, int atkpt, int life, String description, Location location) {
-		super(name, description, location);
+	public Weapon(String name, int atkpt, int life, String description, Location location, boolean isPickable) {
+		super(name, description, location, isPickable);
 		this.bonusAtkPoint = atkpt;
 		this.numberOfUse = life;
 	}
