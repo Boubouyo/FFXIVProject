@@ -169,6 +169,9 @@ public class Location implements Look {
         }
     }
     
+    public List<Enemy> getEnemyList(){
+        return this.enemies;
+    }
     
     // ---------------------------OPERATIONS : ITEMS---------------------------------//
     //Everything about the items in a room

@@ -8,21 +8,19 @@ package locations;
  *
  * @author fetiveau
  */
-//This Exit is closed by default and only open when a particular enemy is defeated
+//This Exit is closed by default and only open when an enemy is defeated
 public class ExitOpenOnceEnemy extends Exit{
-    private final String enemyToDefeatName;
     
     //Location a needs to be the location the enemy is
-    public ExitOpenOnceEnemy(Location a, Location b, String enemyToDefeat){
+    public ExitOpenOnceEnemy(Location a, Location b){
         super(a,b);
-        this.enemyToDefeatName = enemyToDefeat;
         this.close();
     }
     
     @Override
     public boolean ableToMoveThrough(){
         //We're walking through the exit for the first time
-        if(super.getLocationA().getEnemyByName(this.enemyToDefeatName) == null){
+        if(super.getLocationA().getEnemyList().isEmpty()){
             this.open();
             return true;
         }
