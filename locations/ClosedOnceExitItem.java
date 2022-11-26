@@ -16,9 +16,9 @@ public class ClosedOnceExitItem extends Exit{
     private final String itemToGetName;
     
     //Location B is the location where the item is
-    public ClosedOnceExitItem(Location a, Location b, Item itemToGet){
+    public ClosedOnceExitItem(Location a, Location b, String itemToGet){
         super(a,b);
-        this.itemToGetName = itemToGet.getName();
+        this.itemToGetName = itemToGet;
     }
     
     @Override
