@@ -9,7 +9,7 @@ package locations;
  *
  * @author fetiveau
  */
-//This Exit is open and when you cross it the first it's closed until a certain item is taken
+//This Exit is open in one way and will open in the other way when the item in that room is taken
 public class ExitItem extends Exit{
     private final String itemToGetName;
     
@@ -19,11 +19,6 @@ public class ExitItem extends Exit{
         super(a, b, isOpenAtoB, isOpenBtoA);
         this.itemToGetName = itemToGet;
     }
-    
-    public ExitItem(Location a, Location b, String itemToGet){
-        this(a, b, itemToGet, true, true);
-    }
-    
     
     @Override
     public boolean ableToMoveThrough(Location locationFrom){
