@@ -29,6 +29,7 @@ public class EnigmaDevice extends Item {
 		this.tryingSequence = new int[correctSequence.length];
 	}
 	
+	// Creates all the buttons
 	private List<Button> makeButtons(Location location, String[] buttonsName, String[] buttonsDescription, String[] buttonsDescriptionResolved)
 	{
 		List<Button> newButtons = new ArrayList<>();
@@ -47,6 +48,7 @@ public class EnigmaDevice extends Item {
 		setDescription(descriptionAfterResolved);
 	}
 	
+	// Reaction to a button being pushed
 	public void pushButton(int buttonId)
 	{
 		this.tryingSequence[this.tryingSequenceIndex] = buttonId;
@@ -56,6 +58,7 @@ public class EnigmaDevice extends Item {
 			verifyResolved();
 	}
 	
+	//  To check if 2 arrays are equals
 	private boolean areEqualsIntArray(int[] array1, int[] array2)
 	{
 		for (int i = 0; i < array1.length; i++) 
@@ -66,6 +69,7 @@ public class EnigmaDevice extends Item {
 		return true;
 	}
 	
+	// To see if the enigma is solved and act accordingly
 	public void verifyResolved()
 	{
 		if (areEqualsIntArray(this.correctSequence, this.tryingSequence))

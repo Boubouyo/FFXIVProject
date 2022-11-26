@@ -43,18 +43,20 @@ public class Weapon extends Pickable implements Use{
 	}
 	
 	public void equip() {
-		if (super.getHero().getWeapon() == null) {
-			super.getHero().setWeapon(this);
+		if (super.getHero().getWeapon() != null) {
+			super.getHero().addToInventory(super.getHero().getWeapon());
+			super.getHero().setWeapon(null);
 		}
+		super.getHero().setWeapon(this);
 	}
 	
 	
 	// --------------------------OVERRIDE------------------------------------//
 	@Override
 	public boolean use() {
-		if (this.getHero()!=null && durability>0) {
+		if (this.getHero()!=null) {
 			this.equip();
-			this.lessDurability(1);
+			
 			return true;
 		}
 		return false;
@@ -64,7 +66,7 @@ public class Weapon extends Pickable implements Use{
 	@Override
 	public void look() {
 		super.look();
-		System.out.println("This weapon can be use"+this.durability+"times.");
-		System.out.println("Bonus attack"+this.bonusAtkPoint+".");
+		System.out.println("This weapon can still be used "+this.durability+" times.");
+		System.out.println("It has an attack of "+this.bonusAtkPoint+".");
 	}
 }
