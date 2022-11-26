@@ -17,7 +17,7 @@ public class EnigmaDevice extends Item {
 	private int tryingSequenceIndex;
 	private int[] tryingSequence;
 	
-	public EnigmaDevice(String name, String description, Location location, String descriptionResolved, String descriptionAfterResolved, List<String> buttonsName, List<String> buttonsDescription, List<String> buttonsDescriptionResolved, String itemToGive, int[] correctSequence) 
+	public EnigmaDevice(String name, String description, Location location, String descriptionResolved, String descriptionAfterResolved, String[] buttonsName, String[] buttonsDescription, String[] buttonsDescriptionResolved, String itemToGive, int[] correctSequence) 
 	{
 		super(name, description, location);
 		this.descriptionResolved = descriptionResolved;
@@ -29,15 +29,14 @@ public class EnigmaDevice extends Item {
 		this.tryingSequence = new int[correctSequence.length];
 	}
 	
-	private List<Button> makeButtons(Location location, List<String> buttonsName, List<String> buttonsDescription, List<String> buttonsDescriptionResolved)
+	private List<Button> makeButtons(Location location, String[] buttonsName, String[] buttonsDescription, String[] buttonsDescriptionResolved)
 	{
 		List<Button> newButtons = new ArrayList<>();
-		
-		int i = 0;
-		for (String buttonName : buttonsName) {
-			Button newB = new Button(buttonName, buttonsDescription.get(i), location, buttonsDescriptionResolved.get(i), this, i);
+			
+		for (int i = 0; i < buttonsName.length; i++) 
+		{
+			Button newB = getLocation().addButton(buttonsName[i], buttonsDescription[i], location, buttonsDescriptionResolved[i], this, i);
 			newButtons.add(newB);
-			i++;
 		}
 		
 		return newButtons;
@@ -50,30 +49,40 @@ public class EnigmaDevice extends Item {
 	
 	public void pushButton(int buttonId)
 	{
-		tryingSequence[tryingSequenceIndex] = buttonId;
-		tryingSequenceIndex++;
+		this.tryingSequence[this.tryingSequenceIndex] = buttonId;
+		this.tryingSequenceIndex++;
 		
-		if (tryingSequenceIndex >= correctSequence.length)
+		if (this.tryingSequenceIndex >= this.correctSequence.length)
 			verifyResolved();
+	}
+	
+	private boolean areEqualsIntArray(int[] array1, int[] array2)
+	{
+		for (int i = 0; i < array1.length; i++) 
+		{
+			if (array1[i] != array2[i])
+				return false;
+		}
+		return true;
 	}
 	
 	public void verifyResolved()
 	{
-		if (correctSequence.equals(tryingSequence))
+		if (areEqualsIntArray(this.correctSequence, this.tryingSequence))
 		{
 			changeDescription();
-			for (Button button : buttons) {
+			for (Button button : this.buttons) {
 				button.resolved();
 			}
 			
-			Item item = getLocation().getItemFromString(itemToGive);
+			Item item = getLocation().getItemFromString(this.itemToGive);
 			if (item instanceof Pickable itemPickable)
 			{
-				System.out.println(descriptionResolved);
+				System.out.println(this.descriptionResolved);
 				itemPickable.becomePickable();
 			}
 			else 
-				System.out.println("ERROR in EnigmaDevice " + getName() + ". The item " + itemToGive + " can't be picked.");
+				System.out.println("ERROR in EnigmaDevice " + getName() + ". The item " + this.itemToGive + "can't be picked.");
 		}
 		else
 		{

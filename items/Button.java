@@ -14,7 +14,7 @@ public class Button extends Item implements Use {
 	public Button(String name, String description, Location location, String descriptionResolved, EnigmaDevice enigmaDevice, int id) 
 	{
 		super(name, description, location);
-		this.descriptionResolved = description;
+		this.descriptionResolved = descriptionResolved;
 		this.enigmaDevice = enigmaDevice;
 		this.buttonId = id;
 		this.isResolved = false;
@@ -27,6 +27,7 @@ public class Button extends Item implements Use {
 	
 	public void resolved()
 	{
+		System.out.println(descriptionResolved);
 		changeDescription();
 	}
 	
@@ -34,6 +35,7 @@ public class Button extends Item implements Use {
 	{
 		if (!isResolved)
 		{
+			System.out.println("You use the " + getName() + ". Something seems to have happened.");
 			enigmaDevice.pushButton(this.buttonId);
 			return true;
 		}

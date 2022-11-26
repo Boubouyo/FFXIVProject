@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import characters.Hero;
 import commands.Look;
 import characters.Enemy;
+import items.Button;
 import items.EnigmaDevice;
 import items.Item;
 import items.Statuette;
@@ -194,8 +195,15 @@ public class Location implements Look {
         this.items.add(new Statuette(name, id, description, this, isPickable));
     }
     
-    public void addEnigmaDevice(String name, String description, Location location, String descriptionResolved, String descriptionAfterResolved, List<String> buttonsName, List<String> buttonsDescription, List<String> buttonsDescriptionResolved, String itemToGive, int[] correctSequence){
+    public void addEnigmaDevice(String name, String description, Location location, String descriptionResolved, String descriptionAfterResolved, String[] buttonsName, String[] buttonsDescription, String[] buttonsDescriptionResolved, String itemToGive, int[] correctSequence){
         this.items.add(new EnigmaDevice(name, description, location, descriptionResolved, descriptionAfterResolved, buttonsName, buttonsDescription, buttonsDescriptionResolved, itemToGive, correctSequence));
+    }
+    
+    public Button addButton(String name, String description, Location location, String descriptionResolved, EnigmaDevice enigmaDevice, int id)
+    {
+    	Button b = new Button(name, description, location, descriptionResolved, enigmaDevice, id);
+    	this.items.add(b);
+    	return b;
     }
     
     public void addPillar(String name, int id, String description){

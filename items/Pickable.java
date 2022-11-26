@@ -25,11 +25,6 @@ public abstract class Pickable extends Item implements Take
 	// --------------------------OVERRIDE------------------------------------//
 	@Override
 	public boolean take() {
-		if (this.pickable)
-		{
-			getHero().addToInventory(this);
-			getLocation().removeItem(this);
-		}
 		return this.pickable;
 	}
 	

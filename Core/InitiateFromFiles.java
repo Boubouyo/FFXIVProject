@@ -174,7 +174,7 @@ public class InitiateFromFiles {
 			String currentStatuette = scanner.nextLine();
 			String[] parsedStatuette = currentStatuette.split(CHAR_DELIMITER);
 			
-			// If the number of arguments is not 3 then it's incorrect !
+			// If the number of arguments is not 1 then it's incorrect !
 			if (parsedStatuette.length != 1)
 			{
 				scanner.close();
@@ -184,7 +184,7 @@ public class InitiateFromFiles {
 			{
 				File statuetteFile = new File(PATH_ITEMS + PATH_STATUETTE + parsedStatuette[0]);
 				
-				// We get the data from the enemy base file
+				// We get the data from the statuette base file
 				Scanner scannerBase = new Scanner(statuetteFile);
 				
 				String statuetteName = scannerBase.nextLine();
@@ -213,44 +213,63 @@ public class InitiateFromFiles {
 	// --------------------------- ENIGMADEVICES ------------------------------
 		public static void initiateEnigmaDevices(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
 		{
-			File fileStatuettes = new File (PATH_ITEMS + PATH_ENIGMADEVICES + "STATUETTES");
-			Scanner scanner = new Scanner(fileStatuettes);
+			File fileEnigmaDevices = new File (PATH_ITEMS + PATH_ENIGMADEVICES + "ENIGMADEVICES");
+			Scanner scanner = new Scanner(fileEnigmaDevices);
 			
 			while (scanner.hasNext())
 			{
-				String currentStatuette = scanner.nextLine();
-				String[] parsedStatuette = currentStatuette.split(CHAR_DELIMITER);
+				String currentEnigmaDevice = scanner.nextLine();
+				String[] parsedEnigmaDevices = currentEnigmaDevice.split(CHAR_DELIMITER);
 				
-				// If the number of arguments is not 3 then it's incorrect !
-				if (parsedStatuette.length != 1)
+				// If the number of arguments is not 2 then it's incorrect !
+				if (parsedEnigmaDevices.length != 2)
 				{
 					scanner.close();
-					throw new InitiateFromFilesWrongException("The number of argument is wrong. It must be 1 not " + parsedStatuette.length);
+					throw new InitiateFromFilesWrongException("The number of argument is wrong. It must be 2 not " + parsedEnigmaDevices.length);
 				}
 				else
 				{
-					File statuetteFile = new File(PATH_ITEMS + PATH_ENIGMADEVICES + parsedStatuette[0]);
+					File enigmaDevice = new File(PATH_ITEMS + PATH_ENIGMADEVICES + parsedEnigmaDevices[0]);
+					String locationString = parsedEnigmaDevices[1];
 					
-					// We get the data from the enemy base file
-					Scanner scannerBase = new Scanner(statuetteFile);
+					// We get the data from the enigmaDevice base file
+					Scanner scannerBase = new Scanner(enigmaDevice);
 					
-					String statuetteName = scannerBase.nextLine();
-					int statuetteId = Integer.parseInt(scannerBase.nextLine());
-					String statuetteDescription = scannerBase.nextLine();
-					String statuetteLocationString = scannerBase.nextLine();
-					boolean statuetteIsPickable = scannerBase.nextLine().equalsIgnoreCase("true");
-					scannerBase.close();
+					String name = scannerBase.nextLine();
+					String description = scannerBase.nextLine();
+					String descriptionResolved = scannerBase.nextLine(); 
+					String descriptionAfterResolved = scannerBase.nextLine();
+					String itemToGive = scannerBase.nextLine();
+					String[] correctSequenceString = scannerBase.nextLine().split(CHAR_DELIMITER);
+					int howManyButtons = Integer.parseInt(scannerBase.nextLine());
+					String[] buttonsName = new String[howManyButtons]; 
+					String[] buttonsDescription = new String[howManyButtons];
+					String[] buttonsDescriptionResolved = new String[howManyButtons];
 					
-					// We must associate the name with the location
-					Location statuetteLocation = null;
-					
-					try {
-						statuetteLocation = stringToLocation(statuetteLocationString, locations, scanner);
-					} catch (InitiateFromFilesWrongException e) {
-						throw new InitiateFromFilesWrongException(" for STATUETTES : " + e.getMessage());
+					for (int i = 0; i < howManyButtons; i++)
+					{
+						buttonsName[i] = scannerBase.nextLine(); 
+						buttonsDescription[i] = scannerBase.nextLine();
+						buttonsDescriptionResolved[i] = scannerBase.nextLine();
 					}
 					
-					statuetteLocation.addStatuette(statuetteName, statuetteId, statuetteDescription, statuetteIsPickable);
+					scannerBase.close();
+					
+					// Convert String[] to int[]
+					int[] correctSequence = new int[correctSequenceString.length];
+					for (int i = 0; i < correctSequenceString.length; i++)
+						correctSequence[i] = Integer.parseInt(correctSequenceString[i]);
+					
+					// We must associate the name with the location
+					Location location = null;
+					
+					try {
+						location = stringToLocation(locationString, locations, scanner);
+					} catch (InitiateFromFilesWrongException e) {
+						throw new InitiateFromFilesWrongException(" for ENIGMADEVICES : " + e.getMessage());
+					}
+					
+					location.addEnigmaDevice(name, description, location, descriptionResolved, descriptionAfterResolved, buttonsName, buttonsDescription, buttonsDescriptionResolved, itemToGive, correctSequence);
 				}
 			}
 			
@@ -261,5 +280,8 @@ public class InitiateFromFiles {
 	public static void initiateItems(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
 	{
 		initiateStatuettes(locations);
+		
+		// MUST BE LAST
+		initiateEnigmaDevices(locations);
 	}
 }
