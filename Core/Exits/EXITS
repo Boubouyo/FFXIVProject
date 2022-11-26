@@ -1,5 +1,5 @@
-Exit 1 : ;entrance;mainHall;
-Exit 2 : ;mainHall;golemRoom;
+exit;entrance;mainHall;true;true
+exitEnemy;mainHall;golemRoom;true;false
 Exit 3 : ;mainHall;logicRoom;
 Exit 4 : ;mainHall;bossRoom;
 Exit 5 : ;bossRoom;finalRoom;
