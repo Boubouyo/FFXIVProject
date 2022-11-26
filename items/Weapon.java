@@ -43,7 +43,9 @@ public class Weapon extends Pickable implements Use{
 			this.destroyWeapon();
 		}
 		else {
-			super.getHero().setWeapon(this);
+			if (super.getHero().getWeapon() == null) {
+				super.getHero().setWeapon(this);
+			}
 		}
 		
 	}
