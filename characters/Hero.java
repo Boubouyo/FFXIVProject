@@ -320,6 +320,14 @@ public class Hero extends Character
 	
 	public void attackEnemy(String enemyName)
 	{
+		// SPECIAL EXCEPTION FOR SETA
+		if (enemyName.equals("Seta"))
+		{
+			System.out.println("You trully are a monster.");
+			setName("Monster");
+			return;
+		}
+		
 		Enemy enemy = getCurrentLocation().getEnemyByName(enemyName);
 		
 		if (enemy != null)

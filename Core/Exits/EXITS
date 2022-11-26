@@ -1,5 +1,5 @@
 exit;entrance;mainHall;true;true
 exitEnemy;mainHall;golemRoom;true;false
-Exit 3 : ;mainHall;logicRoom;
-Exit 4 : ;mainHall;bossRoom;
-Exit 5 : ;bossRoom;finalRoom;
+exitItem;mainHall;logicRoom;true;false;owlStatuette
+exitPillar;mainHall;bossRoom;false;false
+exitEnemy;bossRoom;finalRoom;false;true

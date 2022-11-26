@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Scanner;
 
 import locations.Exit;
+import locations.ExitEnemy;
+import locations.ExitItem;
+import locations.ExitPillar;
 import locations.Location;
 
 public class InitiateFromFiles {
@@ -84,16 +87,19 @@ public class InitiateFromFiles {
 			String currentExit = scanner.nextLine();
 			String[] parsedExit = currentExit.split(CHAR_DELIMITER);
 			
-			// If the number of arguments is not 3 then it's incorrect !
-			if (parsedExit.length != 3)
+			// If the number of arguments is not 5 or 6 then it's incorrect !
+			if (parsedExit.length != 5 && parsedExit.length != 6)
 			{
 				scanner.close();
-				throw new InitiateFromFilesWrongException("The number of argument is wrong. It must be 3 not " + parsedExit.length);
+				throw new InitiateFromFilesWrongException("The number of argument is wrong. It must be 5 or 6 not " + parsedExit.length);
 			}
 			else
 			{
+				String exitType = parsedExit[0];
 				String firstLocation = parsedExit[1];
 				String secondLocation = parsedExit[2];
+				boolean fromAtoB = parsedExit[3].equals("true");
+				boolean fromBtoA = parsedExit[4].equals("true");
 				
 				// We must associate each name with a location
 				Location locA, locB;
@@ -109,7 +115,19 @@ public class InitiateFromFiles {
 				}
 				
 				// We create our exit
-				new Exit(locA, locB);				
+				if (exitType.equalsIgnoreCase("exit"))
+					new Exit(locA, locB, fromAtoB, fromBtoA);
+				
+				else if (exitType.equalsIgnoreCase("exitItem"))
+					new ExitItem(locA, locB, parsedExit[5], fromBtoA, fromAtoB);
+				
+				else if (exitType.equalsIgnoreCase("exitEnemy"))
+					new ExitEnemy(locA, locB, fromAtoB, fromBtoA);
+				
+				else if (exitType.equalsIgnoreCase("exitPillar"))
+					new ExitPillar(locA, locB);				
+				else
+					throw new InitiateFromFilesWrongException("The exitType " + exitType + "doesn't exist.");
 			}
 		}
 		

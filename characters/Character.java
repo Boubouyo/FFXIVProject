@@ -5,7 +5,7 @@ import locations.Location;
 public abstract class Character 
 {
 	
-	private final String name;
+	private String name;
 	private Location currentLocation;
 
 	private int maxHealthPoints;
@@ -25,6 +25,11 @@ public abstract class Character
 	public String getName()
 	{
 		return this.name;
+	}
+	
+	public void setName(String name)
+	{
+		this.name = name;
 	}
 	
 	public int getHealthPoints()
@@ -59,11 +64,15 @@ public abstract class Character
 	}
 
 	public void healCharacter(int heal) 
-	{
-		System.out.println(this.name + " recovers " + heal + " HP.");
+	{		
 		this.currentHealthPoints += heal;
 		if (this.currentHealthPoints > this.maxHealthPoints)
+		{
+			heal -= this.currentHealthPoints - this.maxHealthPoints;
 			this.currentHealthPoints = this.maxHealthPoints;
+		}
+		System.out.println(this.name + " recovers " + heal + " HP.");
+			
 	}
 	
 	public void attackCharacter(Character c)
