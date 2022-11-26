@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import characters.Hero;
+import items.Weapon;
 import locations.Location;
 
 /**
@@ -16,8 +17,9 @@ public class Game
 {
 	private static final String HERO_NAME = "Hero";
 	private static final int HERO_HP = 30;
-	private static final int HERO_ATTACK = 6;
+	private static final int HERO_ATTACK = 1;
 	private static final int HERO_INDEX_FIRSTLOCATION = 0;
+	private static final Weapon HERO_WEAPON = new Weapon("ardbertsAxe", 5, 9999, "The battleaxe of a future hero... unless ?", null, true);
     
 	private static final String END_OF_THE_LINE_CHAR = ";";
 	
@@ -54,7 +56,8 @@ public class Game
 		}
 		
     	// HERO 
-		this.hero = new Hero(HERO_NAME, HERO_HP, HERO_ATTACK, this.locations.get(HERO_INDEX_FIRSTLOCATION));
+		this.hero = new Hero(HERO_NAME, HERO_HP, HERO_ATTACK, this.locations.get(HERO_INDEX_FIRSTLOCATION), HERO_WEAPON);
+		this.hero.getWeapon().setHero(this.hero);
 	}
 	
 	// Parse an input into a list of string

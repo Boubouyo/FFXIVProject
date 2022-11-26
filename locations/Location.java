@@ -20,7 +20,7 @@ import items.HealingItem;
 import items.Item;
 import items.Statuette;
 import items.Pillar;
-import items.Stick;
+import items.Weapon;
 
 
 /**
@@ -215,13 +215,15 @@ public class Location implements Look {
     	this.items.add(new HealingItem(name, description, location, isPickable, healPower));
     }
     
+    public void addWeapon(String name, int atkpt, int life, String description, Location location, boolean isPickable){
+        this.items.add(new Weapon(name, atkpt, life, description, location, isPickable));
+    }
+    
     public void addPillar(String name, int id, String description){
         this.items.add(new Pillar(name, id, description, this));
     }
     
-    public void addStick(){
-        this.items.add(new Stick("", "", this));
-    }
+    
     
     
     

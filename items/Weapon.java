@@ -37,17 +37,20 @@ public class Weapon extends Pickable implements Use{
 	
 	// ---------------------------OPERATIONS-----------------------------------//
 	public void destroyWeapon() {
-		super.getHero().removeFromInventory(this);
+		System.out.println("Oh no ! Your " + getName() + " broke !");
+		super.getHero().setWeapon(null);
 		this.setLocation(null);
 		this.setHero(null);
 	}
 	
 	public void equip() {
+		System.out.println("You equipped the " + getName() + ".");
 		if (super.getHero().getWeapon() != null) {
 			super.getHero().addToInventory(super.getHero().getWeapon());
-			super.getHero().setWeapon(null);
+			System.out.println("You put the " + super.getHero().getWeapon().getName() + " back to the inventory.");
 		}
 		super.getHero().setWeapon(this);
+		super.getHero().removeFromInventory(this);
 	}
 	
 	

@@ -16,9 +16,9 @@ public class Hero extends Character
 		{
 			"HELP [command] : use it to have the list of commands. If you add an arg it will describe a command.",
 			"GO location : use it to go to the location.", 
-			"LOOK [args] : use it to inspect. Without args it will describe the room. You can add as many args as you like to look items, enemies, the HERO or the INVENTORY.", 
+			"LOOK [args] : use it to inspect. Without args it will describe the room. You can add as many args as you like to look items, enemies, the HERO, the STATS, the WEAPON or the INVENTORY.", 
 			"TAKE item : use it to take the item, if possible.", 
-			"USE item1 [item2] : use it to use the item1. Add item2 to use the item1 on the item2.", 
+			"USE item1 [item2] : use it to use the item1. It can be used to eat, equip, and so much more ! Add item2 to use the item1 on the item2.", 
 			"ATTACK enemy : use it to attack the enemy. Be careful, they might fight back !", 
 			"QUIT : use it to quit the game."
 		};
@@ -28,13 +28,13 @@ public class Hero extends Character
 	
 	private boolean isGameFinished = false;
 	
-	public Hero (String name, int healthPoints, int attack, Location startingLocation) {
+	public Hero (String name, int healthPoints, int attack, Location startingLocation, Weapon startingWeapon) {
 		super(name, healthPoints, attack, startingLocation);
 		this.inventory = new ArrayList<>();
-		this.weapon = null;
+		this.weapon = startingWeapon;
 	}
 	
-    // ----- Getters et setters -----
+    // ----- Getters and setters -----
 	public boolean getIsGameFinished()
 	{
 		return this.isGameFinished;
@@ -71,6 +71,13 @@ public class Hero extends Character
 	}
 	
 	// ----- Prints -----
+	@Override
+	public void printHP()
+	{
+		System.out.print("You have ");
+		super.printHP();
+	}
+	
 	public void printInventory()
 	{
 		if (inventory.isEmpty())
@@ -88,10 +95,22 @@ public class Hero extends Character
 		}
 	}
 	
+	public void printWeapon()
+	{
+		if (this.weapon == null)
+		{
+			System.out.println("Your hands are empty.");
+		}
+		else
+		{
+			System.out.println("You hold your precious " + this.weapon.getName() + ". (" + this.weapon.getBonusAttackPoint() + " atk) (" + this.weapon.getNumberOfUse() + " uses)");
+		}
+	}
+	
 	public void printHero()
 	{
-		System.out.print("You have ");
 		printHP();
+		printWeapon();
 		printInventory();
 	}
 
@@ -114,11 +133,8 @@ public class Hero extends Character
 	{
 		int fAtk = super.getFinalAttackPower();
 		
-		if (weapon != null)
-		{
-			weapon.lessDurability(1);
-			fAtk += weapon.getBonusAttackPoint();
-		}			
+		if (this.weapon != null)		
+			fAtk += this.weapon.getBonusAttackPoint();	
 		
 		return fAtk;
 	}
@@ -230,8 +246,18 @@ public class Hero extends Character
 	
 	public void lookSomething(String somethingName)
 	{
+		// SPECIAL EXCEPTION FOR STATS
+		if (somethingName.equalsIgnoreCase("STATS") || somethingName.equalsIgnoreCase("HP"))
+		{
+			printHP();
+		}
+		// SPECIAL EXCEPTION FOR WEAPON
+		else if (somethingName.equalsIgnoreCase("WEAPON"))
+		{
+			printWeapon();
+		}
 		// SPECIAL EXCEPTION FOR INVENTORY
-		if (somethingName.equalsIgnoreCase("INVENTORY"))
+		else if (somethingName.equalsIgnoreCase("INVENTORY"))
 		{
 			printInventory();
 		}
@@ -333,6 +359,8 @@ public class Hero extends Character
 		if (enemy != null)
 		{
 			attackCharacter((Character)enemy);
+			if (this.weapon != null)
+				this.weapon.lessDurability(1);	
 		
 			// COUNTER ATTACK
 			getCurrentLocation().allEnemiesAttack();
