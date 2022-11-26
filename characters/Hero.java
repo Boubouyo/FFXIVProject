@@ -8,8 +8,9 @@ import commands.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Hero extends Character {
-	// ---------------------------ATTRIBUTS------------------------------------//
+public class Hero extends Character 
+{
+	
 	private final static String[] commands = {"HELP", "GO", "LOOK", "TAKE", "USE", "ATTACK", "QUIT"};
 	private final static String[] commands_help = 
 		{
@@ -27,15 +28,13 @@ public class Hero extends Character {
 	
 	private boolean isGameFinished = false;
 	
-	
-	// --------------------------CONSTRUCTEUR----------------------------------//
 	public Hero (String name, int healthPoints, int attack, Location startingLocation) {
 		super(name, healthPoints, attack, startingLocation);
 		this.inventory = new ArrayList<>();
 		this.weapon = null;
 	}
 	
-    // ----------------------------GET & SET-------------------------------------//
+    // Getters et setters
 	public boolean getIsGameFinished()
 	{
 		return this.isGameFinished;
@@ -51,8 +50,6 @@ public class Hero extends Character {
 		this.weapon = weapon;
 	}
 	
-	
-	// ---------------------------OPERATIONS-----------------------------------//
 	// ----- Inventory management -----
 	public void addToInventory(Item item) {
 		this.inventory.add(item); 

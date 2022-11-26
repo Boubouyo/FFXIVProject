@@ -22,6 +22,7 @@ public class InitiateFromFiles {
 	
 	private static final String PATH_ITEMS = "src/Core/Items/";	
 	private static final String PATH_STATUETTE = "Statuettes/";
+	private static final String PATH_ENIGMADEVICES = "EnigmaDevices/";
 
 	// For below
 	private static Location stringToLocation(String locationString, List<Location> locations, Scanner scanner) throws InitiateFromFilesWrongException
@@ -208,6 +209,53 @@ public class InitiateFromFiles {
 		
 		scanner.close();
 	}	
+	
+	// --------------------------- ENIGMADEVICES ------------------------------
+		public static void initiateEnigmaDevices(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
+		{
+			File fileStatuettes = new File (PATH_ITEMS + PATH_ENIGMADEVICES + "STATUETTES");
+			Scanner scanner = new Scanner(fileStatuettes);
+			
+			while (scanner.hasNext())
+			{
+				String currentStatuette = scanner.nextLine();
+				String[] parsedStatuette = currentStatuette.split(CHAR_DELIMITER);
+				
+				// If the number of arguments is not 3 then it's incorrect !
+				if (parsedStatuette.length != 1)
+				{
+					scanner.close();
+					throw new InitiateFromFilesWrongException("The number of argument is wrong. It must be 1 not " + parsedStatuette.length);
+				}
+				else
+				{
+					File statuetteFile = new File(PATH_ITEMS + PATH_ENIGMADEVICES + parsedStatuette[0]);
+					
+					// We get the data from the enemy base file
+					Scanner scannerBase = new Scanner(statuetteFile);
+					
+					String statuetteName = scannerBase.nextLine();
+					int statuetteId = Integer.parseInt(scannerBase.nextLine());
+					String statuetteDescription = scannerBase.nextLine();
+					String statuetteLocationString = scannerBase.nextLine();
+					boolean statuetteIsPickable = scannerBase.nextLine().equalsIgnoreCase("true");
+					scannerBase.close();
+					
+					// We must associate the name with the location
+					Location statuetteLocation = null;
+					
+					try {
+						statuetteLocation = stringToLocation(statuetteLocationString, locations, scanner);
+					} catch (InitiateFromFilesWrongException e) {
+						throw new InitiateFromFilesWrongException(" for STATUETTES : " + e.getMessage());
+					}
+					
+					statuetteLocation.addStatuette(statuetteName, statuetteId, statuetteDescription, statuetteIsPickable);
+				}
+			}
+			
+			scanner.close();
+		}
 	
 	// --------------------------- ITEMS ------------------------------
 	public static void initiateItems(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
