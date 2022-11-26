@@ -53,10 +53,10 @@ public class Exit {
     //Getting the room with the name of that room
     public Location getLocation(String wantedLocation){
         if(wantedLocation != null){
-            if(wantedLocation.equals(this.getLocationA().getName())){
+            if(wantedLocation.equalsIgnoreCase(this.getLocationA().getName())){
                 return this.getLocationA();
             }
-            else if(wantedLocation.equals(this.getLocationB().getName())){
+            else if(wantedLocation.equalsIgnoreCase(this.getLocationB().getName())){
                 return this.getLocationB();
             }
         }
@@ -66,10 +66,10 @@ public class Exit {
     //Getting the other location 
     public Location getOtherLocation(String location){
         if(location != null){
-            if(location.equals(this.getLocationA().getName())){
+            if(location.equalsIgnoreCase(this.getLocationA().getName())){
                 return this.getLocationB();
             }
-            else if(location.equals(this.getLocationB().getName())){
+            else if(location.equalsIgnoreCase(this.getLocationB().getName())){
                 return this.getLocationA();
             }
         }

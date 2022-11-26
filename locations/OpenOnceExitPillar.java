@@ -16,7 +16,7 @@ import items.Pilier;
 public class OpenOnceExitPillar extends Exit{
     private boolean firstTime = true;
     
-    // location b is the locatoion where the enemy is
+    // location b is the location where the enemy is
     public OpenOnceExitPillar(Location a, Location b){
         super(a,b);
         this.close();

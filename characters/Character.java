@@ -2,8 +2,9 @@ package characters;
 
 import locations.Location;
 
-public abstract class Character {
-	// ---------------------------ATTRIBUTS------------------------------------//
+public abstract class Character 
+{
+	
 	private final String name;
 	private Location currentLocation;
 
@@ -11,19 +12,16 @@ public abstract class Character {
 	private int currentHealthPoints;
 	private int attack;
 	
-	
-    // --------------------------CONSTRUCTEUR----------------------------------//
 	public Character (String name, int healthPoints, int attack, Location startingLocation)
 	{
 		this.name = name;
 		this.maxHealthPoints = healthPoints;
 		this.currentHealthPoints = healthPoints;
 		this.attack = attack;
-		this.setCurrentLocation(startingLocation);
+		this.currentLocation = startingLocation;
 	}
 	
-	
-    // ----------------------------GET & SET-------------------------------------//
+    // Getters and setters 
 	public String getName()
 	{
 		return this.name;
@@ -41,14 +39,14 @@ public abstract class Character {
 	public void setCurrentLocation(Location currentLocation) {
 		this.currentLocation = currentLocation;
 	}
-
 	
-    // ---------------------------OPERATIONS-------------------------------------//
+    // Print
 	public void printHP()
 	{
 		System.out.println(this.getHealthPoints() + " HP.");
 	}
 	
+	// Combat
 	public void damageCharacter(int damage)
 	{
 		System.out.println(this.name + " looses " + damage + " HP.");
@@ -73,6 +71,7 @@ public abstract class Character {
 		}
 	}
 	
+	// Abstract methods
 	public abstract void die();
 }
 

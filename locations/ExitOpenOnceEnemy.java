@@ -4,8 +4,6 @@
  */
 package locations;
 
-import characters.Enemy;
-
 /**
  *
  * @author fetiveau
