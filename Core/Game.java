@@ -12,20 +12,23 @@ import locations.Location;
  *
  * @author fetiveau
  */
-public class Game {
-	// ---------------------------ATTRIBUTS------------------------------------//
+public class Game 
+{
+	private static final String HERO_NAME = "Hero";
+	private static final int HERO_HP = 30;
+	private static final int HERO_ATTACK = 6;
+    
 	private static final String END_OF_THE_LINE_CHAR = ";";
 	
 	private final List<Location> locations;
 	private Hero hero;
 	
-	
-	// --------------------------CONSTRUCTEUR----------------------------------//
-	private Game() throws FileNotFoundException, InitiateFromFilesWrongException {
-		// --- LOCATIONS --- //
+	private Game() throws FileNotFoundException, InitiateFromFilesWrongException 
+	{
+		//  LOCATIONS 
 		this.locations = InitiateFromFiles.initiateLocations();
 		
-		// --- EXITS ------- //
+		// EXITS 
 		try {
 			InitiateFromFiles.initiateExits(locations);
 		}
@@ -33,7 +36,7 @@ public class Game {
 			System.out.println("For EXITS : " + err.getMessage());
 		}
 		
-		// --- ENEMIES ----- //
+		// ENEMIES
 				try {
 					InitiateFromFiles.initiateEnemies(locations);
 				}
@@ -41,19 +44,11 @@ public class Game {
 					System.out.println("For ENEMIES : " + err.getMessage());
 				}
 		
-    	// --- HERO -------- //
-		this.hero = initiateHero();
+    	// HERO 
+		this.hero = new Hero(HERO_NAME, HERO_HP, HERO_ATTACK, this.locations.get(0));
 	}
 	
-	
-    // ---------------------------OPERATIONS-------------------------------------//
-	private Hero initiateHero() {
-		String HeroName = "Ardbert";
-        int heroHP = 30;
-        int heroAttack = 6;
-        return new Hero(HeroName, heroHP, heroAttack, locations.get(0));
-	}
-	
+	// Parse an input into a list of string
 	public List<String> parsedInput(Scanner scanner)
 	{
 		List<String> commandAndArgs = new ArrayList<>();
@@ -81,6 +76,7 @@ public class Game {
 		return commandAndArgs;
 	}
 	
+	// Main loop of the game
 	public void gameLoop() throws Exception
 	{
 		boolean isFinished = false;
@@ -119,8 +115,6 @@ public class Game {
 		game.gameLoop();
 	}
 
-	
-	// ------------------------------MAIN---------------------------------------//
     public static void main(String[] args) throws Exception
     {   	
     	Game.gameStart();
