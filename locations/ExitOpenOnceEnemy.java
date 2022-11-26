@@ -10,10 +10,11 @@ import characters.Enemy;
  *
  * @author fetiveau
  */
+//This Exit is closed by default and only open when a particular enemy is defeated
 public class ExitOpenOnceEnemy extends Exit{
     private final String enemyToDefeatName;
     
-    
+    //Location a needs to be the location the enemy is
     public ExitOpenOnceEnemy(Location a, Location b, Enemy enemyToDefeat){
         super(a,b);
         this.enemyToDefeatName = enemyToDefeat.getName();

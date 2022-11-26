@@ -10,11 +10,12 @@ import items.Item;
  *
  * @author fetiveau
  */
+//This Exit is open and when you cross it the first it's closed until a certain item is taken
 public class ClosedOnceExitItem extends Exit{
     private boolean firstTime = true;
     private final String itemToGetName;
     
-    
+    //Location B is the location where the item is
     public ClosedOnceExitItem(Location a, Location b, Item itemToGet){
         super(a,b);
         this.itemToGetName = itemToGet.getName();

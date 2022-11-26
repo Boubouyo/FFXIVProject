@@ -11,11 +11,12 @@ import characters.Enemy;
  *
  * @author fetiveau
  */
+//This Exit is open and when you cross it the first it's closed until a certain enemy is defeated
 public class ClosedOnceExitEnemy extends Exit{
     private boolean firstTime = true;
     private final String enemyToDefeatName;
     
-    
+    // location b is the locatoion where the enemy is
     public ClosedOnceExitEnemy(Location a, Location b, Enemy enemyToDefeat){
         super(a,b);
         this.enemyToDefeatName = enemyToDefeat.getName();
