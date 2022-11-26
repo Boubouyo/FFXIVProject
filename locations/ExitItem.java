@@ -15,7 +15,7 @@ public class ExitItem extends Exit{
     
     
     //The location of the item that blocks the door is on the side of the closed 
-    public ExitItem(Location a, Location b, String itemToGet, boolean isOpenAtoB, boolean isOpenBtoA){
+    public ExitItem(Location a, Location b, boolean isOpenAtoB, boolean isOpenBtoA, String itemToGet){
         super(a, b, isOpenAtoB, isOpenBtoA);
         this.itemToGetName = itemToGet;
     }
