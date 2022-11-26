@@ -34,7 +34,7 @@ public class Hero extends Character
 		this.weapon = null;
 	}
 	
-    // Getters et setters
+    // ----- Getters et setters -----
 	public boolean getIsGameFinished()
 	{
 		return this.isGameFinished;
@@ -225,10 +225,7 @@ public class Hero extends Character
 	
 	public void changeLocation(String locationName)
 	{
-		Location previousLocation = getCurrentLocation();
-		this.setCurrentLocation(previousLocation.takeExit(locationName, this));
-		if (previousLocation == getCurrentLocation())
-			System.out.println("You can't go there yet.");
+		this.setCurrentLocation(getCurrentLocation().takeExit(locationName, this));
 	}
 	
 	public void lookSomething(String somethingName)
