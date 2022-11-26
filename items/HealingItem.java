@@ -31,7 +31,7 @@ public class HealingItem extends Pickable implements Use{
 	@Override
 	public void look() {
 		super.look();
-		System.out.println("It's an healing item. It could give you "+this.heal+"PV.");
+		System.out.println("It's an healing item. It could give you "+this.heal+"PV if used.");
 	}
 	
 }
