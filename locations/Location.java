@@ -16,6 +16,7 @@ import commands.Look;
 import characters.Enemy;
 import items.Button;
 import items.EnigmaDevice;
+import items.HealingItem;
 import items.Item;
 import items.Statuette;
 import items.Pillar;
@@ -207,6 +208,11 @@ public class Location implements Look {
     	Button b = new Button(name, description, location, descriptionResolved, enigmaDevice, id);
     	this.items.add(b);
     	return b;
+    }
+    
+    public void addHealingItem(String name, String description, Location location, Boolean isPickable, int healPower)
+    {
+    	this.items.add(new HealingItem(name, description, location, isPickable, healPower));
     }
     
     public void addPillar(String name, int id, String description){
