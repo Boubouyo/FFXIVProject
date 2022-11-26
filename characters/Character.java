@@ -47,6 +47,11 @@ public abstract class Character
 	}
 	
 	// Combat
+	public int getFinalAttackPower()
+	{
+		return this.attack;
+	}
+	
 	public void damageCharacter(int damage)
 	{
 		System.out.println(this.name + " looses " + damage + " HP.");
@@ -63,7 +68,7 @@ public abstract class Character
 	public void attackCharacter(Character c)
 	{
 		System.out.print(this.name + " attacks " + c.getName() + " : ");
-		c.damageCharacter(this.attack);
+		c.damageCharacter(getFinalAttackPower());
 		
 		if (c.getHealthPoints() <= 0)
 		{

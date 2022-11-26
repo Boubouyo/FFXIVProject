@@ -30,9 +30,10 @@ public class Hero extends Character {
 	public Hero (String name, int healthPoints, int attack, Location startingLocation) {
 		super(name, healthPoints, attack, startingLocation);
 		this.inventory = new ArrayList<>();
+		this.weapon = null;
 	}
 	
-	// Getters
+	// ----- Getters and setters -----
 	public boolean getIsGameFinished()
 	{
 		return this.isGameFinished;
@@ -43,7 +44,12 @@ public class Hero extends Character {
 		return this.weapon;
 	}
 	
-	// Inventory management
+	public void setWeapon(Weapon weapon)
+	{
+		this.weapon = weapon;
+	}
+	
+	// ----- Inventory management -----
 	public void addToInventory(Item item) {
 		this.inventory.add(item); 
 	}
@@ -63,7 +69,7 @@ public class Hero extends Character {
 	    return null;
 	}
 	
-	// Prints
+	// ----- Prints -----
 	public void printInventory()
 	{
 		if (inventory.isEmpty())
@@ -88,7 +94,7 @@ public class Hero extends Character {
 		printInventory();
 	}
 
-	// Find items
+	// ----- Find items -----
 	public Item getItemByName(String itemName) // Look for an item in both the current room and the inventory
 	{
 		Item itemWithName = this.getCurrentLocation().getItemFromString(itemName);
@@ -101,7 +107,18 @@ public class Hero extends Character {
 		return itemWithName;
 	}
 	
-	// From abstract
+	// ----- For combat -----
+	@Override
+	public int getFinalAttackPower()
+	{
+		int fAtk = super.getFinalAttackPower();
+		
+		if (weapon != null)
+			fAtk += weapon.getBonusAttackPoint();
+		
+		return fAtk;
+	}
+	
 	@Override
 	public void die()
 	{
@@ -109,7 +126,7 @@ public class Hero extends Character {
 		this.isGameFinished = true;
 	}
 	
-	// Methods for the commands
+	// ----- Methods for the commands -----
 	public void doTheCommand(List<String> commandAndArgs) throws Exception
 	{
 		String command = commandAndArgs.get(0);
@@ -171,7 +188,8 @@ public class Hero extends Character {
 		{
 			throw new IncorrectCommandException();
 		}
-	}
+	}	
+	// END doTheCommands --------------------
 	
 	public void printHelpCommands()
 	{
