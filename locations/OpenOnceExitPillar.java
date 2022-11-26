@@ -5,6 +5,8 @@
 package locations;
 
 import characters.Enemy;
+import items.Item;
+import items.Pilier;
 
 
 /**
@@ -12,28 +14,30 @@ import characters.Enemy;
  * @author fetiveau
  */
 //This Exit is open and when you cross it the first it's closed until a certain enemy is defeated
-public class ClosedOnceExitEnemy extends Exit{
+public class OpenOnceExitPillar extends Exit{
     private boolean firstTime = true;
-    private final String enemyToDefeatName;
     
     // location b is the locatoion where the enemy is
-    public ClosedOnceExitEnemy(Location a, Location b, Enemy enemyToDefeat){
+    public OpenOnceExitPillar(Location a, Location b){
         super(a,b);
-        this.enemyToDefeatName = enemyToDefeat.getName();
+        this.close();
     }
     
     @Override
     public boolean ableToMoveThrough(){
         //We're walking through the exit for the first time
-        if(super.ableToMoveThrough() && this.firstTime){
-            this.close();
-            this.firstTime = false;
-            return true;
+        if(this.firstTime){
+            boolean canOpen = true;
+            for(Item i: super.getLocationA().getRoomInventory()){
+                if(i instanceof Pilier){
+                    if(!((Pilier) i).rightStatuetteonPillar()){
+                        canOpen = false;
+                    }
+                }
+            }
+            return canOpen;
         }
-        else if(!super.ableToMoveThrough() && super.getLocationB().getEnemyByName(this.enemyToDefeatName) == null){
-            this.open();
-            return true;
-        }
-        else return super.ableToMoveThrough();
+        
+        return false;
     }
 }
