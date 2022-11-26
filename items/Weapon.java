@@ -6,14 +6,18 @@ import locations.Location;
 public class Weapon extends Pickable implements Use{
 	// ---------------------------ATTRIBUTS------------------------------------//
 	private int bonusAtkPoint;
-	private int numberOfUse;
+	private int durability;
 
 	
     // --------------------------CONSTRUCTEUR----------------------------------//
+<<<<<<< Updated upstream
 	public Weapon(String name, int atkpt, int life, String description, Location location, boolean isPickable) {
+=======
+	public Weapon(String name, int atkpt, int life, String description, Location location, Boolean isPickable) {
+>>>>>>> Stashed changes
 		super(name, description, location, isPickable);
 		this.bonusAtkPoint = atkpt;
-		this.numberOfUse = life;
+		this.durability = life;
 	}
 
 	
@@ -23,23 +27,39 @@ public class Weapon extends Pickable implements Use{
 	}
 	
 	public int getNumberOfUse() {
-		return numberOfUse;
+		return durability;
 	}
 	
-	public void lessNumberOfUse(int down) {
-		this.numberOfUse -= down;
+	public void lessDurability(int down) {
+		this.durability -= down;
 	}
-
+	
+	
+	// ---------------------------OPERATIONS-----------------------------------//
+	public void destroyWeapon() {
+		this.setLocation(null);
+		this.setHero(null);
+	}
+	
+	public void equip() {
+		if (this.durability == 0) {
+			this.destroyWeapon();
+		}
+		else {
+			super.getHero().setWeapon(this);
+		}
+		
+	}
+	
 	
 	// --------------------------OVERRIDE------------------------------------//
 	@Override
 	public boolean use() {
-		if (numberOfUse==0) {
+		if (durability==0) {
 			return false;
 		}
 		else {
-			this.lessNumberOfUse(1);
-			//getHero().attack += this.bonusAtkPoint;
+			this.lessDurability(1);
 			return true;
 		}
 	}

@@ -10,7 +10,11 @@ public abstract class Pickable extends Item implements Take
 
 	
 	// --------------------------CONSTRUCTEUR----------------------------------//
+<<<<<<< Updated upstream
 	public Pickable(String name, String description, Location location, boolean isPickable) {
+=======
+	public Pickable(String name, String description, Location location, Boolean isPickable) {
+>>>>>>> Stashed changes
 		super(name, description, location);
 		this.pickable = isPickable;
 	}
