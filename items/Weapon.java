@@ -3,7 +3,7 @@ package items;
 import commands.Use;
 import locations.Location;
 
-public abstract class Weapon extends Pickable implements Use{
+public class Weapon extends Pickable implements Use{
 	// ---------------------------ATTRIBUTS------------------------------------//
 	private int bonusAtkPoint;
 	private int numberOfUse;
