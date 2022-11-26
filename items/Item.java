@@ -26,6 +26,10 @@ public abstract class Item implements Look {
 		return this.name;
 	}
 	
+	public void setDescription(String newDescription) {
+		this.description = newDescription;
+	}
+	
 	public Hero getHero() {
 		return this.hero;
 	}
