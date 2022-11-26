@@ -1,16 +1,15 @@
 package items;
 
 import commands.Use;
-import characters.*;
 import locations.Location;
 
-public class HealPotion extends Pickable implements Use{
+public class HealingItem extends Pickable implements Use{
 	// ---------------------------ATTRIBUTS------------------------------------//
 	private int heal;
 	
 	
 	// --------------------------CONSTRUCTEUR----------------------------------//
-	public HealPotion(String name, String description, Location location, Boolean isPickable, int healPt) {
+	public HealingItem(String name, String description, Location location, Boolean isPickable, int healPt) {
 		super(name, description, location, isPickable);
 		this.heal = healPt;
 	}
@@ -18,7 +17,7 @@ public class HealPotion extends Pickable implements Use{
 	
 	// ---------------------------OPERATIONS-----------------------------------//
 	@Override 
-	public Boolean use() {
+	public boolean use() {
 		super.getHero().healCharacter(this.heal);
 		super.getLocation().allEnemiesAttack();
 		

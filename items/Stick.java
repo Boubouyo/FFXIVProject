@@ -27,4 +27,5 @@ public class Stick extends Weapon{
 			return true;
 		}
 	}
+
 }
