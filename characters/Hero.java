@@ -115,7 +115,10 @@ public class Hero extends Character
 		int fAtk = super.getFinalAttackPower();
 		
 		if (weapon != null)
+		{
+			weapon.lessDurability(1);
 			fAtk += weapon.getBonusAttackPoint();
+		}			
 		
 		return fAtk;
 	}

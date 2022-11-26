@@ -64,7 +64,7 @@ public class Weapon extends Pickable implements Use{
 	@Override
 	public void look() {
 		super.look();
-		System.out.println("This weapon can be use"+this.durability+"times.");
-		System.out.println("Bonus attack"+this.bonusAtkPoint+".");
+		System.out.println("This weapon can still be used "+this.durability+" times.");
+		System.out.println("It has an attack of "+this.bonusAtkPoint+".");
 	}
 }
