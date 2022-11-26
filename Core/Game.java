@@ -17,7 +17,7 @@ public class Game
 	private static final String HERO_NAME = "Hero";
 	private static final int HERO_HP = 30;
 	private static final int HERO_ATTACK = 6;
-	private static final int HERO_INDEX_FIRSTLOCATION = 3;
+	private static final int HERO_INDEX_FIRSTLOCATION = 0;
     
 	private static final String END_OF_THE_LINE_CHAR = ";";
 	
