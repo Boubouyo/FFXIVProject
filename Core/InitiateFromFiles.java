@@ -119,7 +119,7 @@ public class InitiateFromFiles {
 					new Exit(locA, locB, fromAtoB, fromBtoA);
 				
 				else if (exitType.equalsIgnoreCase("exitItem"))
-					new ExitItem(locA, locB, parsedExit[5], fromAtoB, fromBtoA);
+					new ExitItem(locA, locB, fromAtoB, fromBtoA, parsedExit[5]);
 				
 				else if (exitType.equalsIgnoreCase("exitEnemy"))
 					new ExitEnemy(locA, locB, fromAtoB, fromBtoA);
