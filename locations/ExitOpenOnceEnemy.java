@@ -15,9 +15,9 @@ public class ExitOpenOnceEnemy extends Exit{
     private final String enemyToDefeatName;
     
     //Location a needs to be the location the enemy is
-    public ExitOpenOnceEnemy(Location a, Location b, Enemy enemyToDefeat){
+    public ExitOpenOnceEnemy(Location a, Location b, String enemyToDefeat){
         super(a,b);
-        this.enemyToDefeatName = enemyToDefeat.getName();
+        this.enemyToDefeatName = enemyToDefeat;
         this.close();
     }
     

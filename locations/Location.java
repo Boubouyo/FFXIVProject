@@ -18,7 +18,6 @@ import items.Item;
 import items.Statuette;
 import items.Pilier;
 import items.Stick;
-import items.Weapon;
 
 
 /**
@@ -26,8 +25,8 @@ import items.Weapon;
  * @author fetiveau
  */
 public class Location implements Look {
-	// ---------------------------ATTRIBUTS------------------------------------//
-	private final String name;
+    // ---------------------------ATTRIBUTS------------------------------------//
+    private final String name;
     private final String description;
     private final String entryDescription;
     private final Map<String, Exit> exits = new HashMap<>();
@@ -148,6 +147,10 @@ public class Location implements Look {
     
     // ---------------------------OPERATIONS : ITEMS---------------------------------//
     //Everything about the items in a room
+    public List<Item> getRoomInventory(){
+        return this.items;
+    }
+    
     public Item getItemFromString(String name){
         for(Item i : items){
             if(i.getName().equalsIgnoreCase(name)){
