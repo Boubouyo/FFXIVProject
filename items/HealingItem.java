@@ -18,11 +18,20 @@ public class HealingItem extends Pickable implements Use{
 	// ---------------------------OPERATIONS-----------------------------------//
 	@Override 
 	public boolean use() {
-		super.getHero().healCharacter(this.heal);
-		super.getLocation().allEnemiesAttack();
-		
-		return true;
+		if (this.getHero()!=null) {
+			super.getHero().healCharacter(this.heal);
+			super.getLocation().allEnemiesAttack();
+				
+			super.getHero().removeFromInventory(this);
+			return true;
+		}
+		return false;
 	}
 	
+	@Override
+	public void look() {
+		super.look();
+		System.out.println("It's an healing item. It could give you "+this.heal+"PV.");
+	}
 	
 }

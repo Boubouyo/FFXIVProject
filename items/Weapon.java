@@ -28,37 +28,35 @@ public class Weapon extends Pickable implements Use{
 	
 	public void lessDurability(int down) {
 		this.durability -= down;
+		
+		if (this.durability <= 0) {
+			this.destroyWeapon();
+		}
 	}
 	
 	
 	// ---------------------------OPERATIONS-----------------------------------//
 	public void destroyWeapon() {
+		super.getHero().removeFromInventory(this);
 		this.setLocation(null);
 		this.setHero(null);
-		
 	}
 	
 	public void equip() {
-		if (this.durability == 0) {
-			this.destroyWeapon();
+		if (super.getHero().getWeapon() == null) {
+			super.getHero().setWeapon(this);
 		}
-		else {
-			if (super.getHero().getWeapon() == null) {
-				super.getHero().setWeapon(this);
-			}
-		}
-		
 	}
 	
 	
 	// --------------------------OVERRIDE------------------------------------//
 	@Override
 	public boolean use() {
-		if (durability>0 && super.getHero().getWeapon()==this) {
+		if (this.getHero()!=null && durability>0 && super.getHero().getWeapon()==this) {
 			this.lessDurability(1);
 			return true;
 		}
-		return true;
+		return false;
 	}
 	
 	
