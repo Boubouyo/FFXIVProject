@@ -23,13 +23,11 @@ public class ExitItem extends Exit{
     @Override
     public boolean ableToMoveThrough(Location locationFrom){
         if(!super.ableToMoveThrough(locationFrom)){
-            if(locationFrom.getItemFromString(this.itemToGetName) != null){
-                return false;
-            }
-            else{
+            if(locationFrom.getItemFromString(itemToGetName) == null){
                 this.open(locationFrom);
                 return true;
             }
+            else return false;
         }
         else return true;
     }
