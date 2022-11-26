@@ -10,26 +10,37 @@ package locations;
  */
 public class Exit {
 	// ---------------------------ATTRIBUTS------------------------------------//
-    private boolean isOpen;
+    private boolean isOpenAtoB;
+    private boolean isOpenBtoA;
     private final Location locationA;
     private final Location locationB;
     
     
     // --------------------------CONSTRUCTEUR----------------------------------//
-    public Exit(Location a, Location b){
-        this.isOpen = true;
+    public Exit(Location a, Location b, boolean isOpenAtoB, boolean isOpenBtoA){
+        this.isOpenAtoB = isOpenAtoB;
+        this.isOpenBtoA= isOpenBtoA;
         this.locationA = a;
         this.locationB = b;
         //This part is to add the new exit to the two locations
         this.locationA.addExits(this);
         this.locationB.addExits(this);
     }
+    public Exit(Location a, Location b){
+        this(a,b,true,true);
+    }
     
     
     // ---------------------------OPERATIONS-------------------------------------//
     //Tells if the exit is blocked or not
-    public boolean ableToMoveThrough(){
-        return this.isOpen;
+    public boolean ableToMoveThrough(Location locationFrom){
+        if(locationFrom.equals(this.locationA)){
+            return this.isOpenAtoB;
+        }
+        else if(locationFrom.equals(this.locationB)){
+            return this.isOpenBtoA;
+        }
+        else return false;
     }
     
     
@@ -42,12 +53,14 @@ public class Exit {
         return this.locationB;
     }
     
-    public void close(){
-        this.isOpen = false;
+    //Close the door in the direction from locationFrom to the other location
+    public void close(Location locationFrom){
+        this.isOpenAtoB = false;
     }
     
-    public void open(){
-        this.isOpen = true;
+    //Open the door in the direction from locationFrom to the other location
+    public void open(Location locationFrom){
+        this.isOpenBtoA = true;
     }
     
     //Getting the room with the name of that room
