@@ -2,14 +2,14 @@ package items;
 
 import locations.Location;
 
-public class Pilier extends Item {
+public class Pillar extends Item {
 	// ---------------------------ATTRIBUTS------------------------------------//
 	private int pilierID;
         private Item onPillar = null;
 	
 	
     // --------------------------CONSTRUCTEUR----------------------------------//
-	public Pilier(String name, int ID, String description, Location location) {
+	public Pillar(String name, int ID, String description, Location location) {
 		super(name, description, location);
 		this.pilierID = ID;
 	}
