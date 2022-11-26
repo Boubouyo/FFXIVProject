@@ -271,6 +271,7 @@ public class Hero extends Character
 			{
 				addToInventory(itemToTake);
 				getCurrentLocation().removeItem(itemToTake);
+				itemToTake.setHero(this);
 				System.out.println("You take the " + itemName + " and put it in your inventory.");		
 			}
 			else

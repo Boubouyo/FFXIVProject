@@ -60,7 +60,8 @@ public abstract class Character
 
 	public void healCharacter(int heal) 
 	{
-		damageCharacter(-heal);
+		System.out.println(this.name + " wins " + heal + " HP.");
+		this.currentHealthPoints += heal;
 		if (this.currentHealthPoints > this.maxHealthPoints)
 			this.currentHealthPoints = this.maxHealthPoints;
 	}

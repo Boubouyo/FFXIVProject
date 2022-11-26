@@ -23,6 +23,7 @@ public class InitiateFromFiles {
 	private static final String PATH_ITEMS = "src/Core/Items/";	
 	private static final String PATH_STATUETTE = "Statuettes/";
 	private static final String PATH_ENIGMADEVICES = "EnigmaDevices/";
+	private static final String PATH_HEALINGITEMS = "HealingItems/";
 
 	// For below
 	private static Location stringToLocation(String locationString, List<Location> locations, Scanner scanner) throws InitiateFromFilesWrongException
@@ -211,77 +212,124 @@ public class InitiateFromFiles {
 	}	
 	
 	// --------------------------- ENIGMADEVICES ------------------------------
-		public static void initiateEnigmaDevices(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
+	public static void initiateEnigmaDevices(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
+	{
+		File fileEnigmaDevices = new File (PATH_ITEMS + PATH_ENIGMADEVICES + "ENIGMADEVICES");
+		Scanner scanner = new Scanner(fileEnigmaDevices);
+		
+		while (scanner.hasNext())
 		{
-			File fileEnigmaDevices = new File (PATH_ITEMS + PATH_ENIGMADEVICES + "ENIGMADEVICES");
-			Scanner scanner = new Scanner(fileEnigmaDevices);
+			String currentEnigmaDevice = scanner.nextLine();
+			String[] parsedEnigmaDevices = currentEnigmaDevice.split(CHAR_DELIMITER);
 			
-			while (scanner.hasNext())
+			// If the number of arguments is not 2 then it's incorrect !
+			if (parsedEnigmaDevices.length != 2)
 			{
-				String currentEnigmaDevice = scanner.nextLine();
-				String[] parsedEnigmaDevices = currentEnigmaDevice.split(CHAR_DELIMITER);
-				
-				// If the number of arguments is not 2 then it's incorrect !
-				if (parsedEnigmaDevices.length != 2)
-				{
-					scanner.close();
-					throw new InitiateFromFilesWrongException("The number of argument is wrong. It must be 2 not " + parsedEnigmaDevices.length);
-				}
-				else
-				{
-					File enigmaDevice = new File(PATH_ITEMS + PATH_ENIGMADEVICES + parsedEnigmaDevices[0]);
-					String locationString = parsedEnigmaDevices[1];
-					
-					// We get the data from the enigmaDevice base file
-					Scanner scannerBase = new Scanner(enigmaDevice);
-					
-					String name = scannerBase.nextLine();
-					String description = scannerBase.nextLine();
-					String descriptionResolved = scannerBase.nextLine(); 
-					String descriptionAfterResolved = scannerBase.nextLine();
-					String itemToGive = scannerBase.nextLine();
-					String[] correctSequenceString = scannerBase.nextLine().split(CHAR_DELIMITER);
-					int howManyButtons = Integer.parseInt(scannerBase.nextLine());
-					String[] buttonsName = new String[howManyButtons]; 
-					String[] buttonsDescription = new String[howManyButtons];
-					String[] buttonsDescriptionResolved = new String[howManyButtons];
-					
-					for (int i = 0; i < howManyButtons; i++)
-					{
-						buttonsName[i] = scannerBase.nextLine(); 
-						buttonsDescription[i] = scannerBase.nextLine();
-						buttonsDescriptionResolved[i] = scannerBase.nextLine();
-					}
-					
-					scannerBase.close();
-					
-					// Convert String[] to int[]
-					int[] correctSequence = new int[correctSequenceString.length];
-					for (int i = 0; i < correctSequenceString.length; i++)
-						correctSequence[i] = Integer.parseInt(correctSequenceString[i]);
-					
-					// We must associate the name with the location
-					Location location = null;
-					
-					try {
-						location = stringToLocation(locationString, locations, scanner);
-					} catch (InitiateFromFilesWrongException e) {
-						throw new InitiateFromFilesWrongException(" for ENIGMADEVICES : " + e.getMessage());
-					}
-					
-					location.addEnigmaDevice(name, description, location, descriptionResolved, descriptionAfterResolved, buttonsName, buttonsDescription, buttonsDescriptionResolved, itemToGive, correctSequence);
-				}
+				scanner.close();
+				throw new InitiateFromFilesWrongException("The number of argument is wrong. It must be 2 not " + parsedEnigmaDevices.length);
 			}
-			
-			scanner.close();
+			else
+			{
+				File enigmaDeviceFile = new File(PATH_ITEMS + PATH_ENIGMADEVICES + parsedEnigmaDevices[0]);
+				String locationString = parsedEnigmaDevices[1];
+				
+				// We get the data from the enigmaDevice base file
+				Scanner scannerBase = new Scanner(enigmaDeviceFile);
+				
+				String name = scannerBase.nextLine();
+				String description = scannerBase.nextLine();
+				String descriptionResolved = scannerBase.nextLine(); 
+				String descriptionAfterResolved = scannerBase.nextLine();
+				String itemToGive = scannerBase.nextLine();
+				String[] correctSequenceString = scannerBase.nextLine().split(CHAR_DELIMITER);
+				int howManyButtons = Integer.parseInt(scannerBase.nextLine());
+				String[] buttonsName = new String[howManyButtons]; 
+				String[] buttonsDescription = new String[howManyButtons];
+				String[] buttonsDescriptionResolved = new String[howManyButtons];
+				
+				for (int i = 0; i < howManyButtons; i++)
+				{
+					buttonsName[i] = scannerBase.nextLine(); 
+					buttonsDescription[i] = scannerBase.nextLine();
+					buttonsDescriptionResolved[i] = scannerBase.nextLine();
+				}
+				
+				scannerBase.close();
+				
+				// Convert String[] to int[]
+				int[] correctSequence = new int[correctSequenceString.length];
+				for (int i = 0; i < correctSequenceString.length; i++)
+					correctSequence[i] = Integer.parseInt(correctSequenceString[i]);
+				
+				// We must associate the name with the location
+				Location location = null;
+				
+				try {
+					location = stringToLocation(locationString, locations, scanner);
+				} catch (InitiateFromFilesWrongException e) {
+					throw new InitiateFromFilesWrongException(" for ENIGMADEVICES : " + e.getMessage());
+				}
+				
+				location.addEnigmaDevice(name, description, location, descriptionResolved, descriptionAfterResolved, buttonsName, buttonsDescription, buttonsDescriptionResolved, itemToGive, correctSequence);
+			}
 		}
+		
+		scanner.close();
+	}
+	
+	// --------------------------- HEALINGITEMS ------------------------------
+	public static void initiateHealingItems(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
+	{
+		File fileHealingItems = new File (PATH_ITEMS + PATH_HEALINGITEMS + "HEALINGITEMS");
+		Scanner scanner = new Scanner(fileHealingItems);
+		
+		while (scanner.hasNext())
+		{
+			String currentHealingItem = scanner.nextLine();
+			String[] parsedHealingItem = currentHealingItem.split(CHAR_DELIMITER);
+			
+			// If the number of arguments is not 3 then it's incorrect !
+			if (parsedHealingItem.length != 3)
+			{
+				scanner.close();
+				throw new InitiateFromFilesWrongException("The number of argument is wrong. It must be 3 not " + parsedHealingItem.length);
+			}
+			else
+			{
+				File healingItemFile = new File(PATH_ITEMS + PATH_HEALINGITEMS + parsedHealingItem[0]);
+				String locationString = parsedHealingItem[1];
+				boolean isPickable = parsedHealingItem[2].equalsIgnoreCase("true");
+				
+				// We get the data from the healingItems base file
+				Scanner scannerBase = new Scanner(healingItemFile);
+				
+				String name = scannerBase.nextLine();
+				String description = scannerBase.nextLine();
+				int healingPower = Integer.parseInt(scannerBase.nextLine());
+				
+				scannerBase.close();
+				
+				// We must associate the name with the location
+				Location location = null;
+				
+				try {
+					location = stringToLocation(locationString, locations, scanner);
+				} catch (InitiateFromFilesWrongException e) {
+					throw new InitiateFromFilesWrongException(" for HEALINGITEMS : " + e.getMessage());
+				}
+				
+				location.addHealingItem(name, description, location, isPickable, healingPower);
+				}
+		}
+		
+		scanner.close();
+	}
 	
 	// --------------------------- ITEMS ------------------------------
 	public static void initiateItems(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
 	{
 		initiateStatuettes(locations);
-		
-		// MUST BE LAST
 		initiateEnigmaDevices(locations);
+		initiateHealingItems(locations);
 	}
 }
