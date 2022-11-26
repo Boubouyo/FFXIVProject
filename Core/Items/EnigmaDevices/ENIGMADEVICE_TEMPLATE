@@ -1,0 +1,12 @@
+name 
+description 
+descriptionResolved 
+descriptionAfterResolved 
+itemToGive 
+correctSequence 
+howManyButtons 
+[
+	buttonsName  
+	buttonsDescription 
+	buttonsDescriptionResolved 
+]
