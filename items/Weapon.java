@@ -43,18 +43,20 @@ public class Weapon extends Pickable implements Use{
 	}
 	
 	public void equip() {
-		if (super.getHero().getWeapon() == null) {
-			super.getHero().setWeapon(this);
+		if (super.getHero().getWeapon() != null) {
+			super.getHero().addToInventory(super.getHero().getWeapon());
+			super.getHero().setWeapon(null);
 		}
+		super.getHero().setWeapon(this);
 	}
 	
 	
 	// --------------------------OVERRIDE------------------------------------//
 	@Override
 	public boolean use() {
-		if (this.getHero()!=null && durability>0) {
+		if (this.getHero()!=null) {
 			this.equip();
-			this.lessDurability(1);
+			
 			return true;
 		}
 		return false;
