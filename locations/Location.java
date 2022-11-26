@@ -66,6 +66,16 @@ public class Location implements Look {
     
     
     // ---------------------------OPERATIONS : EXIT---------------------------------//
+    
+    private Exit getExitFromLocationName(String locationName)
+    {
+    	for (String key : this.exits.keySet()) {
+			if (key.equalsIgnoreCase(locationName))
+				return this.exits.get(key);
+		}
+    	return null;
+    }
+    
    //Exit management methods
     public void addExits(Exit newExit){
         exits.put(newExit.getOtherLocation(this.name).getName(), newExit);
@@ -73,9 +83,10 @@ public class Location implements Look {
     
     public Location takeExit(String locationName, Hero hero){
         Location returnedLoc = this;
-        if(this.exits.containsKey(locationName)){
-            if(this.exits.get(locationName).ableToMoveThrough()){
-                returnedLoc = this.exits.get(locationName).getLocation(locationName);
+        Exit currentExit = getExitFromLocationName(locationName);
+        if(currentExit != null){
+            if(currentExit.ableToMoveThrough()){
+                returnedLoc = currentExit.getLocation(locationName);
                 this.myHero = null;
                 returnedLoc.setHero(hero);
             }

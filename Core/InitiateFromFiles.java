@@ -10,7 +10,7 @@ import locations.Exit;
 import locations.Location;
 
 public class InitiateFromFiles {
-	// ---------------------------ATTRIBUTS------------------------------------//
+	
 	private static final String CHAR_DELIMITER = ";";
 	
 	private static final String PATH_LOCATIONS = "src/Core/Locations/";
@@ -22,7 +22,7 @@ public class InitiateFromFiles {
 	private static final File FILE_ENEMIES = new File ("src/Core/Enemies/ENEMIES");
 
 	
-	// ---------------------------OPERATIONS-------------------------------------//
+	// --------------------------- LOCATIONS  ------------------------------
 	public static List<Location> initiateLocations() throws FileNotFoundException {
 		List<Location> locations = new ArrayList<>();
 		
@@ -51,6 +51,7 @@ public class InitiateFromFiles {
 		return locations;
 	}
 	
+	// --------------------------- EXITS ------------------------------
 	public static void initiateExits(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
 	{
 		Scanner scanner = new Scanner(FILE_EXITS);
@@ -99,6 +100,7 @@ public class InitiateFromFiles {
 		scanner.close();
 	}
 	
+	// --------------------------- ENEMIES ------------------------------
 	public static void initiateEnemies(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
 	{
 		Scanner scanner = new Scanner(FILE_ENEMIES);
@@ -121,7 +123,7 @@ public class InitiateFromFiles {
 				String locationString = parsedEnemy[2];
 				
 				
-				// We get the datas from the enemy base file
+				// We get the data from the enemy base file
 				Scanner scannerBase = new Scanner(enemyFile);
 
 				int enemyHealthPoints = Integer.parseInt(scannerBase.nextLine());
