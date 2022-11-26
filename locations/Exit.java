@@ -35,9 +35,15 @@ public class Exit {
     //Tells if the exit is blocked or not
     public boolean ableToMoveThrough(Location locationFrom){
         if(locationFrom.equals(this.locationA)){
+            if(!this.isOpenAtoB){
+                System.out.println("This exit seems to be locked.");
+            }
             return this.isOpenAtoB;
         }
         else if(locationFrom.equals(this.locationB)){
+            if(!this.isOpenBtoA){
+                System.out.println("This exit seems to be locked.");
+            }
             return this.isOpenBtoA;
         }
         else return false;
