@@ -46,7 +46,10 @@ public class Exit {
             }
             return this.isOpenBtoA;
         }
-        else return false;
+        else{
+            System.out.println("The place you're looking for doesn't exist.");
+            return false;
+        }
     }
     
     
