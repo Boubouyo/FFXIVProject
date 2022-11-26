@@ -17,7 +17,7 @@ import characters.Enemy;
 import items.EnigmaDevice;
 import items.Item;
 import items.Statuette;
-import items.Pilier;
+import items.Pillar;
 import items.Stick;
 
 
@@ -198,8 +198,8 @@ public class Location implements Look {
         this.items.add(new EnigmaDevice(name, description, location, descriptionResolved, descriptionAfterResolved, buttonsName, buttonsDescription, buttonsDescriptionResolved, itemToGive, correctSequence));
     }
     
-    public void addPilier(String name, int id, String description){
-        this.items.add(new Pilier(name, id, description, this));
+    public void addPillar(String name, int id, String description){
+        this.items.add(new Pillar(name, id, description, this));
     }
     
     public void addStick(){
