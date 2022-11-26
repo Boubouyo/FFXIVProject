@@ -87,7 +87,7 @@ public class Location implements Look {
         Location returnedLoc = this;
         Exit currentExit = getExitFromLocationName(locationName);
         if(currentExit != null){
-            if(currentExit.ableToMoveThrough()){
+            if(currentExit.ableToMoveThrough(hero.getCurrentLocation())){
                 returnedLoc = currentExit.getLocation(locationName);
                 this.myHero = null;
                 returnedLoc.setHero(hero);
