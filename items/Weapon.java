@@ -10,11 +10,7 @@ public class Weapon extends Pickable implements Use{
 
 	
     // --------------------------CONSTRUCTEUR----------------------------------//
-<<<<<<< Updated upstream
 	public Weapon(String name, int atkpt, int life, String description, Location location, boolean isPickable) {
-=======
-	public Weapon(String name, int atkpt, int life, String description, Location location, Boolean isPickable) {
->>>>>>> Stashed changes
 		super(name, description, location, isPickable);
 		this.bonusAtkPoint = atkpt;
 		this.durability = life;

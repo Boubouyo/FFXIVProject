@@ -11,11 +11,7 @@ public class Stick extends Weapon{
 	
 	// --------------------------CONSTRUCTEUR----------------------------------//
 	public Stick(String name, String description, Location location) {
-<<<<<<< Updated upstream
-		super(name, DEFAULT_ATK, DEFAULT_LIFE, description, location, true);
-=======
 		super(name, DEFAULT_ATK, DEFAULT_DURABILITY, description, location, true);
->>>>>>> Stashed changes
 	}
 	
 	
