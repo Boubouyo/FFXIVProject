@@ -35,6 +35,7 @@ public class Weapon extends Pickable implements Use{
 	public void destroyWeapon() {
 		this.setLocation(null);
 		this.setHero(null);
+		
 	}
 	
 	public void equip() {
@@ -58,5 +59,13 @@ public class Weapon extends Pickable implements Use{
 			this.lessDurability(1);
 			return true;
 		}
+	}
+	
+	
+	@Override
+	public void look() {
+		super.look();
+		System.out.println("This weapon can be use"+this.durability+"times.");
+		System.out.println("Bonus attack"+this.bonusAtkPoint+".");
 	}
 }
