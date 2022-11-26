@@ -4,7 +4,6 @@
  */
 package locations;
 
-import characters.Enemy;
 import items.Item;
 import items.Pilier;
 
@@ -29,12 +28,13 @@ public class OpenOnceExitPillar extends Exit{
         if(this.firstTime){
             boolean canOpen = true;
             for(Item i: super.getLocationA().getRoomInventory()){
-                if(i instanceof Pilier){
-                    if(!((Pilier) i).rightStatuetteonPillar()){
+                if(i instanceof Pilier pilier){
+                    if(!pilier.rightStatuetteonPillar()){
                         canOpen = false;
                     }
                 }
             }
+            if(canOpen) this.firstTime = false;
             return canOpen;
         }
         
