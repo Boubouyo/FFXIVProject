@@ -8,7 +8,7 @@ package locations;
  *
  * @author fetiveau
  */
-//This Exit is closed by default and only open when an enemy is defeated
+//This Exit is open in one way and will open in the other way when the enemies in that room are all defeated
 public class ExitEnemy extends Exit{
     
     //Location a needs to be the location the enemy is
