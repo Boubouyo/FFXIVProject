@@ -127,6 +127,18 @@ public class Location implements Look {
         }
     }
     
+    public void printItems() 
+    {
+    	if (!items.isEmpty())
+        {
+    		System.out.print("Looking around you find :");
+	        for(Item i: items){
+	            System.out.print(" " + i.getName());
+	        }
+	        System.out.println(".");
+        }
+    }
+    
     
     // ---------------------OPERATIONS : ENEMY------------------------------//
     //everything about the characters in a room
@@ -200,8 +212,9 @@ public class Location implements Look {
     //For the LOOK command
     @Override
     public void look(){
-        System.out.println(this.description);       
-        printExits();        
+        System.out.println(this.description);   
+        printItems();
+        printExits();   
         printEnemies();
     }
 }

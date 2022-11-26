@@ -37,12 +37,20 @@ public class Game
 		}
 		
 		// ENEMIES
-				try {
-					InitiateFromFiles.initiateEnemies(locations);
-				}
-				catch(InitiateFromFilesWrongException err){
-					System.out.println("For ENEMIES : " + err.getMessage());
-				}
+		try {
+			InitiateFromFiles.initiateEnemies(locations);
+		}
+		catch(InitiateFromFilesWrongException err){
+			System.out.println("For ENEMIES : " + err.getMessage());
+		}
+				
+		// ITEMS
+		try {
+			InitiateFromFiles.initiateItems(locations);
+		}
+		catch(InitiateFromFilesWrongException err){
+			System.out.println("For ITEMS : " + err.getMessage());
+		}
 		
     	// HERO 
 		this.hero = new Hero(HERO_NAME, HERO_HP, HERO_ATTACK, this.locations.get(0));

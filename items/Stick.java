@@ -11,7 +11,7 @@ public class Stick extends Weapon{
 	
 	// --------------------------CONSTRUCTEUR----------------------------------//
 	public Stick(String name, String description, Location location) {
-		super(name, DEFAULT_ATK, DEFAULT_LIFE, description, location);
+		super(name, DEFAULT_ATK, DEFAULT_LIFE, description, location, true);
 	}
 	
 	

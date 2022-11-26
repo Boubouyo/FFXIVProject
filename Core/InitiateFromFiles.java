@@ -19,8 +19,29 @@ public class InitiateFromFiles {
 	private static final File FILE_EXITS = new File ("src/Core/Exits/EXITS");
 	
 	private static final String PATH_ENEMIES = "src/Core/Enemies/";
-	private static final File FILE_ENEMIES = new File ("src/Core/Enemies/ENEMIES");
+	
+	private static final String PATH_ITEMS = "src/Core/Items/";	
+	private static final String PATH_STATUETTE = "Statuettes/";
 
+	// For below
+	private static Location stringToLocation(String locationString, List<Location> locations, Scanner scanner) throws InitiateFromFilesWrongException
+	{
+		Location location = null;
+		
+		for(Location loc : locations){
+            if(loc.getName().equalsIgnoreCase(locationString))
+            	location = loc;
+        }
+		
+		// If the name hasn't been associated with the location then it's still null and there is an error
+		if (location == null)
+		{
+			scanner.close();
+			throw new InitiateFromFilesWrongException("The name " + locationString + " doesn't correspond to any location.");
+		}
+		
+		return location;
+	}	
 	
 	// --------------------------- LOCATIONS  ------------------------------
 	public static List<Location> initiateLocations() throws FileNotFoundException {
@@ -73,27 +94,20 @@ public class InitiateFromFiles {
 				String secondLocation = parsedExit[2];
 				
 				// We must associate each name with a location
-				Location locA = null, locB = null;
-				
-				for(Location loc : locations){
-		            if(loc.getName().equalsIgnoreCase(firstLocation)){
-		            	locA = loc;
-		            }
-		            if(loc.getName().equalsIgnoreCase(secondLocation)){
-		            	locB = loc;
-		            }
-		        }
-				
-				// If a name hasn't been associated with a location then it's still null and ther is an error
-				if (locA != null && locB != null)
-				{
-					new Exit(locA, locB);
+				Location locA, locB;
+				try {
+					locA = stringToLocation(firstLocation, locations, scanner);
+				} catch (InitiateFromFilesWrongException e) {
+					throw new InitiateFromFilesWrongException(e.getMessage());
 				}
-				else
-				{
-					scanner.close();
-					throw new InitiateFromFilesWrongException("The names" + firstLocation + " and/or " + secondLocation + "doesn't correspond to any location.");
+				try {
+					locB = stringToLocation(secondLocation, locations, scanner);
+				} catch (InitiateFromFilesWrongException e) {
+					throw new InitiateFromFilesWrongException(e.getMessage());
 				}
+				
+				// We create our exit
+				new Exit(locA, locB);				
 			}
 		}
 		
@@ -103,7 +117,8 @@ public class InitiateFromFiles {
 	// --------------------------- ENEMIES ------------------------------
 	public static void initiateEnemies(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
 	{
-		Scanner scanner = new Scanner(FILE_ENEMIES);
+		File fileEnemies = new File(PATH_ENEMIES + "ENEMIES");
+		Scanner scanner = new Scanner(fileEnemies);
 		
 		while (scanner.hasNext())
 		{
@@ -133,18 +148,11 @@ public class InitiateFromFiles {
 				scannerBase.close();
 				
 				// We must associate the name with the location
-				Location enemyLocation = null;
-				
-				for(Location loc : locations){
-		            if(loc.getName().equalsIgnoreCase(locationString))
-		            	enemyLocation = loc;
-		        }
-				
-				// If the name hasn't been associated with the location then it's still null and there is an error
-				if (enemyLocation == null)
-				{
-					scanner.close();
-					throw new InitiateFromFilesWrongException("The name " + locationString + " doesn't correspond to any location.");
+				Location enemyLocation; 
+				try {
+					enemyLocation = stringToLocation(locationString, locations, scanner);
+				} catch (InitiateFromFilesWrongException e) {
+					throw new InitiateFromFilesWrongException(e.getMessage());
 				}
 				
 				enemyLocation.addEnemy(enemyName, enemyHealthPoints, enemyAttack, enemyDescription);
@@ -152,5 +160,58 @@ public class InitiateFromFiles {
 		}
 		
 		scanner.close();
+	}
+
+	// --------------------------- STATUETTES ------------------------------
+	public static void initiateStatuettes(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
+	{
+		File fileStatuettes = new File (PATH_ITEMS + PATH_STATUETTE + "STATUETTES");
+		Scanner scanner = new Scanner(fileStatuettes);
+		
+		while (scanner.hasNext())
+		{
+			String currentStatuette = scanner.nextLine();
+			String[] parsedStatuette = currentStatuette.split(CHAR_DELIMITER);
+			
+			// If the number of arguments is not 3 then it's incorrect !
+			if (parsedStatuette.length != 1)
+			{
+				scanner.close();
+				throw new InitiateFromFilesWrongException("The number of argument is wrong. It must be 1 not " + parsedStatuette.length);
+			}
+			else
+			{
+				File statuetteFile = new File(PATH_ITEMS + PATH_STATUETTE + parsedStatuette[0]);
+				
+				// We get the data from the enemy base file
+				Scanner scannerBase = new Scanner(statuetteFile);
+				
+				String statuetteName = scannerBase.nextLine();
+				int statuetteId = Integer.parseInt(scannerBase.nextLine());
+				String statuetteDescription = scannerBase.nextLine();
+				String statuetteLocationString = scannerBase.nextLine();
+				boolean statuetteIsPickable = scannerBase.nextLine().equalsIgnoreCase("true");
+				scannerBase.close();
+				
+				// We must associate the name with the location
+				Location statuetteLocation = null;
+				
+				try {
+					statuetteLocation = stringToLocation(statuetteLocationString, locations, scanner);
+				} catch (InitiateFromFilesWrongException e) {
+					throw new InitiateFromFilesWrongException(" for STATUETTES : " + e.getMessage());
+				}
+				
+				statuetteLocation.addStatuette(statuetteName, statuetteId, statuetteDescription, statuetteIsPickable);
+			}
+		}
+		
+		scanner.close();
+	}	
+	
+	// --------------------------- ITEMS ------------------------------
+	public static void initiateItems(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
+	{
+		initiateStatuettes(locations);
 	}
 }
