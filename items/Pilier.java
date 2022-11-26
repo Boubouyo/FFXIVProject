@@ -5,6 +5,7 @@ import locations.Location;
 public class Pilier extends Item {
 	// ---------------------------ATTRIBUTS------------------------------------//
 	private int pilierID;
+        private Item onPillar = null;
 	
 	
     // --------------------------CONSTRUCTEUR----------------------------------//
@@ -21,5 +22,15 @@ public class Pilier extends Item {
 	
 	
 	// -------------------------------------------------------------------//
-	
+	public boolean rightStatuetteonPillar(){
+            if(this.onPillar != null){
+                if(this.onPillar instanceof Statuette statuette){
+                    if(statuette.getId() == this.pilierID){
+                        return true;
+                    }
+                }
+            }
+            
+            return false;
+        }
 }

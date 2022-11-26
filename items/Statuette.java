@@ -16,7 +16,7 @@ public class Statuette extends Pickable implements UseOn{
 
 	
     // ----------------------------GET & SET-------------------------------------//
-	public int getSkill() {
+	public int getId() {
 		return statuetteID;
 	}
 

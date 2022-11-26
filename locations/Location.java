@@ -172,7 +172,7 @@ public class Location implements Look {
     }
     
     public void addStick(){
-        this.items.add(new Stick(this));
+        this.items.add(new Stick("", "", this));
     }
     
     

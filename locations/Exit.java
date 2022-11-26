@@ -42,6 +42,14 @@ public class Exit {
         return this.locationB;
     }
     
+    public void close(){
+        this.isOpen = false;
+    }
+    
+    public void open(){
+        this.isOpen = true;
+    }
+    
     //Getting the room with the name of that room
     public Location getLocation(String wantedLocation){
         if(wantedLocation != null){
