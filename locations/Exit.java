@@ -34,17 +34,23 @@ public class Exit {
     // ---------------------------OPERATIONS-------------------------------------//
     //Tells if the exit is blocked or not
     public boolean ableToMoveThrough(Location locationFrom){
-        if(locationFrom.equals(this.locationA)){
-            if(!this.isOpenAtoB){
-                System.out.println("This exit seems to be locked.");
+        if(locationFrom != null){
+            if(locationFrom.equals(this.locationA)){
+                if(!this.isOpenAtoB){
+                    System.out.println("This exit seems to be locked.");
+                }
+                return this.isOpenAtoB;
             }
-            return this.isOpenAtoB;
-        }
-        else if(locationFrom.equals(this.locationB)){
-            if(!this.isOpenBtoA){
-                System.out.println("This exit seems to be locked.");
+            else if(locationFrom.equals(this.locationB)){
+                if(!this.isOpenBtoA){
+                    System.out.println("This exit seems to be locked.");
+                }
+                return this.isOpenBtoA;
             }
-            return this.isOpenBtoA;
+            else{
+                System.out.println("The place you're looking for doesn't exist.");
+                return false;
+            }
         }
         else{
             System.out.println("The place you're looking for doesn't exist.");
@@ -64,12 +70,22 @@ public class Exit {
     
     //Close the door in the direction from locationFrom to the other location
     public void close(Location locationFrom){
-        this.isOpenAtoB = false;
+        if(this.getLocationA().equals(locationFrom)){
+            this.isOpenAtoB = false;
+        }
+        else if(this.getLocationB().equals(locationFrom)){
+            this.isOpenBtoA = false;
+        }
     }
     
     //Open the door in the direction from locationFrom to the other location
     public void open(Location locationFrom){
-        this.isOpenBtoA = true;
+        if(this.getLocationA().equals(locationFrom)){
+            this.isOpenAtoB = true;
+        }
+        else if(this.getLocationB().equals(locationFrom)){
+            this.isOpenBtoA = true;
+        }
     }
     
     //Getting the room with the name of that room
