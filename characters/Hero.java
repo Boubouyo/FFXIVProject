@@ -148,7 +148,7 @@ public class Hero extends Character
 	public void die()
 	{
 		System.out.println("You died.");
-		GameFinished();
+		gameFinished();
 	}
 	
 	// ----- Methods for the commands -----
@@ -207,7 +207,7 @@ public class Hero extends Character
 		}
 		else if (command.equalsIgnoreCase(commands[6])) // QUIT
 		{
-			GameFinished();
+			gameFinished();
 		}
 		else
 		{
