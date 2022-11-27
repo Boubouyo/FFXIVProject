@@ -42,8 +42,10 @@ public class Pillar extends Item implements UseOn {
 	// Checking if the right Statue is on the right pillar and locking it in place if it's correct
 	public void putRightStatueOnPillar(Statuette statuette) {
 		this.onPillar = statuette;
+		// On enlève la statuette du perso et on l'ajoute à la salle
 		statuette.getHero().removeFromInventory(statuette);
-		statuette.getHero();
+		statuette.getHero().getCurrentLocation().addItem(statuette);
+		statuette.setHero(null);		
 		
 		if (this.pillarID == statuette.getId()) {
 			statuette.lockPickable();

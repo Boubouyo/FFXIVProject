@@ -200,6 +200,10 @@ public class Location implements Look {
         return null;
     }
     
+    public void addItem(Item item){
+        items.add(item);
+    }
+    
     public void removeItem(Item removedItem){
         items.remove(removedItem);
     }
