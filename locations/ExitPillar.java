@@ -24,18 +24,20 @@ public class ExitPillar extends Exit{
     public boolean ableToMoveThrough(Location locationFrom){
         //We need to check if the statuette are all on the right pillar
         if(!super.ableToMoveThrough(locationFrom) && locationFrom.equals(super.getLocationA())){
+            boolean rightStatuette = true;
             for(Item i : locationFrom.getRoomInventory()){
                 if(i instanceof Pillar p){
                     if(!p.rightStatuetteonPillar()){
-                        return false;
+                        rightStatuette = false;
                     }
                 }
-                else
-                	return false;
                 
             }
-            super.open(locationFrom);
-            return true;
+            if(rightStatuette){
+                super.open(locationFrom);
+            }
+            return rightStatuette;
+            
         }
         //We need to check if all enemies are defeated
         else if(!super.ableToMoveThrough(locationFrom) && locationFrom.equals(super.getLocationB())){
