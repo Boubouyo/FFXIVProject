@@ -234,7 +234,7 @@ public class Location implements Look {
         this.items.add(new Weapon(name, atkpt, life, description, this, isPickable));
     }
     
-    public void addPillar(String name, int id, String descriptio){
+    public void addPillar(String name, int id, String description){
         this.items.add(new Pillar(name, id, description, this));
     }
     
