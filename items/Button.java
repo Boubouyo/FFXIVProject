@@ -22,12 +22,12 @@ public class Button extends Item implements Use {
 
 	private void changeDescription()
 	{
-		setDescription(descriptionResolved);
+		super.setDescription(descriptionResolved);
 	}
 	
 	public void resolved()
 	{
-		changeDescription();
+		this.changeDescription();
 	}
 	
 	public boolean use()
@@ -35,7 +35,7 @@ public class Button extends Item implements Use {
 		if (!isResolved)
 		{
 			System.out.println("You use the " + getName() + ". Something seems to have happened.");
-			enigmaDevice.pushButton(this.buttonId);
+			this.enigmaDevice.pushButton(this.buttonId);
 			return true;
 		}
 		return false;

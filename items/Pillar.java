@@ -40,15 +40,17 @@ public class Pillar extends Item implements UseOn {
 	}
 	
 	// Checking if the right Statue is on the right pillar and locking it in place if it's correct
-	public void putRightStatueOnPillar(Statuette statuette) {
-		this.onPillar = statuette;
-		// On enlève la statuette du perso et on l'ajoute à la salle
+
+	public void putStatueOnPillar(Statuette statuette) {
 		statuette.getHero().removeFromInventory(statuette);
-		statuette.getHero().getCurrentLocation().addItem(statuette);
-		statuette.setHero(null);		
+		statuette.setLocation(this.getLocation());
+		statuette.setHero(null);
 		
 		if (this.pillarID == statuette.getId()) {
+			this.onPillar = statuette;
 			statuette.lockPickable();
+
+			
 			System.out.println("You hear a sound as if something got locked and the pillar starts to shine.");
 		}
 		else {
@@ -57,16 +59,29 @@ public class Pillar extends Item implements UseOn {
 	}
 	
 	
+	public void removeStatuetteFromPillar(){
+		
+	}
+	
+	
 	// ----------------------------OVERRIDE------------------------------------//
 	@Override
 	public boolean useOn(Item item){	
 		if(this.onPillar == null){
 			if (isStatuette(item)) {
-				this.putRightStatueOnPillar((Statuette)item);
+				this.putStatueOnPillar((Statuette)item);
 				return true;
 			}
 		}
 		return false;
 		
+	}
+	
+	@Override
+	public void look() {
+		super.look();
+		if (this.onPillar != null) {
+			System.out.println("It has a "+this.onPillar.getName()+" on top of it.");
+		}
 	}
 }
