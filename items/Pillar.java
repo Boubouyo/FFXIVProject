@@ -23,17 +23,17 @@ public class Pillar extends Item implements UseOn {
 	
 	
 	// ---------------------------OPERATIONS-----------------------------------//
-	public boolean rightStatuetteonPillar(){
-            if(this.onPillar != null){
-                if(this.onPillar instanceof Statuette statuette){
-                    if(statuette.getId() == this.pillarID){ 
-                        return true;
-                    }
-                }
-            }
-            
-            return false;
-        }
+//	public boolean rightStatuetteonPillar(){
+//            if(this.onPillar != null){
+//                if(this.onPillar instanceof Statuette statuette){
+//                    if(statuette.getId() == this.pillarID){ 
+//                        return true;
+//                    }
+//                }
+//            }
+//            
+//            return false;
+//        }
 	
 	public boolean isStatuette(Item item) {
 		return (item instanceof Statuette);
@@ -55,11 +55,7 @@ public class Pillar extends Item implements UseOn {
 	
 	// ----------------------------OVERRIDE------------------------------------//
 	@Override
-	public boolean useOn(Item item){
-		// TODO We test if the item can be placed on the pillar (instanceof Statuette) if true then we place it on the pillar and we return true
-		// TODO If the statuette is placed then we call check pillar
-		//return true; // TODO <-- pour pas que ça mette d'erreur pour le moment (à changer si bsn)
-		
+	public boolean useOn(Item item){	
 		if(this.onPillar == null){
 			if (isStatuette(item)) {
 				this.putRightStatueOnPillar((Statuette)item);
