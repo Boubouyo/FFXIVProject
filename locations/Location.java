@@ -210,28 +210,28 @@ public class Location implements Look {
         this.items.add(new Statuette(name, id, description, this, isPickable));
     }
     
-    public void addEnigmaDevice(String name, String description, Location location, String descriptionResolved, String descriptionAfterResolved, String[] buttonsName, String[] buttonsDescription, String[] buttonsDescriptionResolved, String itemToGive, int[] correctSequence){
-        this.items.add(new EnigmaDevice(name, description, location, descriptionResolved, descriptionAfterResolved, buttonsName, buttonsDescription, buttonsDescriptionResolved, itemToGive, correctSequence));
+    public void addEnigmaDevice(String name, String description, String descriptionResolved, String descriptionAfterResolved, String[] buttonsName, String[] buttonsDescription, String[] buttonsDescriptionResolved, String itemToGive, int[] correctSequence){
+        this.items.add(new EnigmaDevice(name, description, this, descriptionResolved, descriptionAfterResolved, buttonsName, buttonsDescription, buttonsDescriptionResolved, itemToGive, correctSequence));
     }
     
-    public Button addButton(String name, String description, Location location, String descriptionResolved, EnigmaDevice enigmaDevice, int id)
+    public Button addButton(String name, String description, String descriptionResolved, EnigmaDevice enigmaDevice, int id)
     {
-    	Button b = new Button(name, description, location, descriptionResolved, enigmaDevice, id);
+    	Button b = new Button(name, description, this, descriptionResolved, enigmaDevice, id);
     	this.items.add(b);
     	return b;
     }
     
-    public void addHealingItem(String name, String description, Location location, Boolean isPickable, int healPower)
+    public void addHealingItem(String name, String description, boolean isPickable, int healPower)
     {
-    	this.items.add(new HealingItem(name, description, location, isPickable, healPower));
+    	this.items.add(new HealingItem(name, description,this, isPickable, healPower));
     }
     
-    public void addWeapon(String name, int atkpt, int life, String description, Location location, boolean isPickable){
-        this.items.add(new Weapon(name, atkpt, life, description, location, isPickable));
+    public void addWeapon(String name, int atkpt, int life, String description, boolean isPickable){
+        this.items.add(new Weapon(name, atkpt, life, description, this, isPickable));
     }
     
-    public void addPillar(String name, int id, String description, Location location){
-        this.items.add(new Pillar(name, id, description, location));
+    public void addPillar(String name, int id, String descriptio){
+        this.items.add(new Pillar(name, id, description, this));
     }
     
     
