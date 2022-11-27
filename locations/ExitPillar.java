@@ -30,9 +30,12 @@ public class ExitPillar extends Exit{
                         return false;
                     }
                 }
-                super.open(locationFrom);
-                return true;
+                else
+                	return false;
+                
             }
+            super.open(locationFrom);
+            return true;
         }
         //We need to check if all enemies are defeated
         else if(!super.ableToMoveThrough(locationFrom) && locationFrom.equals(super.getLocationB())){

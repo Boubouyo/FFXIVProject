@@ -93,7 +93,11 @@ public class Location implements Look {
                 this.myHero = null;
                 returnedLoc.setHero(hero);
             }
+            else
+            	System.out.println("This exit seems to be locked."); 
         }
+        else
+        	System.out.println("The place you're looking for doesn't exist.");
         return returnedLoc;
     }
     

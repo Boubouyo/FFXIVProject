@@ -36,26 +36,13 @@ public class Exit {
     public boolean ableToMoveThrough(Location locationFrom){
         if(locationFrom != null){
             if(locationFrom.equals(this.locationA)){
-                if(!this.isOpenAtoB){
-                    System.out.println("This exit seems to be locked.");
-                }
                 return this.isOpenAtoB;
             }
             else if(locationFrom.equals(this.locationB)){
-                if(!this.isOpenBtoA){
-                    System.out.println("This exit seems to be locked.");
-                }
                 return this.isOpenBtoA;
             }
-            else{
-                System.out.println("The place you're looking for doesn't exist.");
-                return false;
-            }
         }
-        else{
-            System.out.println("The place you're looking for doesn't exist.");
             return false;
-        }
     }
     
     

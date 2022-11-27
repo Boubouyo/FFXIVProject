@@ -28,6 +28,7 @@ public class InitiateFromFiles {
 	private static final String PATH_ENIGMADEVICES = "EnigmaDevices/";
 	private static final String PATH_HEALINGITEMS = "HealingItems/";
 	private static final String PATH_WEAPONS = "Weapons/";
+	private static final String PATH_PILLARS = "Pillars/";
 
 	// For below
 	private static Location stringToLocation(String locationString, List<Location> locations, Scanner scanner) throws InitiateFromFilesWrongException
@@ -345,40 +346,87 @@ public class InitiateFromFiles {
 	}
 	
 	// --------------------------- WEAPONS ------------------------------
-		public static void initiateWeapons(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
+	public static void initiateWeapons(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
+	{
+		File fileWeapons = new File (PATH_ITEMS + PATH_WEAPONS + "WEAPONS");
+		Scanner scanner = new Scanner(fileWeapons);
+		
+		while (scanner.hasNext())
 		{
-			File fileWeapons = new File (PATH_ITEMS + PATH_WEAPONS + "WEAPONS");
-			Scanner scanner = new Scanner(fileWeapons);
+			String currentWeapon = scanner.nextLine();
+			String[] parsedWeapon = currentWeapon.split(CHAR_DELIMITER);
+			
+			// If the number of arguments is not 3 then it's incorrect !
+			if (parsedWeapon.length != 3)
+			{
+				scanner.close();
+				throw new InitiateFromFilesWrongException("The number of argument is wrong. It must be 3 not " + parsedWeapon.length);
+			}
+			else
+			{
+				File weaponFile = new File(PATH_ITEMS + PATH_WEAPONS + parsedWeapon[0]);
+				String locationString = parsedWeapon[1];
+				boolean isPickable = parsedWeapon[2].equalsIgnoreCase("true");
+				
+				// We get the data from the weapons base file
+				Scanner scannerBase = new Scanner(weaponFile);
+				
+				String name = scannerBase.nextLine();
+				String description = scannerBase.nextLine();
+				int attack = Integer.parseInt(scannerBase.nextLine());
+				int durability = Integer.parseInt(scannerBase.nextLine());
+				
+				scannerBase.close();
+				
+				if (durability < 1)
+					throw new InitiateFromFilesWrongException(" for WEAPONS : The durability is too small for weapon " + name + ". It must be > 0.");
+				
+				// We must associate the name with the location
+				Location location = null;
+				
+				try {
+					location = stringToLocation(locationString, locations, scanner);
+				} catch (InitiateFromFilesWrongException e) {
+					throw new InitiateFromFilesWrongException(" for WEAPONS : " + e.getMessage());
+				}
+				
+				location.addWeapon(name, attack, durability, description, location, isPickable);
+				}
+		}
+		
+		scanner.close();
+	}
+	
+	// --------------------------- PILLARS ------------------------------
+		public static void initiatePillars(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
+		{
+			File filePillars = new File (PATH_ITEMS + PATH_PILLARS + "PILLARS");
+			Scanner scanner = new Scanner(filePillars);
 			
 			while (scanner.hasNext())
 			{
-				String currentWeapon = scanner.nextLine();
-				String[] parsedWeapon = currentWeapon.split(CHAR_DELIMITER);
+				String currentPillar = scanner.nextLine();
+				String[] parsedPillar = currentPillar.split(CHAR_DELIMITER);
 				
-				// If the number of arguments is not 3 then it's incorrect !
-				if (parsedWeapon.length != 3)
+				// If the number of arguments is not 1 then it's incorrect !
+				if (parsedPillar.length != 1)
 				{
 					scanner.close();
-					throw new InitiateFromFilesWrongException("The number of argument is wrong. It must be 3 not " + parsedWeapon.length);
+					throw new InitiateFromFilesWrongException("The number of argument is wrong. It must be 1 not " + parsedPillar.length);
 				}
 				else
 				{
-					File weaponFile = new File(PATH_ITEMS + PATH_WEAPONS + parsedWeapon[0]);
-					String locationString = parsedWeapon[1];
-					boolean isPickable = parsedWeapon[2].equalsIgnoreCase("true");
+					File pillarFile = new File(PATH_ITEMS + PATH_PILLARS + parsedPillar[0]);
 					
-					// We get the data from the weapons base file
-					Scanner scannerBase = new Scanner(weaponFile);
+					// We get the data from the pillar base file
+					Scanner scannerBase = new Scanner(pillarFile);
 					
 					String name = scannerBase.nextLine();
+					int id = Integer.parseInt(scannerBase.nextLine());
 					String description = scannerBase.nextLine();
-					int attack = Integer.parseInt(scannerBase.nextLine());
-					int durability = Integer.parseInt(scannerBase.nextLine());
+					String locationString = scannerBase.nextLine();
 					
 					scannerBase.close();
-					
-					if (durability < 1)
-						throw new InitiateFromFilesWrongException(" for WEAPONS : The durability is too small for weapon " + name + ". It must be > 0.");
 					
 					// We must associate the name with the location
 					Location location = null;
@@ -386,11 +434,11 @@ public class InitiateFromFiles {
 					try {
 						location = stringToLocation(locationString, locations, scanner);
 					} catch (InitiateFromFilesWrongException e) {
-						throw new InitiateFromFilesWrongException(" for WEAPONS : " + e.getMessage());
+						throw new InitiateFromFilesWrongException(" for PILLARS : " + e.getMessage());
 					}
 					
-					location.addWeapon(name, attack, durability, description, location, isPickable);
-					}
+					location.addPillar(name, id, description);
+				}
 			}
 			
 			scanner.close();
@@ -403,5 +451,6 @@ public class InitiateFromFiles {
 		initiateEnigmaDevices(locations);
 		initiateHealingItems(locations);
 		initiateWeapons(locations);
+		initiatePillars(locations);
 	}
 }

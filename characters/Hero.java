@@ -299,7 +299,7 @@ public class Hero extends Character
 	// ----- TAKE -----
 	public void takeItem(String itemName)
 	{
-		Item itemToTake = getItemByName(itemName);
+		Item itemToTake = this.getCurrentLocation().getItemFromString(itemName);;
 		if (itemToTake instanceof Take take)
 		{
 			if (take.take())
@@ -307,7 +307,10 @@ public class Hero extends Character
 				addToInventory(itemToTake);
 				getCurrentLocation().removeItem(itemToTake);
 				itemToTake.setHero(this);
-				System.out.println("You take the " + itemName + " and put it in your inventory.");		
+				System.out.println("You take the " + itemName + " and put it in your inventory.");	
+				
+				// COUNTER ATTACK
+				getCurrentLocation().allEnemiesAttack();
 			}
 			else
 			{
@@ -342,9 +345,9 @@ public class Hero extends Character
 	{
 		Item itemToUse = getItemByName(item1Name);
 		Item itemToUseOn = getItemByName(item2Name);
-		if (itemToUse instanceof UseOn useOn)
+		if (itemToUseOn instanceof UseOn useOn)
 		{
-			if (!useOn.useOn(itemToUseOn))
+			if (!useOn.useOn(itemToUse))
 			{
 				System.out.println("The " + item1Name + " cannot be used on " + item2Name + ".");
 			}
@@ -359,7 +362,7 @@ public class Hero extends Character
 	public void attackEnemy(String enemyName)
 	{
 		// SPECIAL EXCEPTION FOR SETA
-		if (enemyName.equals("Seta"))
+		if (enemyName.equalsIgnoreCase("seta"))
 		{
 			System.out.println("You trully are a monster.");
 			setName("Monster");
