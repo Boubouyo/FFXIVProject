@@ -115,7 +115,7 @@ public class Game
         	isFinished = hero.getIsGameFinished();
         }
         
-        System.out.println("The game ends there.");
+        System.out.println("Thank you for playing !");
         
         scannerInput.close();
 	}

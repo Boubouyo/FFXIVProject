@@ -63,8 +63,8 @@ public class Location implements Look {
     }
     
     public void setHero(Hero hero){
-    	entryPrint();
-        this.myHero = hero;
+    	this.myHero = hero;
+    	entryPrint();        
     }
     
     
@@ -100,6 +100,13 @@ public class Location implements Look {
     // ---------------------------OPERATIONS : PRINT---------------------------------//
     public void entryPrint(){
     	System.out.println("You're entering the " + this.name + ".");
+    	// Make the game end
+    	if (this.entryDescription.equals("THEEND"))
+    	{    		
+    		System.out.println(this.description);
+    		this.myHero.gameFinished();
+    		return;
+    	}
     	if (firstTimeInLocation)
     	{
     		System.out.println(this.entryDescription);

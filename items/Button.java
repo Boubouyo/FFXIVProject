@@ -27,7 +27,6 @@ public class Button extends Item implements Use {
 	
 	public void resolved()
 	{
-		System.out.println(descriptionResolved);
 		changeDescription();
 	}
 	

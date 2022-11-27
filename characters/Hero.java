@@ -40,6 +40,11 @@ public class Hero extends Character
 		return this.isGameFinished;
 	}
 	
+	public void gameFinished()
+	{
+		this.isGameFinished = true;
+	}
+	
 	public Weapon getWeapon()
 	{
 		return this.weapon;
@@ -143,7 +148,7 @@ public class Hero extends Character
 	public void die()
 	{
 		System.out.println("You died.");
-		this.isGameFinished = true;
+		GameFinished();
 	}
 	
 	// ----- Methods for the commands -----
@@ -202,7 +207,7 @@ public class Hero extends Character
 		}
 		else if (command.equalsIgnoreCase(commands[6])) // QUIT
 		{
-			this.isGameFinished = true;
+			GameFinished();
 		}
 		else
 		{
@@ -211,6 +216,7 @@ public class Hero extends Character
 	}	
 	// END doTheCommands --------------------
 	
+	// ----- HELP -----
 	public void printHelpCommands()
 	{
 		System.out.print("The available commands are : ");
@@ -239,11 +245,13 @@ public class Hero extends Character
 			System.out.println("The command " + command + " doesn't exist.");
 	}
 	
+	// ----- GO -----
 	public void changeLocation(String locationName)
 	{
 		this.setCurrentLocation(getCurrentLocation().takeExit(locationName, this));
 	}
 	
+	// ----- LOOK -----
 	public void lookSomething(String somethingName)
 	{
 		// SPECIAL EXCEPTION FOR STATS
@@ -288,6 +296,7 @@ public class Hero extends Character
 		}
 	}
 	
+	// ----- TAKE -----
 	public void takeItem(String itemName)
 	{
 		Item itemToTake = getItemByName(itemName);
@@ -311,6 +320,7 @@ public class Hero extends Character
 		}
 	}
 	
+	// ----- USE -----
 	public void useItem(String itemName)
 	{
 		Item itemToUse = getItemByName(itemName);
@@ -327,6 +337,7 @@ public class Hero extends Character
 		}
 	}
 	
+	// ----- USEON -----
 	public void useItemOnItem(String item1Name, String item2Name)
 	{
 		Item itemToUse = getItemByName(item1Name);
@@ -344,6 +355,7 @@ public class Hero extends Character
 		}
 	}
 	
+	// ----- ATTACK -----
 	public void attackEnemy(String enemyName)
 	{
 		// SPECIAL EXCEPTION FOR SETA
