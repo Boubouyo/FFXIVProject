@@ -16,14 +16,16 @@ public class InitiateFromFiles {
 	
 	private static final String CHAR_DELIMITER = ";";
 	
-	private static final String PATH_LOCATIONS = "src/Core/Locations/";
-	private static final File FILE_LOCATIONS = new File ("src/Core/Locations/LOCATIONS");
+	private static String PATH_TO_CORE = "src/Core/";
 	
-	private static final File FILE_EXITS = new File ("src/Core/Exits/EXITS");
+	private static final String PATH_LOCATIONS_FOLDER = "Locations/";
+	private static final String PATH_LOCATIONS = "LOCATIONS";
+
+	private static final String PATH_EXITS = "Exits/EXITS";
 	
-	private static final String PATH_ENEMIES = "src/Core/Enemies/";
+	private static final String PATH_ENEMIES = "Enemies/";
 	
-	private static final String PATH_ITEMS = "src/Core/Items/";	
+	private static final String PATH_ITEMS = "Items/";	
 	private static final String PATH_STATUETTE = "Statuettes/";
 	private static final String PATH_ENIGMADEVICES = "EnigmaDevices/";
 	private static final String PATH_HEALINGITEMS = "HealingItems/";
@@ -54,8 +56,9 @@ public class InitiateFromFiles {
 	public static List<Location> initiateLocations() throws FileNotFoundException {
 		List<Location> locations = new ArrayList<>();
 		
-		// Get the list of all the locations' name		
-		Scanner scannerNames = new Scanner(FILE_LOCATIONS);
+		// Get the list of all the locations' name	
+		File fileLocations = new File(PATH_TO_CORE + PATH_LOCATIONS_FOLDER + PATH_LOCATIONS);
+		Scanner scannerNames = new Scanner(fileLocations);
 		List<String> locationNames = new ArrayList<>();
 		
 		while (scannerNames.hasNext())
@@ -65,7 +68,7 @@ public class InitiateFromFiles {
 		
 		// Create each locations
 		for (String loc : locationNames) {
-			Scanner scanner = new Scanner(new File(PATH_LOCATIONS + loc));
+			Scanner scanner = new Scanner(new File(PATH_TO_CORE + PATH_LOCATIONS_FOLDER + loc));
 			
 			String locationName = scanner.nextLine();
 			String locationDescription = scanner.nextLine();
@@ -82,7 +85,8 @@ public class InitiateFromFiles {
 	// --------------------------- EXITS ------------------------------
 	public static void initiateExits(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
 	{
-		Scanner scanner = new Scanner(FILE_EXITS);
+		File fileExits = new File(PATH_TO_CORE + PATH_EXITS);
+		Scanner scanner = new Scanner(fileExits);
 		
 		while (scanner.hasNext())
 		{
@@ -139,7 +143,7 @@ public class InitiateFromFiles {
 	// --------------------------- ENEMIES ------------------------------
 	public static void initiateEnemies(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
 	{
-		File fileEnemies = new File(PATH_ENEMIES + "ENEMIES");
+		File fileEnemies = new File(PATH_TO_CORE + PATH_ENEMIES + "ENEMIES");
 		Scanner scanner = new Scanner(fileEnemies);
 		
 		while (scanner.hasNext())
@@ -156,7 +160,7 @@ public class InitiateFromFiles {
 			else
 			{
 				String enemyName = parsedEnemy[0];
-				File enemyFile = new File(PATH_ENEMIES + parsedEnemy[1]);
+				File enemyFile = new File(PATH_TO_CORE + PATH_ENEMIES + parsedEnemy[1]);
 				String locationString = parsedEnemy[2];
 				
 				
@@ -187,7 +191,7 @@ public class InitiateFromFiles {
 	// --------------------------- STATUETTES ------------------------------
 	public static void initiateStatuettes(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
 	{
-		File fileStatuettes = new File (PATH_ITEMS + PATH_STATUETTE + "STATUETTES");
+		File fileStatuettes = new File (PATH_TO_CORE + PATH_ITEMS + PATH_STATUETTE + "STATUETTES");
 		Scanner scanner = new Scanner(fileStatuettes);
 		
 		while (scanner.hasNext())
@@ -203,7 +207,7 @@ public class InitiateFromFiles {
 			}
 			else
 			{
-				File statuetteFile = new File(PATH_ITEMS + PATH_STATUETTE + parsedStatuette[0]);
+				File statuetteFile = new File(PATH_TO_CORE + PATH_ITEMS + PATH_STATUETTE + parsedStatuette[0]);
 				
 				// We get the data from the statuette base file
 				Scanner scannerBase = new Scanner(statuetteFile);
@@ -234,7 +238,7 @@ public class InitiateFromFiles {
 	// --------------------------- ENIGMADEVICES ------------------------------
 	public static void initiateEnigmaDevices(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
 	{
-		File fileEnigmaDevices = new File (PATH_ITEMS + PATH_ENIGMADEVICES + "ENIGMADEVICES");
+		File fileEnigmaDevices = new File (PATH_TO_CORE + PATH_ITEMS + PATH_ENIGMADEVICES + "ENIGMADEVICES");
 		Scanner scanner = new Scanner(fileEnigmaDevices);
 		
 		while (scanner.hasNext())
@@ -250,7 +254,7 @@ public class InitiateFromFiles {
 			}
 			else
 			{
-				File enigmaDeviceFile = new File(PATH_ITEMS + PATH_ENIGMADEVICES + parsedEnigmaDevices[0]);
+				File enigmaDeviceFile = new File(PATH_TO_CORE + PATH_ITEMS + PATH_ENIGMADEVICES + parsedEnigmaDevices[0]);
 				String locationString = parsedEnigmaDevices[1];
 				
 				// We get the data from the enigmaDevice base file
@@ -300,7 +304,7 @@ public class InitiateFromFiles {
 	// --------------------------- HEALINGITEMS ------------------------------
 	public static void initiateHealingItems(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
 	{
-		File fileHealingItems = new File (PATH_ITEMS + PATH_HEALINGITEMS + "HEALINGITEMS");
+		File fileHealingItems = new File (PATH_TO_CORE + PATH_ITEMS + PATH_HEALINGITEMS + "HEALINGITEMS");
 		Scanner scanner = new Scanner(fileHealingItems);
 		
 		while (scanner.hasNext())
@@ -316,7 +320,7 @@ public class InitiateFromFiles {
 			}
 			else
 			{
-				File healingItemFile = new File(PATH_ITEMS + PATH_HEALINGITEMS + parsedHealingItem[0]);
+				File healingItemFile = new File(PATH_TO_CORE + PATH_ITEMS + PATH_HEALINGITEMS + parsedHealingItem[0]);
 				String locationString = parsedHealingItem[1];
 				boolean isPickable = parsedHealingItem[2].equalsIgnoreCase("true");
 				
@@ -348,7 +352,7 @@ public class InitiateFromFiles {
 	// --------------------------- WEAPONS ------------------------------
 	public static void initiateWeapons(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
 	{
-		File fileWeapons = new File (PATH_ITEMS + PATH_WEAPONS + "WEAPONS");
+		File fileWeapons = new File (PATH_TO_CORE + PATH_ITEMS + PATH_WEAPONS + "WEAPONS");
 		Scanner scanner = new Scanner(fileWeapons);
 		
 		while (scanner.hasNext())
@@ -364,7 +368,7 @@ public class InitiateFromFiles {
 			}
 			else
 			{
-				File weaponFile = new File(PATH_ITEMS + PATH_WEAPONS + parsedWeapon[0]);
+				File weaponFile = new File(PATH_TO_CORE + PATH_ITEMS + PATH_WEAPONS + parsedWeapon[0]);
 				String locationString = parsedWeapon[1];
 				boolean isPickable = parsedWeapon[2].equalsIgnoreCase("true");
 				
@@ -400,7 +404,7 @@ public class InitiateFromFiles {
 	// --------------------------- PILLARS ------------------------------
 		public static void initiatePillars(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
 		{
-			File filePillars = new File (PATH_ITEMS + PATH_PILLARS + "PILLARS");
+			File filePillars = new File (PATH_TO_CORE + PATH_ITEMS + PATH_PILLARS + "PILLARS");
 			Scanner scanner = new Scanner(filePillars);
 			
 			while (scanner.hasNext())
@@ -416,7 +420,7 @@ public class InitiateFromFiles {
 				}
 				else
 				{
-					File pillarFile = new File(PATH_ITEMS + PATH_PILLARS + parsedPillar[0]);
+					File pillarFile = new File(PATH_TO_CORE + PATH_ITEMS + PATH_PILLARS + parsedPillar[0]);
 					
 					// We get the data from the pillar base file
 					Scanner scannerBase = new Scanner(pillarFile);
@@ -446,7 +450,10 @@ public class InitiateFromFiles {
 	
 	// --------------------------- ITEMS ------------------------------
 	public static void initiateItems(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
-	{
+	{		
+		if (!(new File(PATH_TO_CORE + PATH_EXITS).exists())) // Used to manage the change of relative path when built
+			PATH_TO_CORE = "classes/Core/";
+		
 		initiateStatuettes(locations);
 		initiateEnigmaDevices(locations);
 		initiateHealingItems(locations);
