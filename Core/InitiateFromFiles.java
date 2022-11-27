@@ -437,7 +437,7 @@ public class InitiateFromFiles {
 						throw new InitiateFromFilesWrongException(" for PILLARS : " + e.getMessage());
 					}
 					
-					location.addPillar(name, id, description);
+					location.addPillar(name, id, description, location);
 				}
 			}
 			
