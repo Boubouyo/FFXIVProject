@@ -36,7 +36,7 @@ public class EnigmaDevice extends Item {
 			
 		for (int i = 0; i < buttonsName.length; i++) 
 		{
-			Button newB = getLocation().addButton(buttonsName[i], buttonsDescription[i], location, buttonsDescriptionResolved[i], this, i);
+			Button newB = getLocation().addButton(buttonsName[i], buttonsDescription[i], buttonsDescriptionResolved[i], this, i);
 			newButtons.add(newB);
 		}
 		

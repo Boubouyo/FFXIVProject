@@ -290,7 +290,7 @@ public class InitiateFromFiles {
 					throw new InitiateFromFilesWrongException(" for ENIGMADEVICES : " + e.getMessage());
 				}
 				
-				location.addEnigmaDevice(name, description, location, descriptionResolved, descriptionAfterResolved, buttonsName, buttonsDescription, buttonsDescriptionResolved, itemToGive, correctSequence);
+				location.addEnigmaDevice(name, description, descriptionResolved, descriptionAfterResolved, buttonsName, buttonsDescription, buttonsDescriptionResolved, itemToGive, correctSequence);
 			}
 		}
 		
@@ -338,7 +338,7 @@ public class InitiateFromFiles {
 					throw new InitiateFromFilesWrongException(" for HEALINGITEMS : " + e.getMessage());
 				}
 				
-				location.addHealingItem(name, description, location, isPickable, healingPower);
+				location.addHealingItem(name, description, isPickable, healingPower);
 				}
 		}
 		
@@ -390,7 +390,7 @@ public class InitiateFromFiles {
 					throw new InitiateFromFilesWrongException(" for WEAPONS : " + e.getMessage());
 				}
 				
-				location.addWeapon(name, attack, durability, description, location, isPickable);
+				location.addWeapon(name, attack, durability, description, isPickable);
 				}
 		}
 		
@@ -437,7 +437,7 @@ public class InitiateFromFiles {
 						throw new InitiateFromFilesWrongException(" for PILLARS : " + e.getMessage());
 					}
 					
-					location.addPillar(name, id, description, location);
+					location.addPillar(name, id, description);
 				}
 			}
 			
