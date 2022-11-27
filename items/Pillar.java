@@ -1,52 +1,68 @@
 package items;
 
 import locations.Location;
+import commands.UseOn;
 
-public class Pillar extends Item { // TODO AJOUT DE L'ATTRIBUT UseOn
+public class Pillar extends Item implements UseOn {
 	// ---------------------------ATTRIBUTS------------------------------------//
-	private int pilierID; // TODO renommer pillarID
+	private int pillarID; 
 	private Item onPillar = null;
 	
 	
     // --------------------------CONSTRUCTEUR----------------------------------//
 	public Pillar(String name, int ID, String description, Location location) {
 		super(name, description, location);
-		this.pilierID = ID; // TODO renommer pillarID
+		this.pillarID = ID; 
 	}
 	
 	
     // ----------------------------GET & SET-----------------------------------//
 	public int getSkill() {
-		return pilierID; // TODO renommer pillarID
+		return pillarID; 
 	}
 	
 	
+	// ---------------------------OPERATIONS-----------------------------------//
+//	public boolean rightStatuetteonPillar(){
+//            if(this.onPillar != null){
+//                if(this.onPillar instanceof Statuette statuette){
+//                    if(statuette.getId() == this.pillarID){ 
+//                        return true;
+//                    }
+//                }
+//            }
+//            
+//            return false;
+//        }
 	
-	// -------------------------------------------------------------------//
-	public boolean rightStatuetteonPillar(){
-            if(this.onPillar != null){
-                if(this.onPillar instanceof Statuette statuette){
-                    if(statuette.getId() == this.pilierID){ // TODO renommer pillarID
-                        return true;
-                    }
-                }
-            }
-            
-            return false;
-        }
-	
-	public void checkPillar()
-	{
-		// TODO If the ID of the statuette this.onPillar is the same as pillarID then we lock the item
-		// Pour préciser, tu dois passer la statuette en isPickable = false 
-		// Aussi si tu peux faire des prints si c'est bon genre "le pilier se met à briller"
+	public boolean isStatuette(Item item) {
+		return (item instanceof Statuette);
 	}
 	
-	//TODO rajouter l'override
-	public boolean UseOn(Item item)
-	{
-		// TODO We test if the item can be placed on the pillar (instanceof Statuette) if true then we place it on the pillar and we return true
-		// TODO If the statuette is placed then we call check pillar
-		return true; // TODO <-- pour pas que ça mette d'erreur pour le moment (à changer si bsn)
+	// Checking if the right Statue is on the right pillar and locking it in place if it's correct
+	public void putRightStatueOnPillar(Statuette statuette) {
+		this.onPillar = statuette;
+		
+		if (this.pillarID == statuette.getId()) {
+			statuette.lockPickable();
+			System.out.println("You hear a sound as if something got locked and the Statue start to shine.");
+		}
+		else {
+			System.out.println("It seems like nothing is happening... maybe you should try again...");
+		}
+	}
+	
+	
+	// ----------------------------OVERRIDE------------------------------------//
+	@Override
+	public boolean useOn(Item item){	
+		if(this.onPillar == null){
+			if (isStatuette(item)) {
+				this.putRightStatueOnPillar((Statuette)item);
+				return true;
+			}
+		}
+		return false;
+		
 	}
 }
