@@ -331,7 +331,7 @@ public class Hero extends Character
 		{
 			if (!use.use())
 			{
-				System.out.println("The " + itemName + " cannot be used for now.");
+				System.out.println("The " + itemName + " cannot be used right now.");
 			}
 		}
 		else 

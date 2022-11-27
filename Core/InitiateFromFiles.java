@@ -452,7 +452,7 @@ public class InitiateFromFiles {
 	public static void initiateItems(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
 	{	
 		if (!(new File(PATH_TO_CORE + PATH_EXITS).exists())) // Used to manage the change of relative path when built
-			PATH_TO_CORE = "build/classes/Core";
+			PATH_TO_CORE = "Core/";
 		
 		initiateStatuettes(locations);
 		initiateEnigmaDevices(locations);

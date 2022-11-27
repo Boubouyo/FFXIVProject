@@ -90,7 +90,7 @@ public class EnigmaDevice extends Item {
 		}
 		else
 		{
-			System.out.println("But nothing happens.");
+			System.out.println("It seems like you've made an error... Try again.");
 			this.tryingSequenceIndex = 0;			
 		}
 	}
