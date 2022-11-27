@@ -21,6 +21,10 @@ public abstract class Pickable extends Item implements Take
 		this.pickable = true;
 	}
 	
+	public void lockPickable() {
+		this.pickable = false;
+	}
+	
 	
 	// --------------------------OVERRIDE------------------------------------//
 	@Override
