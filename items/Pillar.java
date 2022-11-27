@@ -23,6 +23,7 @@ public class Pillar extends Item implements UseOn {
 	
 	
 	// ---------------------------OPERATIONS-----------------------------------//
+	// checking if a statue that was added to a pillar is the right one
 	public boolean rightStatuetteonPillar(){
 		if(this.onPillar != null){
 			if(this.onPillar instanceof Statuette statuette){
@@ -40,27 +41,20 @@ public class Pillar extends Item implements UseOn {
 	}
 	
 	// Checking if the right Statue is on the right pillar and locking it in place if it's correct
-
 	public void putStatueOnPillar(Statuette statuette) {
+		this.onPillar = statuette;
+		
 		statuette.getHero().removeFromInventory(statuette);
-		statuette.setLocation(this.getLocation());
+		statuette.getHero().getCurrentLocation().addItem(statuette);
 		statuette.setHero(null);
 		
 		if (this.pillarID == statuette.getId()) {
-			this.onPillar = statuette;
 			statuette.lockPickable();
-
-			
-			System.out.println("You hear a sound as if something got locked and the pillar starts to shine.");
+			System.out.println("You hear a sound as if something got unlocked and the pillar starts to shine.");
 		}
 		else {
 			System.out.println("It seems like nothing is happening... maybe you should try again...");
 		}
-	}
-	
-	
-	public void removeStatuetteFromPillar(){
-		
 	}
 	
 	
