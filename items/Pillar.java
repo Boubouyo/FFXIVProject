@@ -45,7 +45,7 @@ public class Pillar extends Item implements UseOn {
 		
 		if (this.pillarID == statuette.getId()) {
 			statuette.lockPickable();
-			System.out.println("You hear a sound as if something got locked and the Statue start to shine.");
+			System.out.println("You hear a sound as if something got locked and the pillar starts to shine.");
 		}
 		else {
 			System.out.println("It seems like nothing is happening... maybe you should try again...");
