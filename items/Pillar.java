@@ -24,16 +24,16 @@ public class Pillar extends Item implements UseOn {
 	
 	// ---------------------------OPERATIONS-----------------------------------//
 	public boolean rightStatuetteonPillar(){
-            if(this.onPillar != null){
-                if(this.onPillar instanceof Statuette statuette){
-                    if(statuette.getId() == this.pillarID){ 
-                        return true;
-                    }
-                }
-            }
+		if(this.onPillar != null){
+			if(this.onPillar instanceof Statuette statuette){
+				if(statuette.getId() == this.pillarID){ 
+					return true;
+				}
+			}
+		}
             
-            return false;
-        }
+		return false;
+	}
 	
 	public boolean isStatuette(Item item) {
 		return (item instanceof Statuette);
