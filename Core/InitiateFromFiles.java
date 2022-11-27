@@ -450,7 +450,8 @@ public class InitiateFromFiles {
 	
 	// --------------------------- ITEMS ------------------------------
 	public static void initiateItems(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
-	{		
+	{	
+		System.out.println("si tu vois ça c'est okay");
 		if (!(new File(PATH_TO_CORE + PATH_EXITS).exists())) // Used to manage the change of relative path when built
 			PATH_TO_CORE = "build/classes/Core";
 		
