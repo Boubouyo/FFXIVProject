@@ -126,10 +126,5 @@ public class Game
 		
 		game.gameLoop();
 	}
-
-    public static void main(String[] args) throws Exception
-    {   	
-    	Game.gameStart();
-    }
     
 }
