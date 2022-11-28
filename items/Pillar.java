@@ -66,6 +66,7 @@ public class Pillar extends Item implements UseOn {
 	// ----------------------------OVERRIDE------------------------------------//
 	@Override
 	public boolean useOn(Item item){
+            if(item != null){
 		if (item.getHero() != null)
 		{
 			if(this.onPillar == null){
@@ -75,7 +76,8 @@ public class Pillar extends Item implements UseOn {
 				}
 			}
 		}
-		return false;
+            }
+            return false;
 		
 	}
 	
