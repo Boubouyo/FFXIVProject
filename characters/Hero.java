@@ -360,7 +360,7 @@ public class Hero extends Character
 	// ----- ATTACK -----
 	public void attackEnemy(String enemyName)
 	{
-		// SPECIAL EXCEPTION FOR SETA
+		// SPECIAL CASE FOR SETA
 		if (enemyName.equalsIgnoreCase("seta"))
 		{
 			System.out.println("You trully are a monster.");
