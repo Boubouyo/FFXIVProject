@@ -32,6 +32,13 @@ public class InitiateFromFiles {
 	private static final String PATH_WEAPONS = "Weapons/";
 	private static final String PATH_PILLARS = "Pillars/";
 
+	// To prevent problems if the relative path changes (when built)
+	public static void initiatePathFile() 
+	{
+		if (!(new File(PATH_TO_CORE + PATH_EXITS).exists())) 
+			PATH_TO_CORE = "Core/";
+	}
+	
 	// For below
 	private static Location stringToLocation(String locationString, List<Location> locations, Scanner scanner) throws InitiateFromFilesWrongException
 	{
@@ -450,10 +457,7 @@ public class InitiateFromFiles {
 	
 	// --------------------------- ITEMS ------------------------------
 	public static void initiateItems(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
-	{	
-		if (!(new File(PATH_TO_CORE + PATH_EXITS).exists())) // Used to manage the change of relative path when built
-			PATH_TO_CORE = "Core/";
-		
+	{			
 		initiateStatuettes(locations);
 		initiateEnigmaDevices(locations);
 		initiateHealingItems(locations);

@@ -28,6 +28,9 @@ public class Game
 	
 	private Game() throws FileNotFoundException, InitiateFromFilesWrongException 
 	{
+		// PATH TO FILES
+		InitiateFromFiles.initiatePathFile();
+		
 		//  LOCATIONS 
 		this.locations = InitiateFromFiles.initiateLocations();
 		
