@@ -359,7 +359,8 @@ public class Hero extends Character
 	
 	// ----- ATTACK -----
 	public void attackEnemy(String enemyName)
-	{
+	{   
+            if(enemyName != null){
 		// SPECIAL CASE FOR SETA
 		if (enemyName.equalsIgnoreCase("seta"))
 		{
@@ -381,6 +382,7 @@ public class Hero extends Character
 		}
 		else
 			System.out.println("This enemy doesn't exist.");
+            }
 	}
 
 }
