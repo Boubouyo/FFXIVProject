@@ -1,5 +1,7 @@
 exit;entrance;mainHall;true;true
 exitEnemy;mainHall;rockyRoom;true;false
 exitItem;mainHall;puzzlingRoom;true;false;owlStatuette
+exitItem;puzzlingRoom;eeryRoom;false;true;owlStatuette
+exit;mainHall;eeryRoom;false;true
 exitPillar;mainHall;scaryRoom;false;false
 exitEnemy;scaryRoom;luxuriousRoom;false;true
