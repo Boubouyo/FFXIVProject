@@ -28,8 +28,10 @@ public class Button extends Item implements Use {
 	public void resolved()
 	{
 		this.changeDescription();
+                this.isResolved = true;
 	}
 	
+        @Override
 	public boolean use()
 	{
 		if (!isResolved)

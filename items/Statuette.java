@@ -1,31 +1,23 @@
 package items;
 
-import commands.UseOn;
 import locations.Location;
 
-public class Statuette extends Pickable implements UseOn{
+public class Statuette extends Pickable{
 	// ---------------------------ATTRIBUTS------------------------------------//
-	private int statuetteID;
+	private final int statuetteId;
 	
 	
     // --------------------------CONSTRUCTEUR----------------------------------//
-	public Statuette(String name, int ID, String description, Location location, boolean isPickable) {
+	public Statuette(String name, int Id, String description, Location location, boolean isPickable) {
 		super(name, description, location, isPickable);
 
-		this.statuetteID = ID;
+		this.statuetteId = Id;
 	}
 
 	
     // ----------------------------GET & SET-------------------------------------//
 	public int getId() {
-		return statuetteID;
-	}
-
-	
-	// --------------------------OVERRIDE------------------------------------//
-	@Override
-	public boolean useOn(Item item) {
-		return false;
-	}
+		return statuetteId;
+        }
 	
 }

@@ -39,8 +39,6 @@ public class Weapon extends Pickable implements Use{
 	public void destroyWeapon() {
 		System.out.println("Oh no ! Your " + getName() + " broke !");
 		super.getHero().setWeapon(null);
-		this.setLocation(null);
-		this.setHero(null);
 	}
 	
 	public void equip() {

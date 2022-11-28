@@ -191,12 +191,11 @@ public class Hero extends Character
 		}
 		else if (command.equalsIgnoreCase(commands[4])) // USE
 		{
-                    if (len == 1)
-                    	System.out.println("USE what ?");
-                    else if (len == 2)
-                    	useItem(commandAndArgs.get(1));
-                    else 
-                    	useItemOnItem(commandAndArgs.get(1), commandAndArgs.get(2));
+                    switch (len) {
+                        case 1 -> System.out.println("USE what ?");
+                        case 2 -> useItem(commandAndArgs.get(1));
+                        default -> useItemOnItem(commandAndArgs.get(1), commandAndArgs.get(2));
+                    }
 		}
 		else if (command.equalsIgnoreCase(commands[5])) // ATTACK
 		{
@@ -254,22 +253,22 @@ public class Hero extends Character
 	// ----- LOOK -----
 	public void lookSomething(String somethingName)
 	{
-		// SPECIAL EXCEPTION FOR STATS
+		// SPECIAL CASE FOR STATS
 		if (somethingName.equalsIgnoreCase("STATS") || somethingName.equalsIgnoreCase("HP"))
 		{
 			printHP();
 		}
-		// SPECIAL EXCEPTION FOR WEAPON
+		// SPECIAL CASE FOR WEAPON
 		else if (somethingName.equalsIgnoreCase("WEAPON"))
 		{
 			printWeapon();
 		}
-		// SPECIAL EXCEPTION FOR INVENTORY
+		// SPECIAL CASE FOR INVENTORY
 		else if (somethingName.equalsIgnoreCase("INVENTORY"))
 		{
 			printInventory();
 		}
-		// SPECIAL EXCEPTION FOR HERO
+		// SPECIAL CASE FOR HERO
 		else if (somethingName.equalsIgnoreCase("HERO") || somethingName.equalsIgnoreCase("ME")|| somethingName.equalsIgnoreCase("SELF"))
 		{
 			printHero();
@@ -299,7 +298,7 @@ public class Hero extends Character
 	// ----- TAKE -----
 	public void takeItem(String itemName)
 	{
-		Item itemToTake = this.getCurrentLocation().getItemFromString(itemName);;
+		Item itemToTake = this.getCurrentLocation().getItemFromString(itemName);
 		if (itemToTake instanceof Take take)
 		{
 			if (take.take())

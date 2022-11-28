@@ -24,7 +24,7 @@ public class Game
 	private static final String END_OF_THE_LINE_CHAR = ";";
 	
 	private final List<Location> locations;
-	private Hero hero;
+	private final Hero hero;
 	
 	private Game() throws FileNotFoundException, InitiateFromFilesWrongException 
 	{

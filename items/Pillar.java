@@ -5,7 +5,7 @@ import commands.UseOn;
 
 public class Pillar extends Item implements UseOn {
 	// ---------------------------ATTRIBUTS------------------------------------//
-	private int pillarID; 
+	private final int pillarID; 
 	private Item onPillar = null;
 	
 	
@@ -17,9 +17,13 @@ public class Pillar extends Item implements UseOn {
 	
 	
     // ----------------------------GET & SET-----------------------------------//
-	public int getSkill() {
+	public int getPillarId() {
 		return pillarID; 
 	}
+        
+        public Item getOnPillar(){
+            return this.onPillar;
+        }
 	
 	
 	// ---------------------------OPERATIONS-----------------------------------//
@@ -35,13 +39,14 @@ public class Pillar extends Item implements UseOn {
             
 		return false;
 	}
-	
-	public boolean isStatuette(Item item) {
+        
+        public static boolean isStatuette(Item item) {
 		return (item instanceof Statuette);
 	}
 	
 	// Checking if the right Statue is on the right pillar and locking it in place if it's correct
-	public void putStatueOnPillar(Statuette statuette) {
+	private void putStatueOnPillar(Statuette statuette) {
+            if(statuette != null){
 		this.onPillar = statuette;
 		statuette.getHero().removeFromInventory(statuette);
 		statuette.getHero().getCurrentLocation().addItem(statuette);
@@ -54,6 +59,7 @@ public class Pillar extends Item implements UseOn {
 		else {
 			System.out.println("It seems like nothing is happening... maybe you should try again...");
 		}
+            }
 	}
 	
 	

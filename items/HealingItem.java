@@ -5,11 +5,11 @@ import locations.Location;
 
 public class HealingItem extends Pickable implements Use{
 	// ---------------------------ATTRIBUTS------------------------------------//
-	private int heal;
+	private final int heal;
 	
 	
 	// --------------------------CONSTRUCTEUR----------------------------------//
-	public HealingItem(String name, String description, Location location, Boolean isPickable, int healPt) {
+	public HealingItem(String name, String description, Location location, boolean isPickable, int healPt) {
 		super(name, description, location, isPickable);
 		this.heal = healPt;
 	}
@@ -19,11 +19,13 @@ public class HealingItem extends Pickable implements Use{
 	@Override 
 	public boolean use() {
 		if (this.getHero()!=null) {
-			super.getHero().healCharacter(this.heal);
-			super.getLocation().allEnemiesAttack();
-				
-			super.getHero().removeFromInventory(this);
-			return true;
+                    if (this.getHero().getHealthPoints() > 0) {
+                        super.getHero().healCharacter(this.heal);
+                        super.getHero().getCurrentLocation().allEnemiesAttack();
+
+                        super.getHero().removeFromInventory(this);
+                        return true;
+                    }
 		}
 		return false;
 	}

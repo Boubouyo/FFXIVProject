@@ -1,6 +1,7 @@
 package items;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import locations.Location;
@@ -15,28 +16,32 @@ public class EnigmaDevice extends Item {
 	private final int[] correctSequence;
 	
 	private int tryingSequenceIndex;
-	private int[] tryingSequence;
+	private final int[] tryingSequence;
 	
 	public EnigmaDevice(String name, String description, Location location, String descriptionResolved, String descriptionAfterResolved, String[] buttonsName, String[] buttonsDescription, String[] buttonsDescriptionResolved, String itemToGive, int[] correctSequence) 
 	{
 		super(name, description, location);
 		this.descriptionResolved = descriptionResolved;
 		this.descriptionAfterResolved = descriptionAfterResolved;
-		this.buttons = makeButtons(location, buttonsName, buttonsDescription, buttonsDescriptionResolved);
+		this.buttons = makeButtons(buttonsName, buttonsDescription, buttonsDescriptionResolved);
 		this.itemToGive = itemToGive;
 		this.correctSequence = correctSequence;
 		this.tryingSequenceIndex = 0;
 		this.tryingSequence = new int[correctSequence.length];
 	}
+        
+        public int[] getTryingSequence(){
+            return this.tryingSequence;
+        }
 	
 	// Creates all the buttons
-	private List<Button> makeButtons(Location location, String[] buttonsName, String[] buttonsDescription, String[] buttonsDescriptionResolved)
+	private List<Button> makeButtons(String[] buttonsName, String[] buttonsDescription, String[] buttonsDescriptionResolved)
 	{
 		List<Button> newButtons = new ArrayList<>();
 			
 		for (int i = 0; i < buttonsName.length; i++) 
 		{
-			Button newB = getLocation().addButton(buttonsName[i], buttonsDescription[i], buttonsDescriptionResolved[i], this, i);
+			Button newB = this.getLocation().addButton(buttonsName[i], buttonsDescription[i], buttonsDescriptionResolved[i], this, i);
 			newButtons.add(newB);
 		}
 		
@@ -45,7 +50,7 @@ public class EnigmaDevice extends Item {
 
 	private void changeDescription()
 	{
-		setDescription(descriptionAfterResolved);
+		super.setDescription(descriptionAfterResolved);
 	}
 	
 	// Reaction to a button being pushed
@@ -55,26 +60,15 @@ public class EnigmaDevice extends Item {
 		this.tryingSequenceIndex++;
 		
 		if (this.tryingSequenceIndex >= this.correctSequence.length)
-			verifyResolved();
-	}
-	
-	//  To check if 2 arrays are equals
-	private boolean areEqualsIntArray(int[] array1, int[] array2)
-	{
-		for (int i = 0; i < array1.length; i++) 
-		{
-			if (array1[i] != array2[i])
-				return false;
-		}
-		return true;
+			this.verifyResolved();
 	}
 	
 	// To see if the enigma is solved and act accordingly
 	public void verifyResolved()
 	{
-		if (areEqualsIntArray(this.correctSequence, this.tryingSequence))
+		if (Arrays.equals(this.correctSequence, this.tryingSequence))
 		{
-			changeDescription();
+			this.changeDescription();
 			for (Button button : this.buttons) {
 				button.resolved();
 			}
