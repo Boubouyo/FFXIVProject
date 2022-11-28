@@ -65,11 +65,14 @@ public class Pillar extends Item implements UseOn {
 	
 	// ----------------------------OVERRIDE------------------------------------//
 	@Override
-	public boolean useOn(Item item){	
-		if(this.onPillar == null){
-			if (isStatuette(item)) {
-				this.putStatueOnPillar((Statuette)item);
-				return true;
+	public boolean useOn(Item item){
+		if (item.getHero() != null)
+		{
+			if(this.onPillar == null){
+				if (isStatuette(item)) {
+					this.putStatueOnPillar((Statuette)item);
+					return true;
+				}
 			}
 		}
 		return false;
