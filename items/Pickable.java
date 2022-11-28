@@ -6,7 +6,7 @@ import locations.Location;
 public abstract class Pickable extends Item implements Take
 {
 	// ---------------------------ATTRIBUTS------------------------------------//
-	private Boolean pickable;
+	private boolean pickable;
 
 	
 	// --------------------------CONSTRUCTEUR----------------------------------//
@@ -14,8 +14,7 @@ public abstract class Pickable extends Item implements Take
 		super(name, description, location);
 		this.pickable = isPickable;
 	}
-	
-	
+        
 	// ---------------------------OPERATIONS-----------------------------------//
 	public void becomePickable() {
 		this.pickable = true;
