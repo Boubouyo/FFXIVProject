@@ -2,7 +2,7 @@ package Core;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.net.URL;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -56,10 +56,10 @@ public class InitiateFromFiles {
 		List<Location> locations = new ArrayList<>();
 		
 		// Get the list of all the locations' name	
-		String filePath = InitiateFromFiles.class.getResource(PATH_LOCATIONS_FOLDER + PATH_LOCATIONS).getPath();
+		InputStream filePath = InitiateFromFiles.class.getResourceAsStream(PATH_LOCATIONS_FOLDER + PATH_LOCATIONS);
 		System.out.println(filePath);
-		File fileLocations = new File(filePath);
-		Scanner scannerNames = new Scanner(fileLocations);
+		//File fileLocations = new File(filePath);
+		Scanner scannerNames = new Scanner(filePath);
 		List<String> locationNames = new ArrayList<>();
 		
 		while (scannerNames.hasNext())
