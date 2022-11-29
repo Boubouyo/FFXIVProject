@@ -17,8 +17,6 @@ public class InitiateFromFiles {
 	
 	private static final String CHAR_DELIMITER = ";";
 	
-	private static String PATH_TO_CORE = "src/Core/";
-	
 	private static final String PATH_LOCATIONS_FOLDER = "Locations/";
 	private static final String PATH_LOCATIONS = "LOCATIONS";
 
