@@ -123,7 +123,9 @@ public class Location implements Look {
     {
     	System.out.print("You can go to :");
         for(String s: exits.keySet()){
-            System.out.print(" " + s);
+            if(exits.get(s).ableToMoveThrough(this)){
+                System.out.print(" " + s);
+            }
         }
         System.out.println(".");
     }
