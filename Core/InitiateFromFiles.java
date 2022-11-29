@@ -69,8 +69,8 @@ public class InitiateFromFiles {
 		
 		// Create each locations
 		for (String loc : locationNames) {
-			String locPath = InitiateFromFiles.class.getResource(PATH_LOCATIONS_FOLDER + loc).getPath();
-			Scanner scanner = new Scanner(new File(locPath));
+			InputStream locPath = InitiateFromFiles.class.getResourceAsStream(PATH_LOCATIONS_FOLDER + loc);
+			Scanner scanner = new Scanner(locPath);
 			
 			String locationName = scanner.nextLine();
 			String locationDescription = scanner.nextLine();
@@ -87,9 +87,9 @@ public class InitiateFromFiles {
 	// --------------------------- EXITS ------------------------------
 	public static void initiateExits(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
 	{
-		String filePath = InitiateFromFiles.class.getResource(PATH_EXITS).getPath();
-		File fileExits = new File(filePath);
-		Scanner scanner = new Scanner(fileExits);
+		InputStream filePath = InitiateFromFiles.class.getResourceAsStream(PATH_EXITS);
+		//File fileExits = new File(filePath);
+		Scanner scanner = new Scanner(filePath);
 		
 		while (scanner.hasNext())
 		{
@@ -146,9 +146,9 @@ public class InitiateFromFiles {
 	// --------------------------- ENEMIES ------------------------------
 	public static void initiateEnemies(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
 	{
-		String filePath = InitiateFromFiles.class.getResource(PATH_ENEMIES + "ENEMIES").getPath();
-		File fileEnemies = new File(filePath);
-		Scanner scanner = new Scanner(fileEnemies);
+		InputStream filePath = InitiateFromFiles.class.getResourceAsStream(PATH_ENEMIES + "ENEMIES");
+		//File fileEnemies = new File(filePath);
+		Scanner scanner = new Scanner(filePath);
 		
 		while (scanner.hasNext())
 		{
@@ -164,13 +164,13 @@ public class InitiateFromFiles {
 			else
 			{
 				String enemyName = parsedEnemy[0];
-				String enemyPath = InitiateFromFiles.class.getResource(PATH_ENEMIES + parsedEnemy[1]).getPath();
-				File enemyFile = new File(enemyPath);
+				InputStream enemyPath = InitiateFromFiles.class.getResourceAsStream(PATH_ENEMIES + parsedEnemy[1]);
+				//File enemyFile = new File(enemyPath);
 				String locationString = parsedEnemy[2];
 				
 				
 				// We get the data from the enemy base file
-				Scanner scannerBase = new Scanner(enemyFile);
+				Scanner scannerBase = new Scanner(enemyPath);
 
 				int enemyHealthPoints = Integer.parseInt(scannerBase.nextLine());
 				int enemyAttack = Integer.parseInt(scannerBase.nextLine());
@@ -196,9 +196,9 @@ public class InitiateFromFiles {
 	// --------------------------- STATUETTES ------------------------------
 	public static void initiateStatuettes(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
 	{
-		String filePath = InitiateFromFiles.class.getResource(PATH_ITEMS + PATH_STATUETTE + "STATUETTES").getPath();
-		File fileStatuettes = new File (filePath);
-		Scanner scanner = new Scanner(fileStatuettes);
+		InputStream filePath = InitiateFromFiles.class.getResourceAsStream(PATH_ITEMS + PATH_STATUETTE + "STATUETTES");
+		//File fileStatuettes = new File (filePath);
+		Scanner scanner = new Scanner(filePath);
 		
 		while (scanner.hasNext())
 		{
@@ -213,11 +213,11 @@ public class InitiateFromFiles {
 			}
 			else
 			{
-				String statuettePath = InitiateFromFiles.class.getResource(PATH_ITEMS + PATH_STATUETTE + parsedStatuette[0]).getPath();
-				File statuetteFile = new File(statuettePath);
+				InputStream statuettePath = InitiateFromFiles.class.getResourceAsStream(PATH_ITEMS + PATH_STATUETTE + parsedStatuette[0]);
+				//File statuetteFile = new File(statuettePath);
 				
 				// We get the data from the statuette base file
-				Scanner scannerBase = new Scanner(statuetteFile);
+				Scanner scannerBase = new Scanner(statuettePath);
 				
 				String statuetteName = scannerBase.nextLine();
 				int statuetteId = Integer.parseInt(scannerBase.nextLine());
@@ -245,9 +245,9 @@ public class InitiateFromFiles {
 	// --------------------------- ENIGMADEVICES ------------------------------
 	public static void initiateEnigmaDevices(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
 	{
-		String filePath = InitiateFromFiles.class.getResource(PATH_ITEMS + PATH_ENIGMADEVICES + "ENIGMADEVICES").getPath();
-		File fileEnigmaDevices = new File (filePath);
-		Scanner scanner = new Scanner(fileEnigmaDevices);
+		InputStream filePath = InitiateFromFiles.class.getResourceAsStream(PATH_ITEMS + PATH_ENIGMADEVICES + "ENIGMADEVICES");
+		//File fileEnigmaDevices = new File (filePath);
+		Scanner scanner = new Scanner(filePath);
 		
 		while (scanner.hasNext())
 		{
@@ -262,12 +262,12 @@ public class InitiateFromFiles {
 			}
 			else
 			{
-				String enigmaDevicePath = InitiateFromFiles.class.getResource(PATH_ITEMS + PATH_ENIGMADEVICES + parsedEnigmaDevices[0]).getPath();
-				File enigmaDeviceFile = new File(enigmaDevicePath);
+				InputStream enigmaDevicePath = InitiateFromFiles.class.getResourceAsStream(PATH_ITEMS + PATH_ENIGMADEVICES + parsedEnigmaDevices[0]);
+				//File enigmaDeviceFile = new File(enigmaDevicePath);
 				String locationString = parsedEnigmaDevices[1];
 				
 				// We get the data from the enigmaDevice base file
-				Scanner scannerBase = new Scanner(enigmaDeviceFile);
+				Scanner scannerBase = new Scanner(enigmaDevicePath);
 				
 				String name = scannerBase.nextLine();
 				String description = scannerBase.nextLine();
@@ -313,9 +313,9 @@ public class InitiateFromFiles {
 	// --------------------------- HEALINGITEMS ------------------------------
 	public static void initiateHealingItems(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
 	{
-		String filePath = InitiateFromFiles.class.getResource(PATH_ITEMS + PATH_HEALINGITEMS + "HEALINGITEMS").getPath();
-		File fileHealingItems = new File (filePath);
-		Scanner scanner = new Scanner(fileHealingItems);
+		InputStream filePath = InitiateFromFiles.class.getResourceAsStream(PATH_ITEMS + PATH_HEALINGITEMS + "HEALINGITEMS");
+		//File fileHealingItems = new File (filePath);
+		Scanner scanner = new Scanner(filePath);
 		
 		while (scanner.hasNext())
 		{
@@ -330,13 +330,13 @@ public class InitiateFromFiles {
 			}
 			else
 			{
-				String healingItemPath = InitiateFromFiles.class.getResource(PATH_ITEMS + PATH_HEALINGITEMS + parsedHealingItem[0]).getPath();
-				File healingItemFile = new File(healingItemPath);
+				InputStream healingItemPath = InitiateFromFiles.class.getResourceAsStream(PATH_ITEMS + PATH_HEALINGITEMS + parsedHealingItem[0]);
+				//File healingItemFile = new File(healingItemPath);
 				String locationString = parsedHealingItem[1];
 				boolean isPickable = parsedHealingItem[2].equalsIgnoreCase("true");
 				
 				// We get the data from the healingItems base file
-				Scanner scannerBase = new Scanner(healingItemFile);
+				Scanner scannerBase = new Scanner(healingItemPath);
 				
 				String name = scannerBase.nextLine();
 				String description = scannerBase.nextLine();
@@ -363,9 +363,9 @@ public class InitiateFromFiles {
 	// --------------------------- WEAPONS ------------------------------
 	public static void initiateWeapons(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
 	{
-		String filePath = InitiateFromFiles.class.getResource(PATH_ITEMS + PATH_WEAPONS + "WEAPONS").getPath();
-		File fileWeapons = new File (filePath);
-		Scanner scanner = new Scanner(fileWeapons);
+		InputStream filePath = InitiateFromFiles.class.getResourceAsStream(PATH_ITEMS + PATH_WEAPONS + "WEAPONS");
+		//File fileWeapons = new File (filePath);
+		Scanner scanner = new Scanner(filePath);
 		
 		while (scanner.hasNext())
 		{
@@ -380,13 +380,13 @@ public class InitiateFromFiles {
 			}
 			else
 			{
-				String weaponPath = InitiateFromFiles.class.getResource(PATH_ITEMS + PATH_WEAPONS + parsedWeapon[0]).getPath();
-				File weaponFile = new File(weaponPath);
+				InputStream weaponPath = InitiateFromFiles.class.getResourceAsStream(PATH_ITEMS + PATH_WEAPONS + parsedWeapon[0]);
+				//File weaponFile = new File(weaponPath);
 				String locationString = parsedWeapon[1];
 				boolean isPickable = parsedWeapon[2].equalsIgnoreCase("true");
 				
 				// We get the data from the weapons base file
-				Scanner scannerBase = new Scanner(weaponFile);
+				Scanner scannerBase = new Scanner(weaponPath);
 				
 				String name = scannerBase.nextLine();
 				String description = scannerBase.nextLine();
@@ -417,9 +417,9 @@ public class InitiateFromFiles {
 	// --------------------------- PILLARS ------------------------------
 		public static void initiatePillars(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
 		{
-			String filePath = InitiateFromFiles.class.getResource(PATH_ITEMS + PATH_PILLARS + "PILLARS").getPath();
-			File filePillars = new File (filePath);
-			Scanner scanner = new Scanner(filePillars);
+			InputStream filePath = InitiateFromFiles.class.getResourceAsStream(PATH_ITEMS + PATH_PILLARS + "PILLARS");
+			//File filePillars = new File (filePath);
+			Scanner scanner = new Scanner(filePath);
 			
 			while (scanner.hasNext())
 			{
@@ -434,11 +434,11 @@ public class InitiateFromFiles {
 				}
 				else
 				{
-					String pillarPath = InitiateFromFiles.class.getResource(PATH_ITEMS + PATH_PILLARS + parsedPillar[0]).getPath();
-					File pillarFile = new File(pillarPath);
+					InputStream pillarPath = InitiateFromFiles.class.getResourceAsStream(PATH_ITEMS + PATH_PILLARS + parsedPillar[0]);
+					//File pillarFile = new File(pillarPath);
 					
 					// We get the data from the pillar base file
-					Scanner scannerBase = new Scanner(pillarFile);
+					Scanner scannerBase = new Scanner(pillarPath);
 					
 					String name = scannerBase.nextLine();
 					int id = Integer.parseInt(scannerBase.nextLine());
