@@ -17,6 +17,13 @@ public class Exit {
     
     
     // --------------------------CONSTRUCTEUR----------------------------------//
+    /**
+     * 
+     * @param a > Location A
+     * @param b > Location B
+     * @param isOpenAtoB > False if the exit is closed by default between Location A to Location B else true.
+     * @param isOpenBtoA > False if the exit is closed by default between Location B to Location A else true.
+     */
     public Exit(Location a, Location b, boolean isOpenAtoB, boolean isOpenBtoA){
         this.isOpenAtoB = isOpenAtoB;
         this.isOpenBtoA= isOpenBtoA;
@@ -26,13 +33,24 @@ public class Exit {
         this.locationA.addExits(this);
         this.locationB.addExits(this);
     }
+    /**
+     * 
+     * @param a > Location A
+     * @param b > Location B
+     * 
+     * @see The Exit is open by default in the two ways.
+     */
     public Exit(Location a, Location b){
         this(a,b,true,true);
     }
     
     
     // ---------------------------OPERATIONS-------------------------------------//
-    //Tells if the exit is blocked or not
+    /**
+     * 
+     * @param locationFrom > The location from where you want to cross the exit.
+     * @return a boolean which is true if isOpen LocationFrom -> LocationTo is true, else false.
+     */
     public boolean ableToMoveThrough(Location locationFrom){
         if(locationFrom != null){
             if(locationFrom.equals(this.locationA)){
@@ -47,15 +65,25 @@ public class Exit {
     
     
     // ----------------------------GET & SET-------------------------------------//
+    /**
+     * 
+     * @return Location A
+     */
     public Location getLocationA(){
         return this.locationA;
     }
-    
+    /**
+     * 
+     * @return Location B 
+     */
     public Location getLocationB(){
         return this.locationB;
     }
     
-    //Close the door in the direction from locationFrom to the other location
+    /**
+     * 
+     * @param locationFrom > the IsOpen LocationFrom -> OtherLocation will be set to false.
+     */
     public void close(Location locationFrom){
         if(this.getLocationA().equals(locationFrom)){
             this.isOpenAtoB = false;
@@ -64,8 +92,10 @@ public class Exit {
             this.isOpenBtoA = false;
         }
     }
-    
-    //Open the door in the direction from locationFrom to the other location
+    /**
+     * 
+     * @param locationFrom > the IsOpen LocationFrom -> OtherLocation will be set to true.
+     */
     public void open(Location locationFrom){
         if(this.getLocationA().equals(locationFrom)){
             this.isOpenAtoB = true;
@@ -74,8 +104,11 @@ public class Exit {
             this.isOpenBtoA = true;
         }
     }
-    
-    //Getting the room with the name of that room
+    /**
+     * 
+     * @param wantedLocation > The name of the location you want to get
+     * @return the Location that has the name of wantedLocation if it's link to that Exit
+     */
     public Location getLocation(String wantedLocation){
         if(wantedLocation != null){
             if(wantedLocation.equalsIgnoreCase(this.getLocationA().getName())){
@@ -88,7 +121,11 @@ public class Exit {
         return null;
     }
     
-    //Getting the other location 
+    /**
+     * 
+     * @param location > The name of a Location
+     * @return If location is the name of one of the two Locations (A or B) that the Exit contains, it will return the other locations, else it will return null.
+     */
     public Location getOtherLocation(String location){
         if(location != null){
             if(location.equalsIgnoreCase(this.getLocationA().getName())){
