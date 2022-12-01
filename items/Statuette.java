@@ -3,7 +3,7 @@ package items;
 import locations.Location;
 
 /**
- * Class Statuette : a subclass of the class Pickable.
+ * Class for Statuette : a subclass of the class Pickable.
  * 
  * @author Anais
  */

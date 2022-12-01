@@ -320,7 +320,7 @@ public class Location implements Look {
      * @param enigmaDevice  the EnigmaDevice that his link to that Button
      * @param id  the id of that button
      * @return The Button with the parameters setted.
-     * @see EnigmaDevice makesButtons
+     * @see items.EnigmaDevice#makeButtons(java.lang.String[], java.lang.String[], java.lang.String[]) 
      */
     public Button addButton(String name, String description, String descriptionResolved, EnigmaDevice enigmaDevice, int id)
     {
@@ -369,6 +369,7 @@ public class Location implements Look {
 	// --------------------------OVERRIDE------------------------------------//
     /**
      * Implementation of the look interface
+     * @see commands.Look
      */
     @Override
     public void look(){
