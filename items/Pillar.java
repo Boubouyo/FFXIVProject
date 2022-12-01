@@ -5,7 +5,7 @@ import commands.UseOn;
 
 
 /**
- * Class Pillar : a subclass of the class Item.
+ * Class for Pillar : a subclass of the class Item.
  * It has new interaction compared to Item such as the possbility to use UseOn with the command use;
  * 
  * @author Anais
