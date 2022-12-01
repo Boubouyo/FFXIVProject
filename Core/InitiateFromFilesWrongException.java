@@ -1,12 +1,16 @@
 package Core;
 
+/**
+ * @author Victor
+ */
+
 public class InitiateFromFilesWrongException extends Exception 
 {
-	// ---------------------------ATTRIBUTS------------------------------------//
 	private static final long serialVersionUID = 1L;
 
-	
-	// --------------------------CONSTRUCTEUR----------------------------------//
+	/**
+     * Method to print an error message for the exception
+     */
 	public InitiateFromFilesWrongException(String msg) 
 	{
 		super(msg);

@@ -6,6 +6,10 @@ import java.util.List;
 
 import locations.Location;
 
+/**
+ * @author Victor
+ */
+
 public class EnigmaDevice extends Item {
 	// ---------------------------ATTRIBUTS------------------------------------//
 	private final String descriptionResolved;
@@ -19,7 +23,21 @@ public class EnigmaDevice extends Item {
 	private final int[] tryingSequence;
 	
     // --------------------------CONSTRUCTEUR----------------------------------//
-	public EnigmaDevice(String name, String description, Location location, String descriptionResolved, String descriptionAfterResolved, String[] buttonsName, String[] buttonsDescription, String[] buttonsDescriptionResolved, String itemToGive, int[] correctSequence) 
+	/**
+     * Constructor method for the class Button.
+     * @param name (String) : the name of the item (each item as a different one)
+	 * @param description (String) : the description of the item (what we notice by using the command look)
+	 * @param location (Location) : where the item is located
+	 * @param descriptionResolved (String) : the description of the item to print the moment it is resolved
+	 * @param descriptionAfterResolved (String) : the description of the item to print after it is resolved
+	 * @param buttonsName (String[]) : the array of all the buttons' name
+	 * @param buttonsDescription (String[]) : the array of all the buttons' description
+	 * @param buttonsDescriptionResolved (String[]) : the array of all the buttons' description after it is resolved
+	 * @param itemToGive (String) : the name of the item you get for resolving the enigma
+	 * @param correctSequence (int[]) : the array with the id of the correct sequence of button to use to resolve the enigma
+     */
+	public EnigmaDevice(String name, String description, Location location, String descriptionResolved, String descriptionAfterResolved, 
+			String[] buttonsName, String[] buttonsDescription, String[] buttonsDescriptionResolved, String itemToGive, int[] correctSequence) 
 	{
 		super(name, description, location);
 		this.descriptionResolved = descriptionResolved;
@@ -33,11 +51,22 @@ public class EnigmaDevice extends Item {
 	
 	
 	// ---------------------------OPERATIONS-----------------------------------//
+	/**
+     * Getter for the attribute tryingSequence
+     * 
+     * @return int[] : the value of the tryingSequence attribute
+     */
 	public int[] getTryingSequence(){
 		return this.tryingSequence;
 	}
-	
-	// Creates all the buttons
+
+	/**
+     * Creates all the buttons with the correct values
+     * @param buttonsName (String[]) : the array of all the buttons' name
+	 * @param buttonsDescription (String[]) : the array of all the buttons' description
+	 * @param buttonsDescriptionResolved (String[]) : the array of all the buttons' description after it is resolved 
+     * @return List<Button> : the list of buttons created
+     */
 	private List<Button> makeButtons(String[] buttonsName, String[] buttonsDescription, String[] buttonsDescriptionResolved)
 	{
 		List<Button> newButtons = new ArrayList<>();
@@ -51,12 +80,18 @@ public class EnigmaDevice extends Item {
 		return newButtons;
 	}
 
+	/**
+     * Change the description of the enigma device to descriptionAfterResolved
+     */
 	private void changeDescription()
 	{
 		super.setDescription(descriptionAfterResolved);
 	}
 	
-	// Reaction to a button being pushed
+	/**
+     * Reaction to a button being pushed : storing the button id to monitor the sequence of buttons pressed and test if the sequence is correct 
+     * @param buttonId (int) : the id of the button being pushed
+     */
 	public void pushButton(int buttonId)
 	{
 		this.tryingSequence[this.tryingSequenceIndex] = buttonId;
@@ -66,7 +101,9 @@ public class EnigmaDevice extends Item {
 			this.verifyResolved();
 	}
 	
-	// To see if the enigma is solved and act accordingly
+	/**
+     * Check if the enigma is solved and act accordingly
+     */
 	public void verifyResolved()
 	{
 		if (Arrays.equals(this.correctSequence, this.tryingSequence))

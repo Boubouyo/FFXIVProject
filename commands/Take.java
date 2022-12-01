@@ -1,7 +1,15 @@
 package commands;
 
+/**
+ * @author Victor
+ */
+
 public interface Take {
 
-	public abstract boolean take(); // return true if it can be taken
+	/**
+     * Abstract method to take something
+     * @return boolean : returns true if the item can be taken (and is taken)
+     */
+	public abstract boolean take();
 	
 }

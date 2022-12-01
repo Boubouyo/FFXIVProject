@@ -1,5 +1,9 @@
 package Core;
 
+/**
+ * @author Victor
+ */
+
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -31,6 +35,13 @@ public class InitiateFromFiles {
 	private static final String PATH_PILLARS = "Pillars/";
 	
 	// For below
+	/**
+     * Method to convert the name of a location to a Location (an exception is thrown if the Location can't be found)
+     * @param locationString (String) : the name of the location
+     * @param locations (List<Location> : the list of all the locations that exist
+     * @param scanner (Scanner) : the scanner that was reading the files, to close it if the program must be stopped by an exception
+     * @return Location : return the Location found
+     */
 	private static Location stringToLocation(String locationString, List<Location> locations, Scanner scanner) throws InitiateFromFilesWrongException
 	{
 		Location location = null;
@@ -51,7 +62,13 @@ public class InitiateFromFiles {
 	}	
 	
 	// --------------------------- LOCATIONS  ------------------------------
-	public static List<Location> initiateLocations() throws FileNotFoundException {
+	/**
+     * Method to get the locations from the files and initiate them
+     * @return List<Location> : the list of locations created
+     * @throws FileNotFoundException exception for the case where the file is not found
+     */
+	public static List<Location> initiateLocations() throws FileNotFoundException 
+	{
 		List<Location> locations = new ArrayList<>();
 		
 		// Get the list of all the locations' name	
@@ -83,6 +100,12 @@ public class InitiateFromFiles {
 	}
 	
 	// --------------------------- EXITS ------------------------------
+	/**
+     * Method to get the exits from the files and initiate them
+     * @param List<Location> : the list of locations of the game
+     * @throws FileNotFoundException exception for the case where the file is not found
+     * @throws InitiateFromFilesWrongException exception for the case where datas from the files are incorrect
+     */
 	public static void initiateExits(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
 	{
 		InputStream filePath = InitiateFromFiles.class.getResourceAsStream(PATH_EXITS);
@@ -142,6 +165,12 @@ public class InitiateFromFiles {
 	}
 	
 	// --------------------------- ENEMIES ------------------------------
+	/**
+     * Method to get the enemies from the files and initiate them
+     * @param List<Location> : the list of locations of the game
+     * @throws FileNotFoundException exception for the case where the file is not found
+     * @throws InitiateFromFilesWrongException exception for the case where datas from the files are incorrect
+     */
 	public static void initiateEnemies(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
 	{
 		InputStream filePath = InitiateFromFiles.class.getResourceAsStream(PATH_ENEMIES + "ENEMIES");
@@ -192,6 +221,12 @@ public class InitiateFromFiles {
 	}
 
 	// --------------------------- STATUETTES ------------------------------
+	/**
+     * Method to get the statuettes from the files and initiate them
+     * @param List<Location> : the list of locations of the game
+     * @throws FileNotFoundException exception for the case where the file is not found
+     * @throws InitiateFromFilesWrongException exception for the case where datas from the files are incorrect
+     */
 	public static void initiateStatuettes(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
 	{
 		InputStream filePath = InitiateFromFiles.class.getResourceAsStream(PATH_ITEMS + PATH_STATUETTE + "STATUETTES");
@@ -241,6 +276,12 @@ public class InitiateFromFiles {
 	}	
 	
 	// --------------------------- ENIGMADEVICES ------------------------------
+	/**
+     * Method to get the enigma devices from the files and initiate them
+     * @param List<Location> : the list of locations of the game
+     * @throws FileNotFoundException exception for the case where the file is not found
+     * @throws InitiateFromFilesWrongException exception for the case where datas from the files are incorrect
+     */
 	public static void initiateEnigmaDevices(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
 	{
 		InputStream filePath = InitiateFromFiles.class.getResourceAsStream(PATH_ITEMS + PATH_ENIGMADEVICES + "ENIGMADEVICES");
@@ -309,6 +350,12 @@ public class InitiateFromFiles {
 	}
 	
 	// --------------------------- HEALINGITEMS ------------------------------
+	/**
+     * Method to get the healing items from the files and initiate them
+     * @param List<Location> : the list of locations of the game
+     * @throws FileNotFoundException exception for the case where the file is not found
+     * @throws InitiateFromFilesWrongException exception for the case where datas from the files are incorrect
+     */
 	public static void initiateHealingItems(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
 	{
 		InputStream filePath = InitiateFromFiles.class.getResourceAsStream(PATH_ITEMS + PATH_HEALINGITEMS + "HEALINGITEMS");
@@ -359,6 +406,12 @@ public class InitiateFromFiles {
 	}
 	
 	// --------------------------- WEAPONS ------------------------------
+	/**
+     * Method to get the weapons from the files and initiate them
+     * @param List<Location> : the list of locations of the game
+     * @throws FileNotFoundException exception for the case where the file is not found
+     * @throws InitiateFromFilesWrongException exception for the case where datas from the files are incorrect
+     */
 	public static void initiateWeapons(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
 	{
 		InputStream filePath = InitiateFromFiles.class.getResourceAsStream(PATH_ITEMS + PATH_WEAPONS + "WEAPONS");
@@ -413,6 +466,12 @@ public class InitiateFromFiles {
 	}
 	
 	// --------------------------- PILLARS ------------------------------
+	/**
+     * Method to get the pillars from the files and initiate them
+     * @param List<Location> : the list of locations of the game
+     * @throws FileNotFoundException exception for the case where the file is not found
+     * @throws InitiateFromFilesWrongException exception for the case where datas from the files are incorrect
+     */
 		public static void initiatePillars(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
 		{
 			InputStream filePath = InitiateFromFiles.class.getResourceAsStream(PATH_ITEMS + PATH_PILLARS + "PILLARS");
@@ -462,6 +521,11 @@ public class InitiateFromFiles {
 		}
 	
 	// --------------------------- ITEMS ------------------------------
+	/**
+     * Method to get launch the initiation of all the items
+     * @throws FileNotFoundException exception for the case where the file is not found
+     * @throws InitiateFromFilesWrongException exception for the case where datas from the files are incorrect
+     */
 	public static void initiateItems(List<Location> locations) throws FileNotFoundException, InitiateFromFilesWrongException
 	{			
 		initiateStatuettes(locations);

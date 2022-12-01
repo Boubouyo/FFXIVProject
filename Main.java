@@ -1,9 +1,8 @@
 import Core.Game;
 
 /**
-*
-* @author Victor
-*/
+ * @author Victor
+ */
 
 public class Main {
 

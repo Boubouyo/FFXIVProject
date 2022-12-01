@@ -1,7 +1,15 @@
 package commands;
 
+/**
+ * @author Victor
+ */
+
 public interface Use {
 
-	public abstract boolean use(); // return true if it can be used
+	/**
+     * Abstract method to use the item
+     * @return boolean : returns true if the item can be used (and is used)
+     */
+	public abstract boolean use();
 	
 }

@@ -8,6 +8,10 @@ import commands.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Victor
+ */
+
 public class Hero extends Character 
 {
 	
@@ -224,7 +228,7 @@ public class Hero extends Character
 	/**
      * Calls other methods with the correct arguments depending on the command at the first position of the list in parameters
      * @param commandAndArgs (List<String>) : a list with the inputs of the player
-     * @throws Exception exception for the case where the command doesn't exist
+     * @throws IncorrectCommandException exception for the case where the command doesn't exist
      */
 	public void doTheCommand(List<String> commandAndArgs) throws Exception
 	{
@@ -290,6 +294,9 @@ public class Hero extends Character
 	// END doTheCommands --------------------
 	
 	// ----- HELP -----
+	/**
+     * Print all the commands available
+     */
 	public void printHelpCommands()
 	{
 		System.out.print("The available commands are : ");
@@ -301,6 +308,10 @@ public class Hero extends Character
 		System.out.println(commands[i] + ".");
 	}
 	
+	/**
+     * Print the details of a command available
+     * @param command (String) : the name of the command to print
+     */
 	public void printHelpCommandsWithArg(String command)
 	{
 		int i = 0;
@@ -319,12 +330,20 @@ public class Hero extends Character
 	}
 	
 	// ----- GO -----
+	/**
+     * Change the location of the hero if possible
+     * @param locationName (String) : the name of the location to go to 
+     */
 	public void changeLocation(String locationName)
 	{
 		this.setCurrentLocation(getCurrentLocation().takeExit(locationName, this));
 	}
 	
 	// ----- LOOK -----
+	/**
+     * Print a particular value or call the look() method of a class depending on the name in parameter
+     * @param somethingName (String) : the name of the thing to look
+     */
 	public void lookSomething(String somethingName)
 	{
 		// SPECIAL CASE FOR STATS
@@ -370,6 +389,10 @@ public class Hero extends Character
 	}
 	
 	// ----- TAKE -----
+	/**
+     * Add the item named in the parameter if it can be picked and if it exists
+     * @param itemName (String) : the name of the thing to take
+     */
 	public void takeItem(String itemName)
 	{
 		Item itemToTake = this.getCurrentLocation().getItemFromString(itemName);
@@ -397,6 +420,10 @@ public class Hero extends Character
 	}
 	
 	// ----- USE -----
+	/**
+     * Use the item named in the parameter
+     * @param itemName (String) : the name of the thing to take
+     */
 	public void useItem(String itemName)
 	{
 		Item itemToUse = getItemByName(itemName);
@@ -414,6 +441,11 @@ public class Hero extends Character
 	}
 	
 	// ----- USEON -----
+	/**
+     * Use the item named in the parameter on the second item
+     * @param item1Name (String) : the name of the thing to use
+     * @param item2Name (String) : the name of the thing the first item will be used on
+     */
 	public void useItemOnItem(String item1Name, String item2Name)
 	{
 		Item itemToUse = getItemByName(item1Name);
@@ -432,31 +464,36 @@ public class Hero extends Character
 	}
 	
 	// ----- ATTACK -----
+	/**
+     * Attack the enemy named in the parameter
+     * @param enemyName (String) : the name of the enemy to attack
+     */
 	public void attackEnemy(String enemyName)
 	{   
-            if(enemyName != null){
-		// SPECIAL CASE FOR SETA
-		if (enemyName.equalsIgnoreCase("seta"))
+		if(enemyName != null)
 		{
-			System.out.println("You trully are a monster.");
-			setName("Monster");
-			return;
-		}
-		
-		Enemy enemy = getCurrentLocation().getEnemyByName(enemyName);
-		
-		if (enemy != null)
-		{
-			attackCharacter((Character)enemy);
-			if (this.weapon != null)
-				this.weapon.lessDurability(1);	
-		
-			// COUNTER ATTACK
-			getCurrentLocation().allEnemiesAttack();
-		}
-		else
-			System.out.println("This enemy doesn't exist.");
-            }
+			// SPECIAL CASE FOR SETA (easter egg)
+			if (enemyName.equalsIgnoreCase("seta"))
+			{
+				System.out.println("You trully are a monster.");
+				setName("Monster");
+				return;
+			}
+			
+			Enemy enemy = getCurrentLocation().getEnemyByName(enemyName);
+			
+			if (enemy != null)
+			{
+				attackCharacter((Character)enemy);
+				if (this.weapon != null)
+					this.weapon.lessDurability(1);	
+			
+				// COUNTER ATTACK
+				getCurrentLocation().allEnemiesAttack();
+			}
+			else
+				System.out.println("This enemy doesn't exist.");
+        }
 	}
 
 }

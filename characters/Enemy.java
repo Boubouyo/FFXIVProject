@@ -4,9 +4,8 @@ import commands.Look;
 import locations.Location;
 
 /**
-*
-* @author Victor
-*/
+ * @author Victor
+ */
 
 public class Enemy extends Character implements Look 
 {

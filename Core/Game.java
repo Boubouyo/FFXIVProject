@@ -10,8 +10,7 @@ import items.Weapon;
 import locations.Location;
 
 /**
- *
- * @author fetiveau
+ * @author Victor
  */
 public class Game 
 {
@@ -26,6 +25,11 @@ public class Game
 	private final List<Location> locations;
 	private final Hero hero;
 	
+	/**
+     * Constructor method for the class Game : instantiate everything to set up the game
+     * @exception FileNotFoundException catch if the file was not found 
+     * @exception InitiateFromFilesWrongException catch if datas from the files are incorrect
+     */
 	private Game() throws FileNotFoundException, InitiateFromFilesWrongException 
 	{
 		
@@ -61,7 +65,11 @@ public class Game
 		this.hero.getWeapon().setHero(this.hero);
 	}
 	
-	// Parse an input into a list of string
+	/**
+     * Parse an input into a list of strings
+     * @param scanner (Scanner) : to have access to the input
+     * @return List<String> : the list of strings parsed
+     */
 	public List<String> parsedInput(Scanner scanner)
 	{
 		List<String> commandAndArgs = new ArrayList<>();
@@ -90,6 +98,10 @@ public class Game
 	}
 	
 	// Main loop of the game
+	/**
+     * The main loop of the game from were everything happens
+     * @exception Exception catch incorrect commands 
+     */
 	public void gameLoop() throws Exception
 	{
 		boolean isFinished = false;
@@ -121,6 +133,10 @@ public class Game
         scannerInput.close();
 	}
 	
+	/**
+     * Create a new game and launch the gameLoop
+     * @see gameLoop() 
+     */
 	public static void gameStart() throws Exception
 	{
 		Game game = new Game();
