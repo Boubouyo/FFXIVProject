@@ -24,6 +24,7 @@ public class Button extends Item implements Use {
 	 * @param description (String) : the description of the item (what we notice by using the command look)
 	 * @param location (Location) : where the item is located
 	 * @param descriptionResolved (String) : the description of the item once the enigma is resolved
+         * @param enigmaDevice EnigmaDevice enigmaDevice
 	 * @param id (int) : the id of the button to be able to check which button is pressed
      */
 	public Button(String name, String description, Location location, String descriptionResolved, EnigmaDevice enigmaDevice, int id) 

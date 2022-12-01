@@ -17,6 +17,10 @@ import locations.ExitItem;
 import locations.ExitPillar;
 import locations.Location;
 
+/**
+ *
+ * @author Victor
+ */
 public class InitiateFromFiles {
 	
 	private static final String CHAR_DELIMITER = ";";
@@ -65,7 +69,7 @@ public class InitiateFromFiles {
 	// --------------------------- LOCATIONS  ------------------------------
 	/**
      * Method to get the locations from the files and initiate them
-     * @return List<Location> : the list of locations created
+     * @return the list of locations created
      * @throws FileNotFoundException exception for the case where the file is not found
      */
 	public static List<Location> initiateLocations() throws FileNotFoundException 
@@ -103,7 +107,7 @@ public class InitiateFromFiles {
 	// --------------------------- EXITS ------------------------------
 	/**
      * Method to get the exits from the files and initiate them
-     * @param List<Location> : the list of locations of the game
+     * @param locations list of locations of the game
      * @throws FileNotFoundException exception for the case where the file is not found
      * @throws InitiateFromFilesWrongException exception for the case where datas from the files are incorrect
      */
@@ -168,7 +172,7 @@ public class InitiateFromFiles {
 	// --------------------------- ENEMIES ------------------------------
 	/**
      * Method to get the enemies from the files and initiate them
-     * @param List<Location> : the list of locations of the game
+     * @param locations the list of locations of the game
      * @throws FileNotFoundException exception for the case where the file is not found
      * @throws InitiateFromFilesWrongException exception for the case where datas from the files are incorrect
      */
@@ -224,7 +228,7 @@ public class InitiateFromFiles {
 	// --------------------------- STATUETTES ------------------------------
 	/**
      * Method to get the statuettes from the files and initiate them
-     * @param List<Location> : the list of locations of the game
+     * @param locations the list of locations of the game
      * @throws FileNotFoundException exception for the case where the file is not found
      * @throws InitiateFromFilesWrongException exception for the case where datas from the files are incorrect
      */
@@ -279,7 +283,7 @@ public class InitiateFromFiles {
 	// --------------------------- ENIGMADEVICES ------------------------------
 	/**
      * Method to get the enigma devices from the files and initiate them
-     * @param List<Location> : the list of locations of the game
+     * @param locations the list of locations of the game
      * @throws FileNotFoundException exception for the case where the file is not found
      * @throws InitiateFromFilesWrongException exception for the case where datas from the files are incorrect
      */
@@ -353,7 +357,7 @@ public class InitiateFromFiles {
 	// --------------------------- HEALINGITEMS ------------------------------
 	/**
      * Method to get the healing items from the files and initiate them
-     * @param List<Location> : the list of locations of the game
+     * @param locations the list of locations of the game
      * @throws FileNotFoundException exception for the case where the file is not found
      * @throws InitiateFromFilesWrongException exception for the case where datas from the files are incorrect
      */
@@ -409,7 +413,7 @@ public class InitiateFromFiles {
 	// --------------------------- WEAPONS ------------------------------
 	/**
      * Method to get the weapons from the files and initiate them
-     * @param List<Location> : the list of locations of the game
+     * @param locations the list of locations of the game
      * @throws FileNotFoundException exception for the case where the file is not found
      * @throws InitiateFromFilesWrongException exception for the case where datas from the files are incorrect
      */
@@ -469,7 +473,7 @@ public class InitiateFromFiles {
 	// --------------------------- PILLARS ------------------------------
 	/**
      * Method to get the pillars from the files and initiate them
-     * @param List<Location> : the list of locations of the game
+     * @param locations the list of locations of the game
      * @throws FileNotFoundException exception for the case where the file is not found
      * @throws InitiateFromFilesWrongException exception for the case where datas from the files are incorrect
      */
@@ -524,6 +528,7 @@ public class InitiateFromFiles {
 	// --------------------------- ITEMS ------------------------------
 	/**
      * Method to get launch the initiation of all the items
+     * @param locations the list of locations of the game
      * @throws FileNotFoundException exception for the case where the file is not found
      * @throws InitiateFromFilesWrongException exception for the case where datas from the files are incorrect
      */

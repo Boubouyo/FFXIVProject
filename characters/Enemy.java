@@ -13,9 +13,9 @@ public class Enemy extends Character implements Look
 {
 	
 	private static final String DEFAULT_DESCRIPTION = "It's a simple enemy.";
-	public String description;
+	private String description;
 
-	/**
+     /**
      * Constructor method for the class Enemy.
      * @param name (String) : the character name
      * @param healthPoints (int) : the number of health points for the character

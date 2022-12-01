@@ -19,8 +19,8 @@ public class ExitPillar extends Exit{
     /**
      * The constructor method of the class ExitPillar
      * It creates an ExitPillar between Location a and Location b, and the exit is closed in the two ways by default
-     * @param a 
-     * @param b 
+     * @param a Location A
+     * @param b Location B
      */
     public ExitPillar(Location a, Location b){
         super(a,b,false,false);

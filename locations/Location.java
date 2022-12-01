@@ -73,7 +73,7 @@ public class Location implements Look {
     
     /**
      * Will set the Hero hero to that Location
-     * @param hero 
+     * @param hero Hero
      */
     public void setHero(Hero hero){
     	this.myHero = hero;
@@ -108,7 +108,7 @@ public class Location implements Look {
     /**
      * A method that returns the Location the Player want to move to if he can, else return the Location the Player is.
      * @param locationName Name of the location you want the hero to go
-     * @param hero
+     * @param hero Hero
      * @return if the hero is able to go to locationName from where they currently are, returns that Location, else returns the Location the hero currently is
      */
     public Location takeExit(String locationName, Hero hero){

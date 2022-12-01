@@ -11,6 +11,7 @@ public class InitiateFromFilesWrongException extends Exception
 
 	/**
      * Method to print an error message for the exception
+     * @param msg the message that will be print
      */
 	public InitiateFromFilesWrongException(String msg) 
 	{

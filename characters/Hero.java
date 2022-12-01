@@ -112,6 +112,7 @@ public class Hero extends Character
      * Get an item in the inventory list (return null if the item is not there)
      * 
      * @param itemName (String) : the name of the item to get
+     * @return The item that has the name itemName if there's one, else return null
      */
 	public Item getItemFromInventory(String itemName)
 	{
@@ -184,6 +185,7 @@ public class Hero extends Character
      * Get an item in the inventory list AND in the currentRoom (return null if the item is not there)
      * 
      * @param itemName (String) : the name of the item to get
+     * @return the item if there's one with itemName, else null
      */
 	public Item getItemByName(String itemName) // Look for an item in both the current room and the inventory
 	{
@@ -229,7 +231,7 @@ public class Hero extends Character
 	// ----- Methods for the commands -----
 	/**
      * Calls other methods with the correct arguments depending on the command at the first position of the list in parameters
-     * @param commandAndArgs (List<String>) : a list with the inputs of the player
+     * @param commandAndArgs  a list with the inputs of the player
      * @throws IncorrectCommandException exception for the case where the command doesn't exist
      */
 	public void doTheCommand(List<String> commandAndArgs) throws Exception

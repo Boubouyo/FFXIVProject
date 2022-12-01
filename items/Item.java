@@ -78,8 +78,8 @@ public abstract class Item implements Look {
 	}
 	
 	/**
-	 * Setter of the hero linked to item. 
-	 * If the item get taken this method must be used to link the item and the hero.
+	 * Setter of the hero linked to item.If the item get taken this method must be used to link the item and the hero.
+         * @param hero Hero hero
 	 */
 	public void setHero(Hero hero) {
 		this.hero = hero;

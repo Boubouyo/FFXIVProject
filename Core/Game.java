@@ -69,7 +69,7 @@ public class Game
 	/**
      * Parse an input into a list of strings
      * @param scanner (Scanner) : to have access to the input
-     * @return List<String> : the list of strings parsed
+     * @return the list of strings parsed
      */
 	public List<String> parsedInput(Scanner scanner)
 	{
@@ -137,6 +137,7 @@ public class Game
 	/**
      * Create a new game and launch the gameLoop
      * @see gameLoop() 
+     * @throws Exception : IncorrectCommandException and InitiateFromFilesWrongException
      */
 	public static void gameStart() throws Exception
 	{
