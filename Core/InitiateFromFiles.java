@@ -56,7 +56,6 @@ public class InitiateFromFiles {
 		
 		// Get the list of all the locations' name	
 		InputStream filePath = InitiateFromFiles.class.getResourceAsStream(PATH_LOCATIONS_FOLDER + PATH_LOCATIONS);
-		System.out.println(filePath);
 		//File fileLocations = new File(filePath);
 		Scanner scannerNames = new Scanner(filePath);
 		List<String> locationNames = new ArrayList<>();
