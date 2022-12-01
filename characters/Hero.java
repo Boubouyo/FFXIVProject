@@ -28,6 +28,14 @@ public class Hero extends Character
 	
 	private boolean isGameFinished = false;
 	
+	/**
+     * Constructor method for the class Hero.
+     * @param name (String) : the character name
+     * @param healthPoints (int) : the number of health points for the character
+     * @param attack (int) : the value of the character attack
+     * @param startingLocation (Location) : the first location of the character
+     * @param startingWeapon (Weapon) : the first weapon of the character
+     */
 	public Hero (String name, int healthPoints, int attack, Location startingLocation, Weapon startingWeapon) {
 		super(name, healthPoints, attack, startingLocation);
 		this.inventory = new ArrayList<>();
@@ -35,36 +43,70 @@ public class Hero extends Character
 	}
 	
     // ----- Getters and setters -----
+	/**
+     * Getter for the attribute isGameFinished.
+     * 
+     * @return boolean : the value of the name attribute
+     */
 	public boolean getIsGameFinished()
 	{
 		return this.isGameFinished;
 	}
 	
+	/**
+     * Set the attribute isGameFinished to true, makes the game end in the game main loop
+     * @see Core.Game#gameLoop()
+     */
 	public void gameFinished()
 	{
 		this.isGameFinished = true;
 	}
 	
+	/**
+     * Getter for the attribute weapon.
+     * 
+     * @return Weapon : the value of the weapon attribute
+     */
 	public Weapon getWeapon()
 	{
 		return this.weapon;
 	}
 	
+	/**
+     * Setter for the attribute weapon.
+     * 
+     * @param weapon (Weapon) : the value of the weapon attribute
+     */
 	public void setWeapon(Weapon weapon)
 	{
 		this.weapon = weapon;
 	}
 	
 	// ----- Inventory management -----
+	/**
+     * Add an item to the inventory list
+     * 
+     * @param item (Item) : the item to add
+     */
 	public void addToInventory(Item item) {
 		this.inventory.add(item); 
 	}
 	
+	/**
+     * Remove an item to the inventory list
+     * 
+     * @param item (Item) : the item to remove
+     */
 	public void removeFromInventory(Item item) 
 	{
 		this.inventory.remove(item); 
 	}
 	
+	/**
+     * Get an item in the inventory list (return null if the item is not there)
+     * 
+     * @param itemName (String) : the name of the item to get
+     */
 	public Item getItemFromInventory(String itemName)
 	{
 		for (Item item : this.inventory) {
@@ -76,6 +118,9 @@ public class Hero extends Character
 	}
 	
 	// ----- Prints -----
+	/**
+     * Print the healthPoints of the character
+     */
 	@Override
 	public void printHP()
 	{
@@ -83,6 +128,9 @@ public class Hero extends Character
 		super.printHP();
 	}
 	
+	/**
+     * Print the inventory of the character
+     */
 	public void printInventory()
 	{
 		if (inventory.isEmpty())
@@ -100,6 +148,9 @@ public class Hero extends Character
 		}
 	}
 	
+	/**
+     * Print the weapon of the character
+     */
 	public void printWeapon()
 	{
 		if (this.weapon == null)
@@ -112,6 +163,9 @@ public class Hero extends Character
 		}
 	}
 	
+	/**
+     * Print all the informations of the character (health points, inventory, weapon)
+     */
 	public void printHero()
 	{
 		printHP();
@@ -120,6 +174,11 @@ public class Hero extends Character
 	}
 
 	// ----- Find items -----
+	/**
+     * Get an item in the inventory list AND in the currentRoom (return null if the item is not there)
+     * 
+     * @param itemName (String) : the name of the item to get
+     */
 	public Item getItemByName(String itemName) // Look for an item in both the current room and the inventory
 	{
 		Item itemWithName = this.getCurrentLocation().getItemFromString(itemName);
@@ -133,6 +192,11 @@ public class Hero extends Character
 	}
 	
 	// ----- For combat -----
+	/**
+     * Get the attack power after adding the attack of the weapon
+     * 
+     * @return int : the value of the attack power
+     */
 	@Override
 	public int getFinalAttackPower()
 	{
@@ -144,6 +208,11 @@ public class Hero extends Character
 		return fAtk;
 	}
 	
+	/**
+     * Make the hero die by printing a message before calling gameFinished()
+     * 
+     * @see gameFinished()
+     */
 	@Override
 	public void die()
 	{
@@ -152,6 +221,11 @@ public class Hero extends Character
 	}
 	
 	// ----- Methods for the commands -----
+	/**
+     * Calls other methods with the correct arguments depending on the command at the first position of the list in parameters
+     * @param commandAndArgs (List<String>) : a list with the inputs of the player
+     * @throws Exception exception for the case where the command doesn't exist
+     */
 	public void doTheCommand(List<String> commandAndArgs) throws Exception
 	{
 		String command = commandAndArgs.get(0);

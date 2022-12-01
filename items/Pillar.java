@@ -18,7 +18,7 @@ public class Pillar extends Item implements UseOn {
 	
     // --------------------------CONSTRUCTEUR----------------------------------//
 	/**
-	 * Constructor methode of the class Pillar.
+	 * Constructor method of the class Pillar.
 	 * It uses the constructor method of the Item 
 	 * and add it's ID
 	 * 
