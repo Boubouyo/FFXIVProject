@@ -24,7 +24,7 @@ import items.Weapon;
 
 
 /**
- *
+ * This class creates a Location in which Item enemies and the Hero can do things in. The Locations are linked between each other with the help of Exits.
  * @author fetiveau
  */
 public class Location implements Look {
@@ -41,10 +41,11 @@ public class Location implements Look {
     
     // --------------------------CONSTRUCTEURS---------------------------------//
     /**
-     * 
-     * @param name > Name of the Location
-     * @param description > description of the Location when you use the look command
-     * @param entryDescription > description of the Location when you enter the Location
+     * This is the constructor method of the class Location
+     * It will create a Location with a name, a description that will be display when the Player uses the LOOK command and an entry description that will be displayed when the Player enter that Location
+     * @param name Name of the Location
+     * @param description Description of the Location that will be displayed with the look method
+     * @param entryDescription Description of the Location that will be displayed when you enter the Location
      */
     public Location(String name,String description, String entryDescription){
         this.entryDescription = entryDescription;
@@ -55,7 +56,7 @@ public class Location implements Look {
     
     // ----------------------------GET & SET-------------------------------------//
     /**
-     * 
+     * Give the name of the Location
      * @return The name of the Location
      */
     public String getName(){
@@ -63,7 +64,7 @@ public class Location implements Look {
     }
     
     /**
-     * 
+     * Give the Hero that is in that Location
      * @return The Hero if the hero is in that Location, else null
      */
     public Hero getHero(){
@@ -71,8 +72,8 @@ public class Location implements Look {
     }
     
     /**
-     * 
-     * @param hero > The hero that will be in that Location, will also print the description of when you enter the room
+     * Will set the Hero hero to that Location
+     * @param hero 
      */
     public void setHero(Hero hero){
     	this.myHero = hero;
@@ -83,9 +84,9 @@ public class Location implements Look {
     // ---------------------------OPERATIONS : EXIT---------------------------------//
     
     /**
-     * 
-     * @param locationName > The name of a Location
-     * @return If this Location as an exit in common with the Location that has the locationName, will send the Exit that link the two
+     * A method that will give you the Exit that is between that Location and the Location that has locationName.
+     * @param locationName The name of a Location
+     * @return If this Location as an exit in common with the Location that has the locationName, will send the Exit that link the two Locations, else null.
      */
     private Exit getExitFromLocationName(String locationName)
     {
@@ -97,17 +98,17 @@ public class Location implements Look {
     }
     
     /**
-     * 
-     * @param newExit > An Exit you want to link to that Location
+     * A Method that link the Location to newExit
+     * @param newExit An Exit you want to link to that Location
      */
     public void addExits(Exit newExit){
         exits.put(newExit.getOtherLocation(this.name).getName(), newExit);
     }
     
     /**
-     * 
-     * @param locationName > Name of the location you want the hero to go
-     * @param hero > the hero of the game
+     * A method that returns the Location the Player want to move to if he can, else return the Location the Player is.
+     * @param locationName Name of the location you want the hero to go
+     * @param hero
      * @return if the hero is able to go to locationName from where they currently are, returns that Location, else returns the Location the hero currently is
      */
     public Location takeExit(String locationName, Hero hero){
@@ -195,11 +196,11 @@ public class Location implements Look {
     
     // ---------------------OPERATIONS : ENEMY------------------------------//
     /**
-     * 
-     * @param name > Name of the enemy you wanna add
-     * @param healthPoints > Health of the enemy you wanna add
-     * @param attack > Attack damage of the enemy you wanna add
-     * @param description > Description of the enemy you wanna add
+     * Add an Enemy to the Location
+     * @param name Name of the enemy you wanna add
+     * @param healthPoints Health of the enemy you wanna add
+     * @param attack Attack damage of the enemy you wanna add
+     * @param description Description of the enemy you wanna add
      */
     public void addEnemy(String name, int healthPoints, int attack, String description){
         if(description == null){
@@ -209,17 +210,17 @@ public class Location implements Look {
     }
     
     /**
-     * 
-     * @param deletedEnemy > The enemy you want to remove from the Location
+     * Remove an Enemy from the Location
+     * @param deletedEnemy The enemy you want to remove from the Location
      */
     public void deleteEnemy(Enemy deletedEnemy){
         enemies.remove(deletedEnemy);
     }
     
     /**
-     * 
-     * @param name > Name of an enemy
-     * @return The first enemy in that Location that has that name
+     * A Method that will get you an Enemy of the Location based on his name.
+     * @param name Name of an enemy
+     * @return The first enemy in that Location that has that name, if there's none, return null.
      */
     public Enemy getEnemyByName(String name){
         for(Enemy e : enemies){
@@ -240,7 +241,7 @@ public class Location implements Look {
     }
     
     /**
-     * 
+     * A Method to get the list of Enemy of the Location
      * @return The list of enemies in the Location
      */
     public List<Enemy> getEnemyList(){
@@ -249,7 +250,7 @@ public class Location implements Look {
     
     // ---------------------------OPERATIONS : ITEMS---------------------------------//
     /**
-     * 
+     * A Method to get the List of Item in a Location
      * @return The List of Items that are in the room
      */
     public List<Item> getRoomInventory(){
@@ -257,8 +258,8 @@ public class Location implements Look {
     }
     
     /**
-     * 
-     * @param name > Name of an Item
+     * A Method to get an Item from the Location based on the Item name.
+     * @param name Name of an Item
      * @return the Item from the Location that has that name, if there's none, return null
      */
     public Item getItemFromString(String name){
@@ -271,14 +272,14 @@ public class Location implements Look {
     }
     
     /**
-     * 
-     * @param item > the Item you want to add to the Location
+     * A Method to add an Item to the Location
+     * @param item the Item you want to add to the Location
      */
     public void addItem(Item item){
         items.add(item);
     }
     /**
-     * 
+     * A Method to remove an Item from the Location
      * @param removedItem The Item you want to remove from the Location
      */
     public void removeItem(Item removedItem){
@@ -286,39 +287,40 @@ public class Location implements Look {
     }
     
     /**
-     * 
-     * @param name > Name of the Statuette
-     * @param id > id of the Statuette
-     * @param description > description of the Statuette
-     * @param isPickable > setting if the Statuette can be picked by the hero or not per default.
+     * A Method to add a Statuette to the Location.
+     * @param name  Name of the Statuette
+     * @param id  id of the Statuette
+     * @param description  description of the Statuette
+     * @param isPickable  setting if the Statuette can be picked by the hero or not per default.
      */
     public void addStatuette(String name, int id, String description, boolean isPickable){
         this.items.add(new Statuette(name, id, description, this, isPickable));
     }
     /**
-     * 
-     * @param name > name of the EnigmaDevice
-     * @param description > description of the EnigmaDevice
-     * @param descriptionResolved > description that will be display when you resolve the enigma of the EnigmaDevice
-     * @param descriptionAfterResolved > description that will be display after you've resolved the enigma of the EnigmaDevice
-     * @param buttonsName > String[] containing the name of each Button of the EnigmaDevice
-     * @param buttonsDescription > String[] containing the description of each Button of the EnigmaDevice
-     * @param buttonsDescriptionResolved > String[] containing the description of each Button after you've resolved the enigma of the EnigmaDevice
-     * @param itemToGive > the name of the Item you want to make pickable after the enigma of the EnigmaDevice is solved
-     * @param correctSequence > int[] containing the order in which the button has to be pressed to resolve the enugma of the EnigmaDevice
+     * A Method to add an EnigmaDevice to the Location
+     * @param name  name of the EnigmaDevice
+     * @param description  description of the EnigmaDevice
+     * @param descriptionResolved  description that will be display when you resolve the enigma of the EnigmaDevice
+     * @param descriptionAfterResolved  description that will be display after you've resolved the enigma of the EnigmaDevice
+     * @param buttonsName  String[] containing the name of each Button of the EnigmaDevice
+     * @param buttonsDescription  String[] containing the description of each Button of the EnigmaDevice
+     * @param buttonsDescriptionResolved  String[] containing the description of each Button after you've resolved the enigma of the EnigmaDevice
+     * @param itemToGive  the name of the Item you want to make pickable after the enigma of the EnigmaDevice is solved
+     * @param correctSequence  int[] containing the order in which the button has to be pressed to resolve the enugma of the EnigmaDevice
      */
     public void addEnigmaDevice(String name, String description, String descriptionResolved, String descriptionAfterResolved, String[] buttonsName, String[] buttonsDescription, String[] buttonsDescriptionResolved, String itemToGive, int[] correctSequence){
         this.items.add(new EnigmaDevice(name, description, this, descriptionResolved, descriptionAfterResolved, buttonsName, buttonsDescription, buttonsDescriptionResolved, itemToGive, correctSequence));
     }
     
     /**
-     * 
-     * @param name > name of the Button
-     * @param description > description of the Button before the enigma has been resolved
-     * @param descriptionResolved > description of the Button once the enigma has been resolved
-     * @param enigmaDevice > the EnigmaDevice that his link to that Button
-     * @param id > the id of that button
+     * A Method to add a Button to the Location
+     * @param name name of the Button
+     * @param description description of the Button before the enigma has been resolved
+     * @param descriptionResolved  description of the Button once the enigma has been resolved
+     * @param enigmaDevice  the EnigmaDevice that his link to that Button
+     * @param id  the id of that button
      * @return The Button with the parameters setted.
+     * @see EnigmaDevice makesButtons
      */
     public Button addButton(String name, String description, String descriptionResolved, EnigmaDevice enigmaDevice, int id)
     {
@@ -328,11 +330,11 @@ public class Location implements Look {
     }
     
     /**
-     * 
-     * @param name > name of the HealingItem
-     * @param description > description of the HealingItem
-     * @param isPickable > define if the Item can be taken by the Hero per default
-     * @param healPower > the amount of life that it restores
+     * Add a HealingItem to the Location
+     * @param name name of the HealingItem
+     * @param description description of the HealingItem
+     * @param isPickable define if the Item can be taken by the Hero per default
+     * @param healPower the amount of life that it restores
      */
     public void addHealingItem(String name, String description, boolean isPickable, int healPower)
     {
@@ -340,21 +342,21 @@ public class Location implements Look {
     }
     
     /**
-     * 
-     * @param name > name of the Weapon
-     * @param atkpt > Damage of the Weapon
-     * @param life > number of time you can use the Weapon
-     * @param description > description of the Weapon
-     * @param isPickable > define if the Item can be taken by the Hero per default
+     * Add a Weapon to the Location
+     * @param name name of the Weapon
+     * @param atkpt Damage of the Weapon
+     * @param life number of time you can use the Weapon
+     * @param description description of the Weapon
+     * @param isPickable define if the Item can be taken by the Hero per default
      */
     public void addWeapon(String name, int atkpt, int life, String description, boolean isPickable){
         this.items.add(new Weapon(name, atkpt, life, description, this, isPickable));
     }
     /**
-     * 
-     * @param name > name of the Pillar
-     * @param id > id of the Pillar (which needs to be the same as one of the Statuette ids)
-     * @param description > description of the Pillar
+     * Add a Pillar to the Location
+     * @param name  name of the Pillar
+     * @param id  id of the Pillar (which needs to be the same as one of the Statuette ids)
+     * @param description  description of the Pillar
      */
     public void addPillar(String name, int id, String description){
         this.items.add(new Pillar(name, id, description, this));

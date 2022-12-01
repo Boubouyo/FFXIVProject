@@ -5,18 +5,20 @@
 package locations;
 
 /**
- *
+ * This Exit can only be crossed if all the enemies in the Location you are are all vainquished (by the Hero).
+ * This Exit only link two Locations
  * @author fetiveau
  */
-//This Exit is open in one way and will open in the other way when the enemies in that room are all defeated
+
 public class ExitEnemy extends Exit{
     // --------------------------CONSTRUCTEURS---------------------------------//
     /**
-     * 
-     * @param a > Location A
-     * @param b > Location B
-     * @param isOpenAtoB > False if the exit is closed by default between Location A to Location B else true
-     * @param isOpenBtoA > False if the exit is closed by default between Location B to Location A else true
+     * The constructor method of the class ExitEnemy
+     * It creates an ExitEnemy between Location a and Location b and you can define if the exit from Location a to Location b is open or closed per default (and vice versa)
+     * @param a
+     * @param b
+     * @param isOpenAtoB False if the exit is closed by default between Location A to Location B else true
+     * @param isOpenBtoA False if the exit is closed by default between Location B to Location A else true
      */
     public ExitEnemy(Location a, Location b, boolean isOpenAtoB, boolean isOpenBtoA){
         super(a, b, isOpenAtoB, isOpenBtoA);
@@ -25,9 +27,10 @@ public class ExitEnemy extends Exit{
     
 	// --------------------------OVERRIDE------------------------------------//
     /**
-     * 
-     * @param locationFrom > The location from where you want to cross the exit.
-     * @return true if locationFrom doesn't have any enemies or if the door is already open in that direction, else false.
+     * A Method that will tell you if you're able to cross the exit from locationFrom to the other location that this ExitEnemy is linked to.
+     * @param locationFrom The location from where you want to cross the exit.
+     * @see method ableToMoveThrough of Exit class
+     * @return boolean: false if the door is closed and there's enemy in the Location that has the name locationFrom, else return true.
      */
     @Override
     public boolean ableToMoveThrough(Location locationFrom){

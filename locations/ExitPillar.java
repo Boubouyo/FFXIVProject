@@ -9,16 +9,18 @@ import items.Pillar;
 
 
 /**
- *
+ * This Exit will open is direction A->B when all statuette are put on the right pillar in room A, and in direction B->A when the enemies in B are all defeated
+ * This Exit only link two Locations
  * @author fetiveau
  */
-//This room will open is direction A->B when all statuette are put on the right pillar in room A, and in direction B->A when the enemies in B are all defeated
+
 public class ExitPillar extends Exit{
     // --------------------------CONSTRUCTEURS---------------------------------//
     /**
-     * 
-     * @param a > location of the room containing the pillar.
-     * @param b > location of the room containing the enemies.
+     * The constructor method of the class ExitPillar
+     * It creates an ExitPillar between Location a and Location b, and the exit is closed in the two ways by default
+     * @param a 
+     * @param b 
      */
     public ExitPillar(Location a, Location b){
         super(a,b,false,false);
@@ -27,14 +29,14 @@ public class ExitPillar extends Exit{
     
 	// --------------------------OVERRIDE------------------------------------//
     /**
-     * 
-     * @param locationFrom > The location from where you want to cross the exit.
+     * A Method that will tell you if you're able to cross the exit from locationFrom to the other location that this ExitPilalr is linked to.
+     * @param locationFrom The location from where you want to cross the exit.
      * @return a boolean which is true if the exit is already open or you're in Location B and there's no enemies left or you're in Location A and all pillars have the right statuette on them, else false.
-     * @see Exit.
+     * @see Exit ableToMoveThrough
      */
     @Override
     public boolean ableToMoveThrough(Location locationFrom){
-        //We need to check if the statuette are all on the right pillar
+        //We need to check if the statuettes are all on the right pillars
         if(!super.ableToMoveThrough(locationFrom) && locationFrom.equals(super.getLocationA())){
             boolean rightStatuette = true;
             for(Item i : locationFrom.getRoomInventory()){
