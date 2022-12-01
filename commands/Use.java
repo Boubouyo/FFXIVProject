@@ -1,6 +1,8 @@
 package commands;
 
 /**
+ * An interface for the command use.
+ * 
  * @author Victor
  */
 

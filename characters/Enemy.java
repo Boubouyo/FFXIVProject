@@ -4,6 +4,8 @@ import commands.Look;
 import locations.Location;
 
 /**
+ * A character class for the enemies.
+ * 
  * @author Victor
  */
 

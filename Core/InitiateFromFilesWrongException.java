@@ -1,6 +1,7 @@
 package Core;
 
 /**
+ * An exception for an incorrect input in one of the file for the initiation.
  * @author Victor
  */
 

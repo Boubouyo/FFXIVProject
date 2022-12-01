@@ -1,6 +1,7 @@
 package commands;
 
 /**
+ * An interface for the command look.
  * @author Victor
  */
 

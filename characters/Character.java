@@ -3,6 +3,8 @@ package characters;
 import locations.Location;
 
 /**
+ * An abstract class to describe a character.
+ * 
 * @author Victor
 */
 

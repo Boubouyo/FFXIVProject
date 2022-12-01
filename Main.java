@@ -1,6 +1,8 @@
 import Core.Game;
 
 /**
+ * The main class that is launched when starting.
+ * 
  * @author Victor
  */
 

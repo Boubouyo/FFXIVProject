@@ -10,6 +10,7 @@ import items.Weapon;
 import locations.Location;
 
 /**
+ * The class that monitors the whole game : it initiates everything and has the main game loop.
  * @author Victor
  */
 public class Game 

@@ -4,6 +4,8 @@ import commands.Use;
 import locations.Location;
 
 /**
+ * An item class which is a button that can be used via the commands. It is created by an enigma device.
+ * 
  * @author Victor
  */
 

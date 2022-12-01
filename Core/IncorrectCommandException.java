@@ -1,6 +1,8 @@
 package Core;
 
 /**
+ * An exception for an incorrect command input.
+ * 
  * @author Victor
  */
 

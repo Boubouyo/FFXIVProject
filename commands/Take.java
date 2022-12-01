@@ -1,6 +1,8 @@
 package commands;
 
 /**
+ * An interface for the command take. 
+ * 
  * @author Victor
  */
 

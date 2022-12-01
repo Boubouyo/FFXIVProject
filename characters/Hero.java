@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * A character class for the main hero and the commands.
+ * 
  * @author Victor
  */
 

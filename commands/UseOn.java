@@ -3,6 +3,8 @@ package commands;
 import items.Item;
 
 /**
+ * An interface for the command use on.
+ * 
  * @author Victor
  */
 

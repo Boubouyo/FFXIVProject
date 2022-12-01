@@ -1,6 +1,7 @@
 package Core;
 
 /**
+ * A class that can't be instantiate and contains only static methods to initiate elements from texts in files.
  * @author Victor
  */
 
