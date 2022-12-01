@@ -22,11 +22,12 @@ public abstract class Item implements Look {
 	// --------------------------CONSTRUCTEUR----------------------------------//
 	/**
 	 * The constructor method of the class Item.
-	 * It initialize an item with a name, a description and a location.
+	 * It initialize an item with a name, a description, a location 
+	 * and hero set to null by default.
 	 * 
-	 * @param name
-	 * @param description
-	 * @param location
+	 * @param name 			the name of the item (each item as a different one)
+	 * @param description	the description of the item (what we notice by using the command look)
+	 * @param location		where the item is located
 	 */
 	public Item(String name, String description, Location location) {
 		this.name = name;
@@ -40,7 +41,7 @@ public abstract class Item implements Look {
 	/** 
 	 * Getter on the item name.
 	 * 
-	 * @return the name of the item (String)
+	 * @return the name of the item
 	 */
 	public String getName() {
 		return this.name;
@@ -49,7 +50,7 @@ public abstract class Item implements Look {
 	/**
 	 * Setter of a new description for the item. 
 	 * 
-	 * @param newDescription
+	 * @param newDescription  the new String that will be set as the description of the item
 	 */
 	public void setDescription(String newDescription) {
 		this.description = newDescription;
@@ -60,7 +61,7 @@ public abstract class Item implements Look {
 	 * It could be used to print the description of an item. 
 	 * while using the look; command for example.
 	 * 
-	 * @return the description of Item
+	 * @return the description of the item
 	 */
 	public String getDescription() {
 		return this.description;
@@ -69,14 +70,16 @@ public abstract class Item implements Look {
 	/**
 	 * Getter on the hero linked to item.
 	 * 
-	 * @return null if no hero are linked to item or the hero linked to item if picked
+	 * @return null if no hero are linked to item 
+	 * and the hero linked to the item if there is one
 	 */
 	public Hero getHero() {
 		return this.hero;
 	}
 	
 	/**
-	 * Setter of the hero linked to item
+	 * Setter of the hero linked to item. 
+	 * If the item get taken this method must be used to link the item and the hero.
 	 */
 	public void setHero(Hero hero) {
 		this.hero = hero;
@@ -85,7 +88,7 @@ public abstract class Item implements Look {
 	/**
 	 * Getter on the location of an item.
 	 * 
-	 * @return the location of the item
+	 * @return Where the item is located, what room it is in.
 	 */
 	public Location getLocation() {
 		return this.currentLocation;
@@ -94,7 +97,7 @@ public abstract class Item implements Look {
 	/**
 	 * Setter of the new location of an item
 	 * 
-	 * @param loc
+	 * @param loc which is the new room the item will be located in
 	 */
 	public void setLocation(Location loc) {
 		this.currentLocation = loc;
@@ -104,6 +107,7 @@ public abstract class Item implements Look {
 	// --------------------------OVERRIDE------------------------------------//
 	/**
 	 * Implementation of the command look;
+	 * It print the name of the item and it's description.
 	 */
 	@Override
 	public void look() {

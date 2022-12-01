@@ -5,6 +5,7 @@ import locations.Location;
 
 /**
  * Abstract class weapon which describes the basics of the weapons.
+ * It is a subclass of the class Item with a durabilty and number of attack point attributes.
  * 
  * @author Anais
  */
@@ -21,12 +22,12 @@ public class Weapon extends Pickable implements Use{
 	 * It use the constructor method of the Pickable class
 	 * and initialize the bonusAtkPoint and durability of the weapon
 	 * 
-	 * @param name
-	 * @param atkpt is the number of attack point it gives to the users of the item
-	 * @param life is durability of the weapon, the number of time it can be used
-	 * @param description
-	 * @param location
-	 * @param isPickable 
+	 * @param name			the name of the weapon
+	 * @param atkpt 		number of attack point it gives to the users of the item
+	 * @param life 			durability of the weapon, the number of time it can be used
+	 * @param description	text that describes the weapon
+	 * @param location		where the weapon is located
+	 * @param isPickable 	boolean that define is the item can be taken or not
 	 */
 	public Weapon(String name, int atkpt, int life, String description, Location location, boolean isPickable) {
 		super(name, description, location, isPickable);
@@ -37,9 +38,9 @@ public class Weapon extends Pickable implements Use{
 	
 	// ----------------------------GET & SET-------------------------------------//
 	/**
-	 * Getter of number of attack point it gives to hero if equipped (by the command use)
+	 * Getter of number of attack point it gives to the hero if the weapon is equipped (by the command use)
 	 * 
-	 * @return bonusAtkPoint
+	 * @return the number of attack point the weapon
 	 */
 	public int getBonusAttackPoint() {
 		return bonusAtkPoint;
@@ -48,7 +49,7 @@ public class Weapon extends Pickable implements Use{
 	/**
 	 * Getter of the number of times the weapon can be used.
 	 * 
-	 * @return durability
+	 * @return durability of the weapon
 	 */
 	public int getNumberOfUse() {
 		return durability;
@@ -60,7 +61,7 @@ public class Weapon extends Pickable implements Use{
 	 * A method that reduce the durability of the weapon.
 	 * If the durability go below 0 the weapon get destroy (as it cannot be used anymore)
 	 * 
-	 * @param down : the amount of durability point that will be subtracted for the durability
+	 * @param down the amount of durability point that will be subtracted for the durability attribute of the weapon
 	 */
 	public void lessDurability(int down) {
 		this.durability -= down;
@@ -96,8 +97,8 @@ public class Weapon extends Pickable implements Use{
 	
 	// --------------------------OVERRIDE------------------------------------//
 	/**
-	 * Override of the use method
-	 * Using a weapon means equipping it here.
+	 * Implementation of the use method
+	 * Using a weapon means equipping it, here.
 	 */
 	@Override
 	public boolean use() {
