@@ -6,7 +6,7 @@ import locations.Location;
 
 /** 
  * Class for healing items. 
- * A sub-class of item that can boost the health points of the user of the item.
+ * A subclass of item that can boost the health points of the user if used.
  * 
  * @author Anais
  */
@@ -21,11 +21,11 @@ public class HealingItem extends Pickable implements Use{
 	 * It use the constructor method of the Item class and 
 	 * also initialize the health point that could be given to the user.
 	 * 
-	 * @param name
-	 * @param description
-	 * @param location
-	 * @param isPickable
-	 * @param healPt
+	 * @param name			name of the healing item
+	 * @param description	text that describes the healing item
+	 * @param location		where the healing item is located
+	 * @param isPickable	boolean that define is the healing item can be taken or not
+	 * @param healPt		number of heal point of the healing item
 	 */
 	public HealingItem(String name, String description, Location location, boolean isPickable, int healPt) {
 		super(name, description, location, isPickable);
@@ -36,6 +36,7 @@ public class HealingItem extends Pickable implements Use{
 	// ---------------------------OPERATIONS-----------------------------------//
 	/** 
 	 * Implementation of the command use. 
+	 * It add the number contains in the heal attribute to the current health point of the user of the healing item.
 	 */
 	@Override 
 	public boolean use() {
@@ -52,7 +53,7 @@ public class HealingItem extends Pickable implements Use{
 	}
 	
 	/** 
-	 * Override of the command look to add the number of health point it could give if used
+	 * Override of the command look to add the number of health point it could give if used.
 	 */
 	@Override
 	public void look() {

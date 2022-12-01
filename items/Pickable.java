@@ -21,10 +21,10 @@ public abstract class Pickable extends Item implements Take {
 	 * It uses the constructor method of item
 	 * and initialize the boolean isPickable
 	 * 
-	 * @param name
-	 * @param description
-	 * @param location
-	 * @param isPickable
+	 * @param name			name of the pickable item
+	 * @param description	text that describes the pickable item
+	 * @param location		where the pickable item is located
+	 * @param isPickable	boolean that define is the item can be taken or not
 	 */
 	public Pickable(String name, String description, Location location, boolean isPickable) {
 		super(name, description, location);
@@ -33,14 +33,14 @@ public abstract class Pickable extends Item implements Take {
         
 	// ---------------------------OPERATIONS-----------------------------------//
 	/**
-	 * A method that make an item pickable
+	 * A method that make an item pickable by setting its attribute pickable to true
 	 */
 	public void becomePickable() {
 		this.pickable = true;
 	}
 	
 	/**
-	 * A method that remove the possibility to take an item
+	 * A method that remove the possibility to take an item by setting its attribute pickable to false
 	 */
 	public void lockPickable() {
 		this.pickable = false;
@@ -49,8 +49,9 @@ public abstract class Pickable extends Item implements Take {
 	
 	// --------------------------OVERRIDE------------------------------------//
 	/**
-	 * Implementation of the method take
-	 * @return : true if the item is pickable and false if not
+	 * Implementation of the method take. 
+	 * 
+	 * @return true if the item is pickable and false if not
 	 */
 	@Override
 	public boolean take() {

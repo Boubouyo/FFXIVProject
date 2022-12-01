@@ -5,8 +5,8 @@ import commands.UseOn;
 
 
 /**
- * A sub-class of the Item class.
- * It has new interaction compared to Item such as the possbility to use UseOn by the command use;
+ * Class Pillar : a subclass of the class Item.
+ * It has new interaction compared to Item such as the possbility to use UseOn with the command use;
  * 
  * @author Anais
  */
@@ -20,12 +20,12 @@ public class Pillar extends Item implements UseOn {
 	/**
 	 * Constructor method of the class Pillar.
 	 * It uses the constructor method of the Item 
-	 * and add it's ID
+	 * and initialize it's ID
 	 * 
-	 * @param name
-	 * @param ID : key to identify a pillar from another 
-	 * @param description
-	 * @param location
+	 * @param name 			the name of the pillar
+	 * @param ID			short key to identify a pillar from another one
+	 * @param description	text that describes the pillar
+	 * @param location		where the pillar is located
 	 */
 	public Pillar(String name, int ID, String description, Location location) {
 		super(name, description, location);
@@ -38,16 +38,17 @@ public class Pillar extends Item implements UseOn {
 	 * Getter of the ID of a pillar. 
 	 * It could be used to compare with an ID of another item that as an ID too (cf. Statuette)
 	 * 
-	 * @return pillarID 
+	 * @return the ID of the pillar
 	 */
 	public int getPillarId() {
 		return pillarID; 
 	}
     
 	/**
-	 * Getter of an item that is on the pillar such as a Statuette for example
+	 * Getter of an item that is on the pillar such as a Statuette for example.
+	 * There can be only one at a time.
 	 * 
-	 * @return onPillar : an Item that was used on the pillar
+	 * @return onPillar an Item that was used on the pillar
 	 */
     public Item getOnPillar(){
         return this.onPillar;
@@ -58,7 +59,7 @@ public class Pillar extends Item implements UseOn {
     /**
      * A method that check if a statue that was added to a pillar is the right one thanks to it's ID
      * 
-     * @return
+     * @return true if the ID of the statue match the ID of the pillar and false if not
      */
 	public boolean rightStatuetteonPillar(){
 		if(this.onPillar != null){
@@ -73,20 +74,20 @@ public class Pillar extends Item implements UseOn {
 	}
 	
 	/**
-	 * Check if the item is a statuette or not
+	 * Check if an item is a statuette or not
 	 * 
-	 * @param item 
-	 * @return boolean : true if the item is a statuette and false if not
+	 * @param item the item that need to be checked
+	 * @return true if the item is a statuette and false if not
 	 */
     public static boolean isStatuette(Item item) {
     	return (item instanceof Statuette);
 	}
 	
 	/** 
-     * Checking if the Statuette that we are putting on the pillar is the right one not.
-     * If the right Statuette is on the right pillar we lock it's possibility to be taken.
+     * Method that check if the Statuette that we are putting on the pillar is the right one not.
+     * If the right Statuette is on the right pillar we lock it's possibility to be taken to false.
      * 
-     * @param statuette
+     * @param statuette the statuette that's being put on the pillar
      */
 	private void putStatueOnPillar(Statuette statuette) {
 		if(statuette != null){
@@ -110,8 +111,12 @@ public class Pillar extends Item implements UseOn {
 	/**
 	 * Implementation of the command useOn
 	 * 
-	 * @return true : the item is a statuette and the attribute hero of the item isn't empty 
-	 * 						(wich means it was taken)
+	 * @return true if the item is a statuette, 
+	 * 				   the attribute hero of the item isn't null 
+	 * 						(which means it was taken and in the inventory of the hero that want to use the item)  
+	 * 			   and the top of pillar is empty 
+	 * 						(if a statuette was putted on first it has to be taken back to put another one)
+	 * 						
 	 */
 	@Override
 	public boolean useOn(Item item){
@@ -129,7 +134,7 @@ public class Pillar extends Item implements UseOn {
 	}
 	
 	/**
-	 * Override of the command look to add the description of what's on the pillar if there is something on it
+	 * Override of the command look to add the description of what's on the pillar if there is something on it.
 	 */
 	@Override
 	public void look() {
@@ -138,7 +143,7 @@ public class Pillar extends Item implements UseOn {
 			System.out.println("It has a "+this.onPillar.getName()+" on top of it.");
 		}
 		else {
-			System.out.println("It remains empty...");
+			System.out.println("It look like something is missing on top of it...");
 		}
 	}
 }
