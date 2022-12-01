@@ -7,7 +7,7 @@ import java.util.List;
 import locations.Location;
 
 public class EnigmaDevice extends Item {
-
+	// ---------------------------ATTRIBUTS------------------------------------//
 	private final String descriptionResolved;
 	private final String descriptionAfterResolved;
 	private final List<Button> buttons;
@@ -18,6 +18,7 @@ public class EnigmaDevice extends Item {
 	private int tryingSequenceIndex;
 	private final int[] tryingSequence;
 	
+    // --------------------------CONSTRUCTEUR----------------------------------//
 	public EnigmaDevice(String name, String description, Location location, String descriptionResolved, String descriptionAfterResolved, String[] buttonsName, String[] buttonsDescription, String[] buttonsDescriptionResolved, String itemToGive, int[] correctSequence) 
 	{
 		super(name, description, location);
@@ -29,10 +30,12 @@ public class EnigmaDevice extends Item {
 		this.tryingSequenceIndex = 0;
 		this.tryingSequence = new int[correctSequence.length];
 	}
-        
-        public int[] getTryingSequence(){
-            return this.tryingSequence;
-        }
+	
+	
+	// ---------------------------OPERATIONS-----------------------------------//
+	public int[] getTryingSequence(){
+		return this.tryingSequence;
+	}
 	
 	// Creates all the buttons
 	private List<Button> makeButtons(String[] buttonsName, String[] buttonsDescription, String[] buttonsDescriptionResolved)

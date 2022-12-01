@@ -10,7 +10,7 @@ package locations;
  */
 //This Exit is open in one way and will open in the other way when the enemies in that room are all defeated
 public class ExitEnemy extends Exit{
-    
+    // --------------------------CONSTRUCTEURS---------------------------------//
     /**
      * 
      * @param a > Location A
@@ -18,11 +18,12 @@ public class ExitEnemy extends Exit{
      * @param isOpenAtoB > False if the exit is closed by default between Location A to Location B else true
      * @param isOpenBtoA > False if the exit is closed by default between Location B to Location A else true
      */
-    
     public ExitEnemy(Location a, Location b, boolean isOpenAtoB, boolean isOpenBtoA){
         super(a, b, isOpenAtoB, isOpenBtoA);
     }
     
+    
+	// --------------------------OVERRIDE------------------------------------//
     /**
      * 
      * @param locationFrom > The location from where you want to cross the exit.

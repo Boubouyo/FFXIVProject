@@ -11,9 +11,10 @@ package locations;
  */
 //This Exit is open in one way and will open in the other way when the item in that room is taken
 public class ExitItem extends Exit{
+	// ---------------------------ATTRIBUTS------------------------------------//
     private final String itemToGetName;
     
-    
+    // --------------------------CONSTRUCTEURS---------------------------------//
     /**
      * 
      * @param a > Location A
@@ -26,6 +27,8 @@ public class ExitItem extends Exit{
         super(a, b, isOpenAtoB, isOpenBtoA);
         this.itemToGetName = itemToGet;
     }
+    
+	// --------------------------OVERRIDE------------------------------------//
     /**
      * 
      * @param locationFrom > The location from where you want to cross the exit.

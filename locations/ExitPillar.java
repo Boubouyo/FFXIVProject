@@ -14,7 +14,7 @@ import items.Pillar;
  */
 //This room will open is direction A->B when all statuette are put on the right pillar in room A, and in direction B->A when the enemies in B are all defeated
 public class ExitPillar extends Exit{
-    
+    // --------------------------CONSTRUCTEURS---------------------------------//
     /**
      * 
      * @param a > location of the room containing the pillar.
@@ -24,6 +24,8 @@ public class ExitPillar extends Exit{
         super(a,b,false,false);
     }
     
+    
+	// --------------------------OVERRIDE------------------------------------//
     /**
      * 
      * @param locationFrom > The location from where you want to cross the exit.

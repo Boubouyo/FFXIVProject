@@ -4,13 +4,14 @@ import commands.Use;
 import locations.Location;
 
 public class Button extends Item implements Use {
-
+	// ---------------------------ATTRIBUTS------------------------------------//
 	private final int buttonId;
 	private final EnigmaDevice enigmaDevice;
 	private final String descriptionResolved;
 	
 	private boolean isResolved;
 	
+	// --------------------------CONSTRUCTEUR----------------------------------//
 	public Button(String name, String description, Location location, String descriptionResolved, EnigmaDevice enigmaDevice, int id) 
 	{
 		super(name, description, location);
@@ -20,6 +21,8 @@ public class Button extends Item implements Use {
 		this.isResolved = false;
 	}
 
+	
+	// ---------------------------OPERATIONS-----------------------------------//
 	private void changeDescription()
 	{
 		super.setDescription(descriptionResolved);
@@ -31,7 +34,9 @@ public class Button extends Item implements Use {
                 this.isResolved = true;
 	}
 	
-        @Override
+	
+	// --------------------------OVERRIDE------------------------------------//
+    @Override
 	public boolean use()
 	{
 		if (!isResolved)

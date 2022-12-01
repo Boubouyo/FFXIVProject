@@ -45,6 +45,23 @@ public class Exit {
     }
     
     
+    // ----------------------------GET & SET-------------------------------------//
+    /**
+     * 
+     * @return Location A
+     */
+    public Location getLocationA(){
+        return this.locationA;
+    }
+    /**
+     * 
+     * @return Location B 
+     */
+    public Location getLocationB(){
+        return this.locationB;
+    }
+    
+    
     // ---------------------------OPERATIONS-------------------------------------//
     /**
      * 
@@ -63,22 +80,6 @@ public class Exit {
             return false;
     }
     
-    
-    // ----------------------------GET & SET-------------------------------------//
-    /**
-     * 
-     * @return Location A
-     */
-    public Location getLocationA(){
-        return this.locationA;
-    }
-    /**
-     * 
-     * @return Location B 
-     */
-    public Location getLocationB(){
-        return this.locationB;
-    }
     
     /**
      * 
