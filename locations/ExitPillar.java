@@ -32,7 +32,7 @@ public class ExitPillar extends Exit{
      * A Method that will tell you if you're able to cross the exit from locationFrom to the other location that this ExitPilalr is linked to.
      * @param locationFrom The location from where you want to cross the exit.
      * @return a boolean which is true if the exit is already open or you're in Location B and there's no enemies left or you're in Location A and all pillars have the right statuette on them, else false.
-     * @see Exit ableToMoveThrough
+     * @see locations.Exit#ableToMoveThrough(locations.Location) 
      */
     @Override
     public boolean ableToMoveThrough(Location locationFrom){

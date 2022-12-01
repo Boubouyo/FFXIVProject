@@ -29,7 +29,7 @@ public class ExitEnemy extends Exit{
     /**
      * A Method that will tell you if you're able to cross the exit from locationFrom to the other location that this ExitEnemy is linked to.
      * @param locationFrom The location from where you want to cross the exit.
-     * @see method ableToMoveThrough of Exit class
+     * @see locations.Exit#ableToMoveThrough(locations.Location) 
      * @return boolean: false if the door is closed and there's enemy in the Location that has the name locationFrom, else return true.
      */
     @Override

@@ -33,7 +33,7 @@ public class ExitItem extends Exit{
     /**
      * A Method that will tell you if you're able to cross the exit from locationFrom to the other location that this ExitItem is linked to.
      * @param locationFrom The location from where you want to cross the exit.
-     * @see Exit ableToMoveThrough
+     * @see locations.Exit#ableToMoveThrough(locations.Location) 
      * @return boolean: false if the door is closed and there's the Item in the Location that has the name locationFrom, else return true.
      */
     
