@@ -9,14 +9,16 @@ import locations.Location;
  * @author Victor
  */
 
-public class Enemy extends Character implements Look 
-{
-	
+public class Enemy extends Character implements Look {
+	// ---------------------------ATTRIBUTS------------------------------------//
 	private static final String DEFAULT_DESCRIPTION = "It's a simple enemy.";
 	private String description;
-
+	
+	
+	// --------------------------CONSTRUCTEUR-------------------------------//
      /**
      * Constructor method for the class Enemy.
+     * 
      * @param name (String) : the character name
      * @param healthPoints (int) : the number of health points for the character
      * @param attack (int) : the value of the character attack
@@ -31,6 +33,7 @@ public class Enemy extends Character implements Look
 	
 	/**
      * Constructor method for the class Enemy with a default description
+     * 
      * @param name (String) : the character name
      * @param healthPoints (int) : the number of health points for the character
      * @param attack (int) : the value of the character attack
@@ -41,6 +44,8 @@ public class Enemy extends Character implements Look
 		this(name, healthPoints, attack, startingLocation, DEFAULT_DESCRIPTION);
 	}
 	
+	
+	// ---------------------------OPERATIONS-----------------------------------//
 	/**
      * Make the enemy attack the hero
      */

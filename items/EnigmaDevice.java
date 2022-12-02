@@ -8,6 +8,7 @@ import locations.Location;
 
 /**
  * An item class that is an enigma device to be able to create enigmas in the game.
+ * 
  * @author Victor
  */
 

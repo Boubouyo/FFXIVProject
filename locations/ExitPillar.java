@@ -11,6 +11,7 @@ import items.Pillar;
 /**
  * This Exit will open is direction A->B when all statuette are put on the right pillar in room A, and in direction B->A when the enemies in B are all defeated
  * This Exit only link two Locations
+ * 
  * @author fetiveau
  */
 
@@ -19,6 +20,7 @@ public class ExitPillar extends Exit{
     /**
      * The constructor method of the class ExitPillar
      * It creates an ExitPillar between Location a and Location b, and the exit is closed in the two ways by default
+     * 
      * @param a Location A
      * @param b Location B
      */

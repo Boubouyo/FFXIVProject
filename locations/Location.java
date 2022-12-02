@@ -25,6 +25,7 @@ import items.Weapon;
 
 /**
  * This class creates a Location in which Item enemies and the Hero can do things in. The Locations are linked between each other with the help of Exits.
+ * 
  * @author fetiveau
  */
 public class Location implements Look {
@@ -43,6 +44,7 @@ public class Location implements Look {
     /**
      * This is the constructor method of the class Location
      * It will create a Location with a name, a description that will be display when the Player uses the LOOK command and an entry description that will be displayed when the Player enter that Location
+     * 
      * @param name Name of the Location
      * @param description Description of the Location that will be displayed with the look method
      * @param entryDescription Description of the Location that will be displayed when you enter the Location
@@ -57,6 +59,7 @@ public class Location implements Look {
     // ----------------------------GET & SET-------------------------------------//
     /**
      * Give the name of the Location
+     * 
      * @return The name of the Location
      */
     public String getName(){
@@ -65,6 +68,7 @@ public class Location implements Look {
     
     /**
      * Give the Hero that is in that Location
+     * 
      * @return The Hero if the hero is in that Location, else null
      */
     public Hero getHero(){
@@ -73,6 +77,7 @@ public class Location implements Look {
     
     /**
      * Will set the Hero hero to that Location
+     * 
      * @param hero Hero
      */
     public void setHero(Hero hero){
@@ -85,6 +90,7 @@ public class Location implements Look {
     
     /**
      * A method that will give you the Exit that is between that Location and the Location that has locationName.
+     * 
      * @param locationName The name of a Location
      * @return If this Location as an exit in common with the Location that has the locationName, will send the Exit that link the two Locations, else null.
      */
@@ -99,6 +105,7 @@ public class Location implements Look {
     
     /**
      * A Method that link the Location to newExit
+     * 
      * @param newExit An Exit you want to link to that Location
      */
     public void addExits(Exit newExit){
@@ -107,6 +114,7 @@ public class Location implements Look {
     
     /**
      * A method that returns the Location the Player want to move to if he can, else return the Location the Player is.
+     * 
      * @param locationName Name of the location you want the hero to go
      * @param hero Hero
      * @return if the hero is able to go to locationName from where they currently are, returns that Location, else returns the Location the hero currently is
@@ -197,6 +205,7 @@ public class Location implements Look {
     // ---------------------OPERATIONS : ENEMY------------------------------//
     /**
      * Add an Enemy to the Location
+     * 
      * @param name Name of the enemy you wanna add
      * @param healthPoints Health of the enemy you wanna add
      * @param attack Attack damage of the enemy you wanna add

@@ -14,9 +14,8 @@ import java.util.List;
  * @author Victor
  */
 
-public class Hero extends Character 
-{
-	
+public class Hero extends Character {
+	// ---------------------------ATTRIBUTS------------------------------------//
 	private final static String[] commands = {"HELP", "GO", "LOOK", "TAKE", "USE", "ATTACK", "QUIT"};
 	private final static String[] commands_help = 
 		{
@@ -34,8 +33,11 @@ public class Hero extends Character
 	
 	private boolean isGameFinished = false;
 	
+	
+	// --------------------------CONSTRUCTEUR-------------------------------//
 	/**
      * Constructor method for the class Hero.
+     * 
      * @param name (String) : the character name
      * @param healthPoints (int) : the number of health points for the character
      * @param attack (int) : the value of the character attack
@@ -48,7 +50,7 @@ public class Hero extends Character
 		this.weapon = startingWeapon;
 	}
 	
-    // ----- Getters and setters -----
+	// ----------------------------GET & SET--------------------------------------//
 	/**
      * Getter for the attribute isGameFinished.
      * 
@@ -88,6 +90,8 @@ public class Hero extends Character
 		this.weapon = weapon;
 	}
 	
+	
+	// ---------------------------OPERATIONS-----------------------------------//
 	// ----- Inventory management -----
 	/**
      * Add an item to the inventory list
@@ -314,6 +318,7 @@ public class Hero extends Character
 	
 	/**
      * Print the details of a command available
+     * 
      * @param command (String) : the name of the command to print
      */
 	public void printHelpCommandsWithArg(String command)
@@ -336,6 +341,7 @@ public class Hero extends Character
 	// ----- GO -----
 	/**
      * Change the location of the hero if possible
+     * 
      * @param locationName (String) : the name of the location to go to 
      */
 	public void changeLocation(String locationName)
@@ -346,6 +352,7 @@ public class Hero extends Character
 	// ----- LOOK -----
 	/**
      * Print a particular value or call the look() method of a class depending on the name in parameter
+     * 
      * @param somethingName (String) : the name of the thing to look
      */
 	public void lookSomething(String somethingName)
@@ -447,6 +454,7 @@ public class Hero extends Character
 	// ----- USEON -----
 	/**
      * Use the item named in the parameter on the second item
+     * 
      * @param item1Name (String) : the name of the thing to use
      * @param item2Name (String) : the name of the thing the first item will be used on
      */

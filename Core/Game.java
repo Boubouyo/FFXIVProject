@@ -13,8 +13,8 @@ import locations.Location;
  * The class that monitors the whole game : it initiates everything and has the main game loop.
  * @author Victor
  */
-public class Game 
-{
+public class Game {
+	// ---------------------------ATTRIBUTS------------------------------------//
 	private static final String HERO_NAME = "Hero";
 	private static final int HERO_HP = 20;
 	private static final int HERO_ATTACK = 1;
@@ -26,8 +26,11 @@ public class Game
 	private final List<Location> locations;
 	private final Hero hero;
 	
+	
+	// --------------------------CONSTRUCTEUR-------------------------------//
 	/**
      * Constructor method for the class Game : instantiate everything to set up the game
+     * 
      * @exception FileNotFoundException catch if the file was not found 
      * @exception InitiateFromFilesWrongException catch if datas from the files are incorrect
      */
@@ -66,6 +69,8 @@ public class Game
 		this.hero.getWeapon().setHero(this.hero);
 	}
 	
+	
+	// ---------------------------OPERATIONS-----------------------------------//
 	/**
      * Parse an input into a list of strings
      * @param scanner (Scanner) : to have access to the input

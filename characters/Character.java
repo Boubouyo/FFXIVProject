@@ -8,9 +8,8 @@ import locations.Location;
 * @author Victor
 */
 
-public abstract class Character 
-{
-	
+public abstract class Character {
+	// ---------------------------ATTRIBUTS------------------------------------//
 	private String name;
 	private Location currentLocation;
 
@@ -18,6 +17,8 @@ public abstract class Character
 	private int currentHealthPoints;
 	private int attack;
 	
+	
+	// --------------------------CONSTRUCTEUR-------------------------------//
 	/**
      * Constructor method for the class Character.
      * @param name (String) : the character name
@@ -34,7 +35,8 @@ public abstract class Character
 		this.currentLocation = startingLocation;
 	}
 	
-    // Getters and setters 
+	
+	// ----------------------------GET & SET--------------------------------------//
 	/**
      * Getter for the attribute name.
      * 
@@ -83,6 +85,8 @@ public abstract class Character
 		this.currentLocation = currentLocation;
 	}
 	
+	
+	// ---------------------------OPERATIONS-----------------------------------//
     // Print
 	/**
      * Print the healthPoints of the character

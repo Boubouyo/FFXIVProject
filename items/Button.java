@@ -20,6 +20,7 @@ public class Button extends Item implements Use {
 	// --------------------------CONSTRUCTEUR----------------------------------//
 	/**
      * Constructor method for the class Button.
+     * 
      * @param name (String) : the name of the item (each item as a different one)
 	 * @param description (String) : the description of the item (what we notice by using the command look)
 	 * @param location (Location) : where the item is located

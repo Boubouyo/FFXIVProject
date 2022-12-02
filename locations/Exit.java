@@ -7,6 +7,7 @@ package locations;
 /**
  * This Exit can be crossed if the "door" (isOpenAToB / isOpenBToA) is open (value : true)
  * This Exit only link two Locations
+ * 
  * @author fetiveau
  */
 public class Exit {
@@ -21,6 +22,7 @@ public class Exit {
     /**
      * This is the constructor method of the class Exit
      * It creates an Exit between Location a and Location b and you can define if the exit from Location a to Location b is open or closed per default (and vice versa)
+     * 
      * @param a Location A
      * @param b Location B
      * @param isOpenAtoB False if the exit is closed by default between Location A to Location B else true.
@@ -38,10 +40,9 @@ public class Exit {
     /**
      * This is the constructor method of the class Exit
      * It creates an Exit between Location a and Location b, and the exit is open is the two ways
+     * 
      * @param a Location A
      * @param b Location B
-     * 
-     * 
      */
     public Exit(Location a, Location b){
         this(a,b,true,true);
@@ -51,6 +52,7 @@ public class Exit {
     // ----------------------------GET & SET-------------------------------------//
     /**
      * Getting Location A from Exit
+     * 
      * @return Location A
      */
     public Location getLocationA(){
@@ -58,6 +60,7 @@ public class Exit {
     }
     /**
      * Getting Location B from Exit
+     * 
      * @return Location B 
      */
     public Location getLocationB(){
@@ -68,6 +71,7 @@ public class Exit {
     // ---------------------------OPERATIONS-------------------------------------//
     /**
      * This will tell you if you can cross the exit in the direction locationFrom -> other Location linked to that Exit
+     * 
      * @param locationFrom The location from where you want to cross the exit.
      * @return boolean : true if isOpen LocationFrom -> LocationTo is true, else false.
      */
@@ -86,6 +90,7 @@ public class Exit {
     
     /**
      * Setting one of the isOpen to false
+     * 
      * @param locationFrom the IsOpen LocationFrom -> OtherLocation will be set to false.
      */
     public void close(Location locationFrom){
@@ -98,6 +103,7 @@ public class Exit {
     }
     /**
      * Setting one of the isOpen to true
+     * 
      * @param locationFrom the IsOpen LocationFrom -> OtherLocation will be set to true.
      */
     public void open(Location locationFrom){
@@ -110,6 +116,7 @@ public class Exit {
     }
     /**
      * Getting the Location from this exit with the name of that Exit
+     * 
      * @param wantedLocation The name of the location you want to get
      * @return the Location that has the name of wantedLocation if it's link to that Exit, else null
      */
@@ -127,6 +134,7 @@ public class Exit {
     
     /**
      * Getting the other Location from this Exit based on the name of the other Location that is linked to that Exit
+     * 
      * @param location The name of a Location
      * @return If location is the name of one of the two Locations (A or B) that the Exit contains, it will return the other location, else it will return null.
      */
